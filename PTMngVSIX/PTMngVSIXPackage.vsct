@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h" />
+
+  <Commands package="PTMngVSIXPackage">
+
+    <!--Level 1 Menu-->
+    <Menus>
+      <Menu guid="PTMngCmdSet" id="F1_MenuItem" priority="0x0101" type="Menu">
+        <Parent guid="PTMngCmdSet" id="MenuGroup" />
+        <Strings>
+          <ButtonText>AI Coding</ButtonText>
+          <CommandName>AI Coding</CommandName>
+        </Strings>
+      </Menu>
+      
+      <Menu guid="PTMngCmdSet" id="F2_MenuItem" priority="0x0102" type="Menu">
+        <Parent guid="PTMngCmdSet" id="MenuGroup" />
+        <Strings>
+          <ButtonText>AI Docs</ButtonText>
+          <CommandName>AI Docs</CommandName>
+        </Strings>
+      </Menu>
+
+      <Menu guid="PTMngCmdSet" id="F4_MenuItem" priority="0x0104" type="Menu">
+        <Parent guid="PTMngCmdSet" id="MenuGroup" />
+        <Strings>
+          <ButtonText>AI Testing</ButtonText>
+          <CommandName>AI Testing</CommandName>
+        </Strings>
+      </Menu>
+
+      <Menu guid="PTMngCmdSet" id="F5_MenuItem" priority="0x0105" type="Menu">
+        <Parent guid="PTMngCmdSet" id="MenuGroup" />
+        <Strings>
+          <ButtonText>AI Architect</ButtonText>
+          <CommandName>AI Architect</CommandName>
+        </Strings>
+      </Menu>
+
+    </Menus>
+    <!--End Level 1 Menu-->
+    
+    <Groups>
+      
+      <!--Menu group-->
+      <Group guid="PTMngCmdSet" id="MenuGroup" priority="0x100">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+      </Group>
+      
+      <Group guid="PTMngCmdSet" id="ToolWindowGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_VIEW"/>
+        <!-- Parent là menu View -->
+      </Group>
+
+      <Group guid="PTMngCmdSet" id="F0_CommandGroup" priority="0x0100">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+      </Group>
+      
+      <Group guid="PTMngCmdSet" id="F6_CommandGroup" priority="0x0100">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+      </Group>
+      <!--End menu group-->
+      
+      <!--Function group-->
+      <Group guid="PTMngCmdSet" id="F1_CommandGroup" priority="0x0101">
+        <Parent guid="PTMngCmdSet" id="F1_MenuItem" />
+      </Group>
+
+      <Group guid="PTMngCmdSet" id="F2_CommandGroup" priority="0x0102">
+        <Parent guid="PTMngCmdSet" id="F2_MenuItem" />
+      </Group>
+
+      <Group guid="PTMngCmdSet" id="F3_CommandGroup" priority="0x0103">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ERRORLIST" />
+      </Group>
+
+      <Group guid="PTMngCmdSet" id="F4_CommandGroup" priority="0x0104">
+        <Parent guid="PTMngCmdSet" id="F4_MenuItem" />
+      </Group>
+
+      <Group guid="PTMngCmdSet" id="F5_CommandGroup" priority="0x0105">
+        <Parent guid="PTMngCmdSet" id="F5_MenuItem" />
+      </Group>
+      <!--End function group-->
+
+    </Groups>
+
+    <Buttons>
+
+      <!-- App buttons-->
+      <Button guid="PTMngCmdSet" id="C9000_ConnectServer" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="F0_CommandGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Kết nối đến AI Server</ButtonText>
+        </Strings>
+      </Button>
+
+      <!--End App buttons-->
+
+      <!--F3 Error buttons-->
+      <Button guid="PTMngCmdSet" id="C3010_ExplainError" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="F3_CommandGroup" />
+        <Strings>
+          <ButtonText>Giải thích lỗi</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C3020_SuggestFixes" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="F3_CommandGroup" />
+        <Strings>
+          <ButtonText>Gợi ý sửa lỗi</ButtonText>
+        </Strings>
+      </Button>
+      <!--End F3 Error buttons-->
+
+      <!--F4 Test buttons-->
+      <Button guid="PTMngCmdSet" id="C4010_Whitebox" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="F4_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo test cases white-box</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C4020_Blackbox_UnitTests" priority="101" type="Button">
+        <Parent guid="PTMngCmdSet" id="F4_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo test cases black-box unit tests</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C4021_Blackbox_IntegrationTests" priority="102" type="Button">
+        <Parent guid="PTMngCmdSet" id="F4_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo test cases black-box integration tests</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C4022_Blackbox_EdgeCaseTesting" priority="103" type="Button">
+        <Parent guid="PTMngCmdSet" id="F4_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo test cases black-box edge case testing</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C4023_Blackbox_PerformanceTesting" priority="104" type="Button">
+        <Parent guid="PTMngCmdSet" id="F4_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo test cases black-box performance testing</ButtonText>
+        </Strings>
+      </Button>
+      <!--End F4 Test buttons-->
+      
+      <!--F5 Chat buttons-->
+      <Button guid="PTMngCmdSet" id="C5020_ReviewCodeFunction" priority="120" type="Button">
+        <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Review code function</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C5021_ReviewCodeClass" priority="121" type="Button">
+        <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Review code class</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C5030_SuggestSolution" priority="130" type="Button">
+        <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Gợi ý giải pháp</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C5040_SuggestDeploy" priority="140" type="Button">
+        <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Gợi ý triển khai</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C5050_SuggestArchitecture" priority="150" type="Button">
+        <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Gợi ý kiến trúc</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C5060_SuggestTechnologies" priority="160" type="Button">
+        <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Gợi ý công nghệ</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C5070_SuggestFeatures" priority="160" type="Button">
+        <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Gợi ý tính năng</ButtonText>
+        </Strings>
+      </Button>
+      <!--End F5 Chat buttons-->
+
+      <!--F1 Editor buttons-->
+      <Button guid="PTMngCmdSet" id="C1003_ReflectCode" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Thay đổi code</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C1006_CompleteFunction" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Hoàn thành function</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C1005_AddComment" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Thêm comments</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C1001_GenerateFunction" priority="101" type="Button">
+        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo function</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C1002_GenerateClass" priority="102" type="Button">
+        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo class</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C1040_SummaryFunction" priority="140" type="Button">
+        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo Summary hàm</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C1050_OptimizeFunction" priority="150" type="Button">
+        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tối ưu hàm</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C1060_ExplainFunction" priority="160" type="Button">
+        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Giải thích hàm</ButtonText>
+        </Strings>
+      </Button>
+      <!--End F1 Editor buttons-->
+
+      <!--F2 Docs buttons-->
+      <Button guid="PTMngCmdSet" id="C2000_DocsSelection" priority="110" type="Button">
+        <Parent guid="PTMngCmdSet" id="F2_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo tài liệu theo vùng chọn</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C2001_DocsFunction" priority="111" type="Button">
+        <Parent guid="PTMngCmdSet" id="F2_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo tài liệu hàm Function</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C2002_DocsClass" priority="112" type="Button">
+        <Parent guid="PTMngCmdSet" id="F2_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo tài liệu lớp Class</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C2010_DocsApi" priority="112" type="Button">
+        <Parent guid="PTMngCmdSet" id="F2_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo tài liệu Api</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C2020_DocsTechnicalSpecifications" priority="112" type="Button">
+        <Parent guid="PTMngCmdSet" id="F2_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo tài liệu Technical specifications</ButtonText>
+        </Strings>
+      </Button>
+
+      <!--End F2 Docs buttons-->
+
+      <Button guid="PTMngCmdSet" id="C6010_AddCodeSnippet" priority="112" type="Button">
+        <Parent guid="PTMngCmdSet" id="F6_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Thêm code snippet</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C6011_ResetCodeSnippet" priority="112" type="Button">
+        <Parent guid="PTMngCmdSet" id="F6_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Reset code snippet</ButtonText>
+        </Strings>
+      </Button>
+
+      <!--F6 Chat buttons-->
+      
+      <!--End F6 Chat buttons-->
+      
+      <!--AI Chat-->
+      <Button guid="PTMngCmdSet" id="C0001_OpenChatWindow" priority="0x0100" type="Button">
+        <Parent guid="PTMngCmdSet" id="ToolWindowGroup" />
+        <Strings>
+          <ButtonText>PTMng AI Chat</ButtonText>
+        </Strings>
+      </Button>
+      <!--End AI Chat-->
+    </Buttons>
+
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="PTMngVSIXPackage" value="{bd4318e4-1155-4cf7-95ca-e30cfcc156a3}" />
+
+    <GuidSymbol name="PTMngCmdSet" value="{E670DC9F-CFC4-4F5C-9892-E419C56E9FBF}">
+      <IDSymbol name="MenuGroup" value="100010" />
+      <IDSymbol name="F1_MenuItem" value="100011" />
+      <IDSymbol name="F2_MenuItem" value="100012" />
+      <IDSymbol name="F4_MenuItem" value="100014" />
+      <IDSymbol name="F5_MenuItem" value="100015" />
+
+      <IDSymbol name="F0_CommandGroup" value="10010" />
+      <IDSymbol name="F1_CommandGroup" value="10011" />
+      <IDSymbol name="F2_CommandGroup" value="10012" />
+      <IDSymbol name="F3_CommandGroup" value="10013" />
+      <IDSymbol name="F4_CommandGroup" value="10014" />
+      <IDSymbol name="F5_CommandGroup" value="10015" />
+      <IDSymbol name="F6_CommandGroup" value="10016" />
+      <IDSymbol name="ToolWindowGroup" value="10020" />
+
+      <IDSymbol name="C9000_ConnectServer" value="9000" />
+      <IDSymbol name="C0001_OpenChatWindow" value="9001" />
+
+      <IDSymbol name="C1000_GenerateCode" value="1000" />
+      <IDSymbol name="C1001_GenerateFunction" value="1001" />
+      <IDSymbol name="C1002_GenerateClass" value="1002" />
+      <IDSymbol name="C1003_ReflectCode" value="1003" />
+      <IDSymbol name="C1004_FillInMiddle" value="1004" />
+      <IDSymbol name="C1005_AddComment" value="1005" />
+      <IDSymbol name="C1006_CompleteFunction" value="1006" />
+      <IDSymbol name="C1040_SummaryFunction" value="1040" />
+      <IDSymbol name="C1050_OptimizeFunction" value="1050" />
+      <IDSymbol name="C1060_ExplainFunction" value="1060" />
+
+      <IDSymbol name="C2000_DocsSelection" value="2000" />
+      <IDSymbol name="C2001_DocsFunction" value="2001" />
+      <IDSymbol name="C2002_DocsClass" value="2002" />
+      <IDSymbol name="C2010_DocsApi" value="2010" />
+      <IDSymbol name="C2020_DocsTechnicalSpecifications" value="2020" />
+
+      <IDSymbol name="C3010_ExplainError" value="3010" />
+      <IDSymbol name="C3020_SuggestFixes" value="3020" />
+
+      <IDSymbol name="C4010_Whitebox" value="4010" />
+      <IDSymbol name="C4020_Blackbox_UnitTests" value="4020" />
+      <IDSymbol name="C4021_Blackbox_IntegrationTests" value="4021" />
+      <IDSymbol name="C4022_Blackbox_EdgeCaseTesting" value="4022" />
+      <IDSymbol name="C4023_Blackbox_PerformanceTesting" value="4023" />
+
+      <IDSymbol name="C5020_ReviewCodeFunction" value="5020" />
+      <IDSymbol name="C5021_ReviewCodeClass" value="5021" />
+      <IDSymbol name="C5030_SuggestSolution" value="5030" />
+      <IDSymbol name="C5040_SuggestDeploy" value="5040" />
+      <IDSymbol name="C5050_SuggestArchitecture" value="5050" />
+      <IDSymbol name="C5060_SuggestTechnologies" value="5060" />
+      <IDSymbol name="C5070_SuggestFeatures" value="5070" />
+
+      <IDSymbol name="C6010_AddCodeSnippet" value="6010" />
+      <IDSymbol name="C6011_ResetCodeSnippet" value="6011" />
+
+    </GuidSymbol>
+  
+  </Symbols>
+
+</CommandTable>

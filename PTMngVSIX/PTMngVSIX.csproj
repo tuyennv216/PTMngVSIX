@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|arm64'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|arm64'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{A9E595EB-A829-43C9-9B91-A708756CC626}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PTMngVSIX</RootNamespace>
+    <AssemblyName>PTMngVSIX</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>9.0</LangVersion>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <UseCodebase>true</UseCodebase>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
+    <StartAction>Program</StartAction>
+    <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>/rootsuffix Exp</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Abstraction\CommandBase.cs" />
+    <Compile Include="Commands\F0App\C9000_ConnectServer.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1006_CompleteFunction.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1005_AddComment.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1004_FillInMiddle.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1003_ReflectCode.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1002_GenerateClass.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1001_GenerateFunction.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1060_ExplainFunction.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1050_OptimizeFunction.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1040_SummaryFunction.cs" />
+    <Compile Include="Commands\F2Docs\C2002_DocsClass.cs" />
+    <Compile Include="Commands\F2Docs\C2010_DocsApi.cs" />
+    <Compile Include="Commands\F2Docs\C2020_DocsTechnicalSpecifications.cs" />
+    <Compile Include="Commands\F2Docs\C2001_DocsFunction.cs" />
+    <Compile Include="Commands\F2Docs\C2000_DocsSelection.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1000_GenerateCode.cs" />
+    <Compile Include="Commands\F3FixBug\C3020_SuggestFixes.cs" />
+    <Compile Include="Commands\F3FixBug\C3010_ExplainError.cs" />
+    <Compile Include="Commands\F4Test\C4022_Blackbox_EdgeCaseTesting.cs" />
+    <Compile Include="Commands\F4Test\C4023_Blackbox_PerformanceTesting.cs" />
+    <Compile Include="Commands\F4Test\C4021_Blackbox_IntegrationTests.cs" />
+    <Compile Include="Commands\F4Test\C4020_Blackbox_UnitTests.cs" />
+    <Compile Include="Commands\F4Test\C4010_Whitebox.cs" />
+    <Compile Include="Commands\F5Architect\C5021_ReviewCodeClass.cs" />
+    <Compile Include="Commands\F5Architect\C5070_SuggestFeatures.cs" />
+    <Compile Include="Commands\F5Architect\C5060_SuggestTechnologies.cs" />
+    <Compile Include="Commands\F5Architect\C5050_SuggestArchitecture.cs" />
+    <Compile Include="Commands\F5Architect\C5040_SuggestDeploy.cs" />
+    <Compile Include="Commands\F5Architect\C5030_SuggestSolution.cs" />
+    <Compile Include="Commands\F5Architect\C5020_ReviewCodeFunction.cs" />
+    <Compile Include="Commands\F6Chat\C6011_ResetCodeSnippet.cs" />
+    <Compile Include="Commands\F6Chat\C6010_AddCodeSnippet.cs" />
+    <Compile Include="OptionPage\PTMngOptionPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PTMngVSIXPackage.cs" />
+    <Compile Include="Resource\Lang\ContextMenu.vi.Designer.cs">
+      <DependentUpon>ContextMenu.vi.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\Lang\ContextMenu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContextMenu.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Lang\UI.vi.Designer.cs">
+      <DependentUpon>UI.vi.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\Lang\UI.Designer.cs">
+      <DependentUpon>UI.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\Lang\Validate.Designer.cs">
+      <DependentUpon>Validate.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\Lang\Dialog.Designer.cs">
+      <DependentUpon>Dialog.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\Lang\Input.Designer.cs">
+      <DependentUpon>Input.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\Lang\FormOption.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormOption.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ToolWindow\Forms\OptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindow\Forms\OptionForm.Designer.cs">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolWindow\PTMngChat.cs" />
+    <Compile Include="ToolWindow\PTMngChatCommand.cs" />
+    <Compile Include="ToolWindow\PTMngChatControl.xaml.cs">
+      <DependentUpon>PTMngChatControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Cache\MiniCache.cs" />
+    <Compile Include="Utils\Chat\Message.cs" />
+    <Compile Include="Utils\Chat\Option.cs" />
+    <Compile Include="Utils\Chat\ChatService.cs" />
+    <Compile Include="Utils\Chat\ViewPos.cs" />
+    <Compile Include="Utils\Dialog\MsgboxDialog.cs" />
+    <Compile Include="Utils\Dialog\TextDialog.cs" />
+    <Compile Include="Utils\Doc\DocValidate.cs" />
+    <Compile Include="Utils\Doc\ErrorView.cs" />
+    <Compile Include="Utils\DTECommand\EditCommand.cs" />
+    <Compile Include="Utils\Model\ErrorViewModel.cs" />
+    <Compile Include="Utils\Print\PrintStructure.cs" />
+    <Compile Include="Utils\Selector\ElementSelector.cs" />
+    <Compile Include="Utils\Dialog\InputDialog.cs" />
+    <Compile Include="Utils\Setting\Constant.cs" />
+    <Compile Include="Utils\Doc\DocEdit.cs" />
+    <Compile Include="Utils\Doc\DocView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
+      <Version>4.14.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Net.Http">
+      <Version>2.2.29</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.ComponentModelHost">
+      <Version>17.14.106</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Language.Intellisense">
+      <Version>17.14.249</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.LanguageServices">
+      <Version>4.14.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.14.40265" ExcludeAssets="runtime" NoWarn="NU1604">
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2101" NoWarn="NU1604" />
+    <PackageReference Include="System.ComponentModel.Composition">
+      <Version>9.0.8</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PTMngVSIX.Abstraction\PTMngVSIX.Abstraction.csproj">
+      <Project>{C558605F-4528-4248-BB75-68C22CC1626D}</Project>
+      <Name>PTMngVSIX.Abstraction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PTMngVSIX.Data\PTMngVSIX.Data.csproj">
+      <Project>{4ab1b35e-8629-4de3-9a51-34dfe9eab5b4}</Project>
+      <Name>PTMngVSIX.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PTMngVSIX.LocalOllama\PTMngVSIX.LocalOllama.csproj">
+      <Project>{b9a236ba-d8f3-4e5d-aab0-dda787ed294c}</Project>
+      <Name>PTMngVSIX.LocalOllama</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PTMngVSIX.OnlineOpenRouterAI\PTMngVSIX.OnlineOpenRouterAI.csproj">
+      <Project>{33F85323-F8D9-46ED-8294-6FB4815DCAB7}</Project>
+      <Name>PTMngVSIX.OnlineOpenRouterAI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PTMngVSIX.Setting\PTMngVSIX.Setting.csproj">
+      <Project>{2241ab24-ade1-4248-bbf7-bee25e1938f3}</Project>
+      <Name>PTMngVSIX.Setting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <VSCTCompile Include="PTMngVSIXPackage.vsct">
+      <ResourceName>Menus.PTMngMenu</ResourceName>
+    </VSCTCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="avatar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OptionPage\PTMngOptionPage.resx">
+      <DependentUpon>PTMngOptionPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\ContextMenu.vi.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContextMenu.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\ContextMenu.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContextMenu.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\UI.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UI.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\UI.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UI.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\Validate.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Validate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\Dialog.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Dialog.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\Validate.vi.resx" />
+    <EmbeddedResource Include="Resource\Lang\Dialog.vi.resx" />
+    <EmbeddedResource Include="Resource\Lang\Input.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Input.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\Input.vi.resx" />
+    <EmbeddedResource Include="Resource\Lang\FormOption.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormOption.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\FormOption.vi.resx" />
+    <EmbeddedResource Include="ToolWindow\Forms\OptionForm.resx">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ToolWindow\PTMngChatControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ToolWindow\Resources\" />
+    <Folder Include="ToolWindow\Views\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

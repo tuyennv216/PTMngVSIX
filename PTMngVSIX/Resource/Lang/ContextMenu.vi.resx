@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Button_C0000_Connect_Server" xml:space="preserve">
+    <value>Kết nối đến AI Server</value>
+  </data>
+  <data name="Button_C1000_GenerateCode" xml:space="preserve">
+    <value>Tạo Code</value>
+  </data>
+  <data name="Button_C1001_GenerateFunction" xml:space="preserve">
+    <value>Tạo function</value>
+  </data>
+  <data name="Button_C1003_ReflectCode" xml:space="preserve">
+    <value>Thay đổi code</value>
+  </data>
+  <data name="Button_C1005_AddComment" xml:space="preserve">
+    <value>Thêm comments</value>
+  </data>
+  <data name="Button_C1006_CompleteFunction" xml:space="preserve">
+    <value>Hoàn thành function</value>
+  </data>
+  <data name="Button_C1040_SummaryFunction" xml:space="preserve">
+    <value>Tạo Summary hàm</value>
+  </data>
+  <data name="Button_C1050_OptimizeFunction" xml:space="preserve">
+    <value>Tối ưu hàm</value>
+  </data>
+  <data name="Button_C1060_ExplainFunction" xml:space="preserve">
+    <value>Giải thích hàm</value>
+  </data>
+  <data name="Button_C2000_DocsSelection" xml:space="preserve">
+    <value>Tạo tài liệu theo vùng chọn</value>
+  </data>
+  <data name="Button_C2001_DocsFunction" xml:space="preserve">
+    <value>Tạo tài liệu hàm Function</value>
+  </data>
+  <data name="Button_C2002_DocsClass" xml:space="preserve">
+    <value>Tạo tài liệu lớp Class</value>
+  </data>
+  <data name="Button_C2010_DocsApi" xml:space="preserve">
+    <value>Tạo tài liệu Api</value>
+  </data>
+  <data name="Button_C2020_DocsTechnicalSpecifications" xml:space="preserve">
+    <value>Tạo tài liệu Technical specifications</value>
+  </data>
+  <data name="Button_C3010_ExplainError" xml:space="preserve">
+    <value>Giải thích lỗi</value>
+  </data>
+  <data name="Button_C3020_SuggestFixes" xml:space="preserve">
+    <value>Gợi ý sửa lỗi</value>
+  </data>
+  <data name="Button_C4010_Whitebox" xml:space="preserve">
+    <value>Tạo White-box Test Cases</value>
+  </data>
+  <data name="Button_C4020_Blackbox_UnitTests" xml:space="preserve">
+    <value>Tạo Black-box Unit Test Cases</value>
+  </data>
+  <data name="Button_C4021_Backbox_IntegrationTests" xml:space="preserve">
+    <value>Tạo Black-box Integration Test Cases</value>
+  </data>
+  <data name="Button_C4022_Blackbox_EdgeCaseTesting" xml:space="preserve">
+    <value>Tạo Black-box Edge Case Test Cases</value>
+  </data>
+  <data name="Button_C4023_Blackbox_PerformanceTesting" xml:space="preserve">
+    <value>Tạo Black-box Performance Test Cases</value>
+  </data>
+  <data name="Button_C5020_ReviewCodeFunction" xml:space="preserve">
+    <value>Review Code Function</value>
+  </data>
+  <data name="Button_C5021_ReviewCodeClass" xml:space="preserve">
+    <value>Review Code Class</value>
+  </data>
+  <data name="Button_C5030_SuggestSolution" xml:space="preserve">
+    <value>Gợi ý giải pháp</value>
+  </data>
+  <data name="Button_C5040_SuggestDeploy" xml:space="preserve">
+    <value>Gợi ý triển khai</value>
+  </data>
+  <data name="Button_C5050_SuggestArchitecture" xml:space="preserve">
+    <value>Gợi ý kiến trúc</value>
+  </data>
+  <data name="Button_C5060_SuggestTechnologies" xml:space="preserve">
+    <value>Gợi ý công nghệ</value>
+  </data>
+  <data name="Button_C5070_SuggestFeatures" xml:space="preserve">
+    <value>Gợi ý tính năng</value>
+  </data>
+  <data name="Button_C6010_AddCodeSnippet" xml:space="preserve">
+    <value>Thêm code snippet</value>
+  </data>
+  <data name="Button_C6011_ResetCodeSnippet" xml:space="preserve">
+    <value>Reset code snippet</value>
+  </data>
+  <data name="Button_C1002_GenerateClass" xml:space="preserve">
+    <value>Tạo class</value>
+  </data>
+  <data name="MenuGroup_AI_Architect" xml:space="preserve">
+    <value>AI Architect</value>
+  </data>
+  <data name="MenuGroup_AI_Coding" xml:space="preserve">
+    <value>AI Coding</value>
+  </data>
+  <data name="MenuGroup_AI_Docs" xml:space="preserve">
+    <value>AI Docs</value>
+  </data>
+  <data name="MenuGroup_AI_Testing" xml:space="preserve">
+    <value>AI Testing</value>
+  </data>
+  <data name="Button_C1004_FillInMiddle" xml:space="preserve">
+    <value>Tự động điền Fill In Middle</value>
+  </data>
+</root>

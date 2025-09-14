@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="PTMngVSIX.ToolWindow.PTMngChatControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             xmlns:lang="clr-namespace:PTMngVSIX.Resource.Lang"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="400"
+             Name="PTMngChatToolWindow">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- RichTextBox chat chiếm không gian còn lại -->
+            <RowDefinition Height="Auto"/>
+            <!-- RichTextBox code snippet -->
+            <RowDefinition Height="Auto"/>
+            <!-- Dòng cho controls (CheckBox, Button...) -->
+            <RowDefinition Height="Auto"/>
+            <!-- Dòng cho input TextBox -->
+        </Grid.RowDefinitions>
+
+        <!-- Vùng hiển thị message chat (chiếm không gian còn lại) -->
+        <RichTextBox x:Name="ChatDisplay"
+             Grid.Row="0"
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
+             Margin="5"
+             BorderThickness="0"
+             Background="White"
+             IsReadOnly="True"
+             IsDocumentEnabled="True"
+             VerticalScrollBarVisibility="Auto">
+
+            <RichTextBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy" Click="Chat_Copy_Click"/>
+                    <MenuItem Header="Add code snippet" Click="Chat_AddCodeSnippet_Click"/>
+                </ContextMenu>
+            </RichTextBox.ContextMenu>
+        </RichTextBox>
+
+        <!-- Vùng hiển thị code snippet -->
+        <Border Grid.Row="1" 
+                BorderThickness="1" 
+                BorderBrush="{DynamicResource {x:Static vsshell:VsBrushes.ActiveBorderKey}}"
+                Margin="5,2,5,2"
+                Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- RichTextBox cho code snippet -->
+                <RichTextBox x:Name="CodeSnippetDisplay"
+                             Grid.Row="1"
+                             IsReadOnly="True"
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalScrollBarVisibility="Auto"
+                             BorderThickness="0"
+                             Margin="5,0,5,5"
+                             Background="LightGray" />
+            </Grid>
+        </Border>
+
+        <!-- Vùng hiển thị option control -->
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox x:Name="ActiveDocumentCheckbox" 
+                      VerticalAlignment="Center"
+                      Content="{x:Static lang:UI.ActiveDocument}"
+                      Grid.Column="0">
+            </CheckBox>
+
+            <Button x:Name="ResetButton" 
+                    Content="{x:Static lang:UI.NewSession}"
+                    Width="100"
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    Grid.Column="2"/>
+
+            <Button x:Name="AddMoreButton" 
+                    Content="{x:Static lang:UI.AddMore}"
+                    Width="70"
+                    VerticalAlignment="Center"
+                    Grid.Column="3"/>
+
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="InputChat"
+                 Grid.Column="0"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto"
+                 MaxLines="6"
+                 MinLines="3"
+                 Margin="0,0,5,0"/>
+
+            <Button x:Name="SendButton"
+                Click="SendButton_Click"
+                Grid.Column="1"
+                Content="{x:Static lang:UI.Send}"
+                Width="60"
+                VerticalAlignment="Stretch"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B9A236BA-D8F3-4E5D-AAB0-DDA787ED294C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PTMngVSIX.LocalOllama</RootNamespace>
+    <AssemblyName>PTMngVSIX.LocalOllama</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseModelService.cs" />
+    <Compile Include="GemmaService.cs" />
+    <Compile Include="QwenService.cs" />
+    <Compile Include="DeepseekService.cs" />
+    <Compile Include="MistralService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PTMngVSIX.Abstraction\PTMngVSIX.Abstraction.csproj">
+      <Project>{c558605f-4528-4248-bb75-68c22cc1626d}</Project>
+      <Name>PTMngVSIX.Abstraction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PTMngVSIX.Data\PTMngVSIX.Data.csproj">
+      <Project>{4ab1b35e-8629-4de3-9a51-34dfe9eab5b4}</Project>
+      <Name>PTMngVSIX.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PTMngVSIX.Prompt\PTMngVSIX.Prompt.csproj">
+      <Project>{3e57f872-23e8-45bd-aafc-f62adbbf40d3}</Project>
+      <Name>PTMngVSIX.Prompt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PTMngVSIX.Setting\PTMngVSIX.Setting.csproj">
+      <Project>{2241ab24-ade1-4248-bbf7-bee25e1938f3}</Project>
+      <Name>PTMngVSIX.Setting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.AI">
+      <Version>9.8.0</Version>
+    </PackageReference>
+    <PackageReference Include="OllamaSharp">
+      <Version>5.3.6</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
