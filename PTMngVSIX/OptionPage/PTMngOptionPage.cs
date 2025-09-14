@@ -27,7 +27,6 @@ namespace PTMngVSIX
 			set
 			{
 				_localEndpoint = value;
-				ModelSetting.Endpoint = value;
 			}
 		}
 
@@ -79,7 +78,6 @@ namespace PTMngVSIX
 			set
 			{
 				_onlineEndpoint = value;
-				ModelSetting.Endpoint = value;
 			}
 		}
 
@@ -177,7 +175,7 @@ namespace PTMngVSIX
 
 						VsShellUtilities.ShowMessageBox(
 							this.Site,
-							$"Cannot connect to the endpoint at: {_localEndpoint}.",
+							$"Cannot connect to the endpoint server.",
 							"Connection Failed",
 							OLEMSGICON.OLEMSGICON_WARNING,
 							OLEMSGBUTTON.OLEMSGBUTTON_OK,
