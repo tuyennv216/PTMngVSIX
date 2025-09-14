@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="PTMngVSIX.4ecaca86-05e1-4377-b672-50f7baa58e6a" Version="1.0.7" Language="en-US" Publisher="Tuyennv216" />
+        <Identity Id="PTMngVSIX.4ecaca86-05e1-4377-b672-50f7baa58e6a" Version="1.0.9" Language="en-US" Publisher="Tuyennv216" />
         <DisplayName>PTMng - AI Assistant</DisplayName>
         <Description xml:space="preserve">This extension interacts with the Ollama Mistral model on localhost, or connects to OpenRouter Deepseek to perform various tasks.</Description>
         <License>LICENSE.txt</License>
         <Icon>avatar.png</Icon>
-        <Tags>AI Assistant, LocalOllama, OpenRouter, Mistral, Deepseek.</Tags>
+        <Tags>AI Assistant, Ollama, OpenRouter, Mistral, Deepseek.</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
