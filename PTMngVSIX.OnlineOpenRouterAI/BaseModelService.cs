@@ -15,7 +15,7 @@ namespace PTMngVSIX.OnlineOpenRouterAI
 	{
 		public abstract Task<ResponseBase> Call(RequestBase request);
 
-		public async Task TryConnect()
+		public async Task TryConnectAsync()
 		{
 			try
 			{

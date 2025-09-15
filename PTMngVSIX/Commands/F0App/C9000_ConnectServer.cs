@@ -25,7 +25,7 @@ namespace PTMngVSIX.Commands.F0App
 
 		protected override async Task ExecuteAsync(object sender, EventArgs e)
 		{
-			await AppState.Assistant.TryConnect();
+			await AppState.Assistant.TryConnectAsync();
 
 			if (AppState.IsModelAvailable)
 			{

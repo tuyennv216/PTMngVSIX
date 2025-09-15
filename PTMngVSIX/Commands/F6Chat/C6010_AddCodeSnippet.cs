@@ -33,7 +33,7 @@ namespace PTMngVSIX.Commands.F6Chat
 			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
 			var selectedText = await DocView.GetSelectedTextAsync();
-			await ChatService.Instance.AddCodeSnippetAsync(selectedText);
+			await ChatService.Instance.AddCodeSnippetAsync(selectedText).ConfigureAwait(false);
 		}
 	}
 }

@@ -19,18 +19,12 @@ namespace PTMngVSIX.Commands.F6Chat
 
 		protected override void BeforeRenderMenu(OleMenuCommand menu)
 		{
-			var jtf = PTMngVSIXPackage.JoinableTaskContext.Factory;
-			var hasSelection = jtf.Run(async () =>
-			{
-				return await DocView.CachedHasSelectedText.GetAsync();
-			});
-
 			menu.Visible = menu.Visible && ChatService.Instance.ActiveSnippets.Count > 0;
 		}
 
 		protected override async Task ExecuteAsync(object sender, EventArgs e)
 		{
-			await ChatService.Instance.ResetChatAsync();
+			await ChatService.Instance.ResetChatAsync().ConfigureAwait(false);
 		}
 	}
 }

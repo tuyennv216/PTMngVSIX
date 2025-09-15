@@ -1,5 +1,4 @@
 ﻿using EnvDTE;
-using Microsoft.Build.Framework;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -7,7 +6,6 @@ using Microsoft.VisualStudio.TextManager.Interop;
 using PTMngVSIX.Utils.Cache;
 using System;
 using System.Threading.Tasks;
-using System.Threading.Tasks.Sources;
 
 namespace PTMngVSIX.Utils.Doc
 {

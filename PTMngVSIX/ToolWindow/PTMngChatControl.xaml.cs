@@ -27,6 +27,15 @@ namespace PTMngVSIX.ToolWindow
 		{
 			this.InitializeComponent();
 
+			try
+			{
+				DefaultFontFamily = new FontFamily("Cascadia Mono");
+			}
+			catch
+			{
+				DefaultFontFamily = new FontFamily("Consolas");
+			}
+
 			// Đăng ký sự kiện cho button
 			ResetButton.Click += ResetButton_Click;
 			AddMoreButton.Click += AddMoreButton_Click;
@@ -42,16 +51,6 @@ namespace PTMngVSIX.ToolWindow
 			{
 				AddCodeSnippet(snippet);
 			}
-
-			try
-			{
-				DefaultFontFamily = new FontFamily("Cascadia Mono");
-			}
-			catch
-			{
-				DefaultFontFamily = new FontFamily("Consolas");
-			}
-
 		}
 
 		private void ResetButton_Click(object sender, RoutedEventArgs e)

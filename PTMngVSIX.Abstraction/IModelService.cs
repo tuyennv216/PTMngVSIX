@@ -6,7 +6,7 @@ namespace PTMngVSIX.Abstraction
 {
 	public interface IModelService
 	{
-		Task TryConnect();
+		Task TryConnectAsync();
 		Task<ResponseBase> Call(RequestBase request);
 	}
 }

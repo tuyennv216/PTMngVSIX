@@ -20,7 +20,7 @@ namespace PTMngVSIX
 		//Localhost
 		[Category("Localhost")]
 		[DisplayName("1. Endpoint")]
-		[Description("The Api endpoint for the model service.")]
+		[Description("The Api endpoint for the model service. http://localhost:11434")]
 		public string LocalEndpoint
 		{
 			get => _localEndpoint;
@@ -58,14 +58,13 @@ namespace PTMngVSIX
 		// Internet - OpenRouterAI
 		[Category("UseInternet")]
 		[DisplayName("1. Use OpenRouter")]
-		[Description("Connect to OpenRouterAI.")]
+		[Description("Connect to OpenRouterAI. https://openrouter.ai/api/v1")]
 		public bool UseInternet
 		{
 			get => _useInternet;
 			set
 			{
 				_useInternet = value;
-				ModelSetting.UseInternet = value;
 			}
 		}
 
@@ -91,14 +90,13 @@ namespace PTMngVSIX
 			set
 			{
 				_onlineApiKey = value;
-				ModelSetting.ApiKey = value;
 			}
 		}
 
 		[Category("UseInternet")]
 		[DisplayName("4. Assistant model")]
 		[Description("Name of the Assistant model.")]
-		public string OnlineAssistantModelNameModelName
+		public string OnlineAssistantModelName
 		{
 			get => _onlineAssistantModelName;
 			set
@@ -166,9 +164,9 @@ namespace PTMngVSIX
 				SetAppStateModel();
 
 				var jtf = PTMngVSIXPackage.JoinableTaskContext.Factory;
-				jtf.Run(async () =>
+				_ = jtf.RunAsync(async () =>
 				{
-					await AppState.Assistant.TryConnect();
+					await AppState.Assistant.TryConnectAsync();
 					if (!AppState.IsModelAvailable)
 					{
 						await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();

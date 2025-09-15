@@ -15,7 +15,7 @@
           <CommandName>AI Coding</CommandName>
         </Strings>
       </Menu>
-      
+
       <Menu guid="PTMngCmdSet" id="F2_MenuItem" priority="0x0102" type="Menu">
         <Parent guid="PTMngCmdSet" id="MenuGroup" />
         <Strings>
@@ -39,17 +39,16 @@
           <CommandName>AI Architect</CommandName>
         </Strings>
       </Menu>
-
     </Menus>
     <!--End Level 1 Menu-->
-    
+
     <Groups>
-      
+
       <!--Menu group-->
       <Group guid="PTMngCmdSet" id="MenuGroup" priority="0x100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
       </Group>
-      
+
       <Group guid="PTMngCmdSet" id="ToolWindowGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_VIEW"/>
         <!-- Parent là menu View -->
@@ -58,12 +57,12 @@
       <Group guid="PTMngCmdSet" id="F0_CommandGroup" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
       </Group>
-      
+
       <Group guid="PTMngCmdSet" id="F6_CommandGroup" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
       </Group>
       <!--End menu group-->
-      
+
       <!--Function group-->
       <Group guid="PTMngCmdSet" id="F1_CommandGroup" priority="0x0101">
         <Parent guid="PTMngCmdSet" id="F1_MenuItem" />
@@ -108,7 +107,7 @@
           <ButtonText>Giải thích lỗi</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="PTMngCmdSet" id="C3020_SuggestFixes" priority="100" type="Button">
         <Parent guid="PTMngCmdSet" id="F3_CommandGroup" />
         <Strings>
@@ -126,7 +125,7 @@
           <ButtonText>Tạo test cases white-box</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="PTMngCmdSet" id="C4020_Blackbox_UnitTests" priority="101" type="Button">
         <Parent guid="PTMngCmdSet" id="F4_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -163,7 +162,7 @@
         </Strings>
       </Button>
       <!--End F4 Test buttons-->
-      
+
       <!--F5 Chat buttons-->
       <Button guid="PTMngCmdSet" id="C5020_ReviewCodeFunction" priority="120" type="Button">
         <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
@@ -173,7 +172,7 @@
           <ButtonText>Review code function</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="PTMngCmdSet" id="C5021_ReviewCodeClass" priority="121" type="Button">
         <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -182,7 +181,7 @@
           <ButtonText>Review code class</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="PTMngCmdSet" id="C5030_SuggestSolution" priority="130" type="Button">
         <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -191,7 +190,7 @@
           <ButtonText>Gợi ý giải pháp</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="PTMngCmdSet" id="C5040_SuggestDeploy" priority="140" type="Button">
         <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -200,7 +199,7 @@
           <ButtonText>Gợi ý triển khai</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="PTMngCmdSet" id="C5050_SuggestArchitecture" priority="150" type="Button">
         <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -209,7 +208,7 @@
           <ButtonText>Gợi ý kiến trúc</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="PTMngCmdSet" id="C5060_SuggestTechnologies" priority="160" type="Button">
         <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -218,7 +217,7 @@
           <ButtonText>Gợi ý công nghệ</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="PTMngCmdSet" id="C5070_SuggestFeatures" priority="160" type="Button">
         <Parent guid="PTMngCmdSet" id="F5_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -238,7 +237,7 @@
           <ButtonText>Thay đổi code</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="PTMngCmdSet" id="C1006_CompleteFunction" priority="100" type="Button">
         <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -370,11 +369,11 @@
       </Button>
 
       <!--F6 Chat buttons-->
-      
+
       <!--End F6 Chat buttons-->
-      
+
       <!--AI Chat-->
-      <Button guid="PTMngCmdSet" id="C0001_OpenChatWindow" priority="0x0100" type="Button">
+      <Button guid="PTMngCmdSet" id="C9001_OpenChatWindow" priority="0x0100" type="Button">
         <Parent guid="PTMngCmdSet" id="ToolWindowGroup" />
         <Strings>
           <ButtonText>PTMng AI Chat</ButtonText>
@@ -405,7 +404,7 @@
       <IDSymbol name="ToolWindowGroup" value="10020" />
 
       <IDSymbol name="C9000_ConnectServer" value="9000" />
-      <IDSymbol name="C0001_OpenChatWindow" value="9001" />
+      <IDSymbol name="C9001_OpenChatWindow" value="9001" />
 
       <IDSymbol name="C1000_GenerateCode" value="1000" />
       <IDSymbol name="C1001_GenerateFunction" value="1001" />
@@ -443,9 +442,8 @@
 
       <IDSymbol name="C6010_AddCodeSnippet" value="6010" />
       <IDSymbol name="C6011_ResetCodeSnippet" value="6011" />
-
     </GuidSymbol>
-  
+    
   </Symbols>
 
 </CommandTable>
