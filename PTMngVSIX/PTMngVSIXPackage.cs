@@ -32,20 +32,6 @@ namespace PTMngVSIX
 	[ProvideMenuResource("Menus.PTMngMenu", 1)]
 	[ProvideToolWindow(typeof(PTMngVSIX.ToolWindow.PTMngChat))]
 	[ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
-
-	[ProvideAutoLoad("{51C9D568-9BA8-4862-8FA0-AB0E7C3C1452}", PackageAutoLoadFlags.BackgroundLoad)]
-	[ProvideUIContextRule("{51C9D568-9BA8-4862-8FA0-AB0E7C3C1452}",
-		name: "Text Selected",
-		expression: "TextSelected",
-		termNames: new[] { "TextSelected" },
-		termValues: new[] { "ActiveEditorTextSelected" })]
-
-	[ProvideAutoLoad("{A9800574-0949-4429-9CA5-0DDBD7BBA142}", PackageAutoLoadFlags.BackgroundLoad)]
-	[ProvideUIContextRule("{A9800574-0949-4429-9CA5-0DDBD7BBA142}",
-		name: "HTML File Loaded",
-		expression: "HtmlFile",
-		termNames: new[] { "HtmlFile" },
-		termValues: new[] { "ActiveEditorContentType:htmlx" })]
 	public sealed class PTMngVSIXPackage : AsyncPackage
 	{
 		/// <summary>
@@ -73,7 +59,6 @@ namespace PTMngVSIX
 
 			LoadFromOptionPage();
 			_ = AppState.Assistant.TryConnectAsync();
-
 
 			// When initialized asynchronously, the current thread may be a background thread at this point.
 			// Do any initialization that requires the UI thread after switching to the UI thread.

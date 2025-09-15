@@ -15,7 +15,7 @@ PTMngVSIX is a powerful Visual Studio extension that integrates multiple AI serv
 
 ## Requirements
 
-- Visual Studio 2019 or later
+- Visual Studio 2022 or later
 - .NET Framework 4.7.2 or later
 - OpenRouter API key (for AI service access)
 
