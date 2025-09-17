@@ -144,4 +144,19 @@
   <data name="Option_SolutionStructure" xml:space="preserve">
     <value>Solution directory tree</value>
   </data>
+  <data name="Setting_GroupTitle" xml:space="preserve">
+    <value>Model Setting</value>
+  </data>
+  <data name="Setting_OutputFormat" xml:space="preserve">
+    <value>Output formatting</value>
+  </data>
+  <data name="Setting_RoleLabel" xml:space="preserve">
+    <value>Select role</value>
+  </data>
+  <data name="Setting_TranslateInput" xml:space="preserve">
+    <value>Translate Input to English</value>
+  </data>
+  <data name="Setting_TranslateOutput" xml:space="preserve">
+    <value>Display output in the following language.</value>
+  </data>
 </root>

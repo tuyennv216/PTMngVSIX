@@ -1,5 +1,6 @@
 ﻿using PTMngVSIX.Prompt.DeepseekSystemPrompt;
 using PTMngVSIX.Prompt.OutputPrompt;
+using PTMngVSIX.Setting;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -312,7 +313,33 @@ namespace PTMngVSIX.Prompt.Builder
 					break;
 
 				case Data.Constant.TaskName.TaskF6.Chat:
-					sb.AppendLine(DeepseekSPF6.SP6000_Chat);
+					switch (ModelSetting.RoleName)
+					{
+						case "Developer":
+							sb.AppendLine(DeepseekSPF6.SP6001_Developer);
+							break;
+
+						case "Designer":
+							sb.AppendLine(DeepseekSPF6.SP6002_Designer);
+							break;
+
+						case "Tester":
+							sb.AppendLine(DeepseekSPF6.SP6003_Tester);
+							break;
+
+						case "Writer":
+							sb.AppendLine(DeepseekSPF6.SP6004_Writer);
+							break;
+
+						case "Architecture":
+							sb.AppendLine(DeepseekSPF6.SP6005_Architecture);
+							break;
+
+						default:
+							sb.AppendLine(DeepseekSPF6.SP6000_Chat);
+
+							break;
+					}
 					sb.AppendLine();
 					sb.AppendLine(DeepseekSPF0.SP0002_Restrict);
 					sb.AppendLine();

@@ -95,5 +95,14 @@ namespace PTMngVSIX.Resource.Lang {
                 return ResourceManager.GetString("Send", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting.
+        /// </summary>
+        public static string Setting {
+            get {
+                return ResourceManager.GetString("Setting", resourceCulture);
+            }
+        }
     }
 }

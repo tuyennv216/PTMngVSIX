@@ -176,6 +176,7 @@
     <Compile Include="Utils\Setting\Constant.cs" />
     <Compile Include="Utils\Doc\DocEdit.cs" />
     <Compile Include="Utils\Doc\DocView.cs" />
+    <Compile Include="Utils\Setting\RegStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">

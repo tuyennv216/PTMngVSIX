@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Threading;
 using PTMngVSIX.Setting;
+using PTMngVSIX.Utils.Setting;
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -27,7 +28,10 @@ namespace PTMngVSIX
 	/// </para>
 	/// </remarks>
 	[PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-	[ProvideOptionPage(typeof(PTMngOptionPage), "PTMng AI", "General", 0, 0, true)]
+	[ProvideOptionPage(typeof(PTMngOptionPage),
+		Utils.Setting.Constant.OptionCategoryPTMngAI,
+		Utils.Setting.Constant.OptionPageGeneral,
+		0, 0, true)]
 	[Guid(PTMngVSIXPackage.PackageGuidString)]
 	[ProvideMenuResource("Menus.PTMngMenu", 1)]
 	[ProvideToolWindow(typeof(PTMngVSIX.ToolWindow.PTMngChat))]
@@ -58,6 +62,7 @@ namespace PTMngVSIX
 			JoinableTaskContext = this.JoinableTaskFactory.Context;
 
 			LoadFromOptionPage();
+			LoadFromRegStorage();
 			_ = AppState.Assistant.TryConnectAsync();
 
 			// When initialized asynchronously, the current thread may be a background thread at this point.
@@ -137,6 +142,16 @@ namespace PTMngVSIX
 				AppState.Assistant = LocalOllama.MistralService.Instance;
 				AppState.Translator = LocalOllama.GemmaService.Instance;
 			}
+		}
+
+		private void LoadFromRegStorage()
+		{
+			var pageName = Utils.Setting.Constant.OptionPageGeneral;
+			ModelSetting.RoleName = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.RoleName));
+			ModelSetting.OutputFormat = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.OutputFormat));
+			ModelSetting.TranslateInput = RegStorage.GetBool(pageName, nameof(PTMngOptionPage.TranslateInput));
+			ModelSetting.TranslateOutput = RegStorage.GetBool(pageName, nameof(PTMngOptionPage.TranslateOutput));
+			ModelSetting.OutputLanguage = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.OutputLanguage));
 		}
 	}
 }

@@ -146,6 +146,10 @@
       <Project>{4ab1b35e-8629-4de3-9a51-34dfe9eab5b4}</Project>
       <Name>PTMngVSIX.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PTMngVSIX.Setting\PTMngVSIX.Setting.csproj">
+      <Project>{2241AB24-ADE1-4248-BBF7-BEE25E1938F3}</Project>
+      <Name>PTMngVSIX.Setting</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

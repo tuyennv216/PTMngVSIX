@@ -129,4 +129,7 @@
   <data name="Send" xml:space="preserve">
     <value>Send</value>
   </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Setting</value>
+  </data>
 </root>

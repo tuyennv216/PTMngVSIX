@@ -87,8 +87,8 @@
                     VerticalAlignment="Center"
                     Grid.Column="2"/>
 
-            <Button x:Name="AddMoreButton" 
-                    Content="{x:Static lang:UI.AddMore}"
+            <Button x:Name="SettingButton" 
+                    Content="{x:Static lang:UI.Setting}"
                     Width="70"
                     VerticalAlignment="Center"
                     Grid.Column="3"/>

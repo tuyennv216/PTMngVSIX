@@ -19,7 +19,7 @@ namespace PTMngVSIX
 
 		//Localhost
 		[Category("Localhost")]
-		[DisplayName("1. Endpoint")]
+		[DisplayName("1. Endpoint.")]
 		[Description("The Api endpoint for the model service. http://localhost:11434")]
 		public string LocalEndpoint
 		{
@@ -31,8 +31,8 @@ namespace PTMngVSIX
 		}
 
 		[Category("Localhost")]
-		[DisplayName("2. Assistant model")]
-		[Description("Name of the Assistant model.")]
+		[DisplayName("2. Assistant model.")]
+		[Description("Name of the Assistant model. PTMng-mistral")]
 		public string LocalAssistantModelName
 		{
 			get => _localAssistantModelName;
@@ -43,8 +43,8 @@ namespace PTMngVSIX
 		}
 
 		[Category("Localhost")]
-		[DisplayName("3. Translator model")]
-		[Description("Name of the Translator model.")]
+		[DisplayName("3. Translator model.")]
+		[Description("Name of the Translator model. PTMng-gemma3")]
 		public string LocalTranslatorModelName
 		{
 			get => _localTranslatorModelName;
@@ -58,7 +58,7 @@ namespace PTMngVSIX
 		// Internet - OpenRouterAI
 		[Category("UseInternet")]
 		[DisplayName("1. Use OpenRouter")]
-		[Description("Connect to OpenRouterAI. https://openrouter.ai/api/v1")]
+		[Description("Connect to OpenRouterAI.")]
 		public bool UseInternet
 		{
 			get => _useInternet;
@@ -69,8 +69,8 @@ namespace PTMngVSIX
 		}
 
 		[Category("UseInternet")]
-		[DisplayName("2. Endpoint")]
-		[Description("The Api endpoint for the model service.")]
+		[DisplayName("2. Endpoint.")]
+		[Description("The Api endpoint for the model service. https://openrouter.ai/api/v1")]
 		public string OnlineEndpoint
 		{
 			get => _onlineEndpoint;
@@ -82,7 +82,7 @@ namespace PTMngVSIX
 
 
 		[Category("UseInternet")]
-		[DisplayName("3. Api key")]
+		[DisplayName("3. Api key.")]
 		[Description("The Api key.")]
 		public string OnlineApiKey
 		{
@@ -94,8 +94,8 @@ namespace PTMngVSIX
 		}
 
 		[Category("UseInternet")]
-		[DisplayName("4. Assistant model")]
-		[Description("Name of the Assistant model.")]
+		[DisplayName("4. Assistant model.")]
+		[Description("Name of the Assistant model. deepseek/deepseek-chat-v3.1")]
 		public string OnlineAssistantModelName
 		{
 			get => _onlineAssistantModelName;
@@ -106,8 +106,8 @@ namespace PTMngVSIX
 		}
 
 		[Category("UseInternet")]
-		[DisplayName("3. Translator model")]
-		[Description("Name of the Translator model.")]
+		[DisplayName("3. Translator model.")]
+		[Description("Name of the Translator model. google/gemma-3-12b-it")]
 		public string OnlineTranslatorModelName
 		{
 			get => _onlineTranslatorModelName;
@@ -117,6 +117,28 @@ namespace PTMngVSIX
 			}
 		}
 		// End Internet - OpenRouterAI
+
+		// Others setting
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		public string RoleName { get; set; }
+
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		public string OutputFormat { get; set; }
+
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		public bool TranslateInput { get; set; }
+
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		public bool TranslateOutput { get; set; }
+
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		public string OutputLanguage { get; set; }
+		// End Others setting
 
 		private void SetAppStateModel()
 		{

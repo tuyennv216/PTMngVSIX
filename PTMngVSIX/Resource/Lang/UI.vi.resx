@@ -129,4 +129,7 @@
   <data name="Send" xml:space="preserve">
     <value>Gửi</value>
   </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
 </root>

@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.Debugger.Interop;
-using Microsoft.VisualStudio.Shell;
+﻿using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using PTMngVSIX.Abstraction.ResponseModel;
 using PTMngVSIX.ToolWindow.Forms;
 using PTMngVSIX.Utils.Chat;
@@ -38,7 +38,7 @@ namespace PTMngVSIX.ToolWindow
 
 			// Đăng ký sự kiện cho button
 			ResetButton.Click += ResetButton_Click;
-			AddMoreButton.Click += AddMoreButton_Click;
+			SettingButton.Click += SettingButton_Click;
 
 			// Đăng ký sự kiện cho TextBox (ví dụ: Enter key)
 			InputChat.KeyDown += InputChat_KeyDown;
@@ -58,7 +58,7 @@ namespace PTMngVSIX.ToolWindow
 			_ = ChatService.Instance.ResetChatAsync();
 		}
 
-		private void AddMoreButton_Click(object sender, RoutedEventArgs e)
+		private void SettingButton_Click(object sender, RoutedEventArgs e)
 		{
 			var optionForm = new OptionForm();
 			if (optionForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -185,5 +185,5 @@ namespace PTMngVSIX.ToolWindow
 				CodeSnippetDisplay.Document.Blocks.Remove(paragraph);
 			}
 		}
-    }
+	}
 }

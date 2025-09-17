@@ -140,5 +140,50 @@ namespace PTMngVSIX.Resource.Lang {
                 return ResourceManager.GetString("Option_SolutionStructure", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model Setting.
+        /// </summary>
+        public static string Setting_GroupTitle {
+            get {
+                return ResourceManager.GetString("Setting_GroupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output formatting.
+        /// </summary>
+        public static string Setting_OutputFormat {
+            get {
+                return ResourceManager.GetString("Setting_OutputFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select role.
+        /// </summary>
+        public static string Setting_RoleLabel {
+            get {
+                return ResourceManager.GetString("Setting_RoleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translate Input to English.
+        /// </summary>
+        public static string Setting_TranslateInput {
+            get {
+                return ResourceManager.GetString("Setting_TranslateInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display output in the following language..
+        /// </summary>
+        public static string Setting_TranslateOutput {
+            get {
+                return ResourceManager.GetString("Setting_TranslateOutput", resourceCulture);
+            }
+        }
     }
 }
