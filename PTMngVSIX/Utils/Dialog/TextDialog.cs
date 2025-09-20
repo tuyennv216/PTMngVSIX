@@ -15,8 +15,10 @@ namespace PTMngVSIX.Utils.Dialog
 				Width = 800,
 				Height = 500,
 				ResizeMode = System.Windows.ResizeMode.NoResize,
-				WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner,
-				Owner = System.Windows.Application.Current?.MainWindow
+				WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen,
+				//Owner = System.Windows.Application.Current?.MainWindow
+				Owner = null,
+				Topmost = true,
 			};
 
 			// Grid layout
@@ -72,7 +74,7 @@ namespace PTMngVSIX.Utils.Dialog
 			buttonOk.Click += (_, _) => dialog.Close();
 
 			dialog.Content = grid;
-			dialog.ShowDialog();
+			dialog.Show();
 		}
 
 	}

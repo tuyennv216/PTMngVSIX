@@ -9,6 +9,14 @@ namespace PTMngVSIX.Prompt.Builder
 		{
 			var sb = new StringBuilder();
 
+			if (!string.IsNullOrEmpty(ModelSetting.Enviroment))
+			{
+				sb.AppendLine("Here is the development environment:");
+				sb.AppendLine("```");
+				sb.AppendLine(ModelSetting.Enviroment);
+				sb.AppendLine("```");
+			}
+
 			if (request.Information.Length > 0)
 			{
 				sb.AppendLine(request.Information);

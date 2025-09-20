@@ -14,5 +14,6 @@
 		public static bool TranslateInput = DefaultSetting.TranslateInput;
 		public static bool TranslateOutput = DefaultSetting.TranslateOutput;
 		public static string OutputLanguage = DefaultSetting.OutputLanguage;
+		public static string Enviroment = DefaultSetting.Enviroment;
 	}
 }

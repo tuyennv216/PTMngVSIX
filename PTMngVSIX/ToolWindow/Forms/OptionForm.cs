@@ -27,6 +27,7 @@ namespace PTMngVSIX.ToolWindow.Forms
 			this.label_output_format.Text = Resource.Lang.FormOption.Setting_OutputFormat;
 			this.checkbox_translate_input.Text = Resource.Lang.FormOption.Setting_TranslateInput;
 			this.checkbox_translate_output.Text = Resource.Lang.FormOption.Setting_TranslateOutput;
+			this.label_env.Text = Resource.Lang.FormOption.Option_LabelEnv;
 
 			this.groupbox_additional_infor.Text = Resource.Lang.FormOption.Option_LabelTitle;
 			this.checkbox_solution_structure.Text = Resource.Lang.FormOption.Option_SolutionStructure;
@@ -59,6 +60,7 @@ namespace PTMngVSIX.ToolWindow.Forms
 			this.checkbox_translate_input.Checked = RegStorage.GetBool(pageName, nameof(PTMngOptionPage.TranslateInput));
 			this.checkbox_translate_output.Checked = RegStorage.GetBool(pageName, nameof(PTMngOptionPage.TranslateOutput));
 			this.combobox_output_language.SelectedItem = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.OutputLanguage));
+			this.textbox_env.Text = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.Enviroment));
 		}
 
 		private void btnOK_Click(object sender, System.EventArgs e)
@@ -100,6 +102,7 @@ namespace PTMngVSIX.ToolWindow.Forms
 			var TranslateInput = checkbox_translate_input.Checked;
 			var TranslateOutput = checkbox_translate_output.Checked;
 			var OutputLanguage = combobox_output_language.SelectedItem?.ToString() ?? string.Empty;
+			var Enviroment = textbox_env.Text;
 
 			var pageName = Utils.Setting.Constant.OptionPageGeneral;
 			RegStorage.SetValue(pageName, nameof(PTMngOptionPage.RoleName), RoleName);
@@ -107,6 +110,7 @@ namespace PTMngVSIX.ToolWindow.Forms
 			RegStorage.SetBool(pageName, nameof(PTMngOptionPage.TranslateInput), TranslateInput);
 			RegStorage.SetBool(pageName, nameof(PTMngOptionPage.TranslateOutput), TranslateOutput);
 			RegStorage.SetValue(pageName, nameof(PTMngOptionPage.OutputLanguage), OutputLanguage);
+			RegStorage.SetValue(pageName, nameof(PTMngOptionPage.Enviroment), Enviroment);
 
 			ModelSetting.RoleName = RoleName;
 			ModelSetting.OutputFormat = OutputFormat;

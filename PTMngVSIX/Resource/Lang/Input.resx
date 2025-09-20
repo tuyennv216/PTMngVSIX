@@ -151,7 +151,7 @@
     <value>What problem do you want to find a solution for?</value>
   </data>
   <data name="Input_Suggest_Solution" xml:space="preserve">
-    <value>Suggested solution</value>
+    <value>Suggest solution</value>
   </data>
   <data name="Input_Technology" xml:space="preserve">
     <value>What technology are you looking for?</value>

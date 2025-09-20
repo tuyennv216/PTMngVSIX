@@ -126,6 +126,9 @@
   <data name="Option_FillInMiddle" xml:space="preserve">
     <value>Currently opened function (Fill In Middle format)</value>
   </data>
+  <data name="Option_LabelEnv" xml:space="preserve">
+    <value>Enviroment</value>
+  </data>
   <data name="Option_LabelTitle" xml:space="preserve">
     <value>Additional information includes</value>
   </data>

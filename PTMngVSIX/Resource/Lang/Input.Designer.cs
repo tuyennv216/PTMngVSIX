@@ -160,7 +160,7 @@ namespace PTMngVSIX.Resource.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Suggested solution.
+        ///   Looks up a localized string similar to Suggest solution.
         /// </summary>
         public static string Input_Suggest_Solution {
             get {

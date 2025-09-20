@@ -43,6 +43,8 @@
 			this.checkbox_solution_structure = new System.Windows.Forms.CheckBox();
 			this.label_role = new System.Windows.Forms.Label();
 			this.groupbox_model_setting = new System.Windows.Forms.GroupBox();
+			this.textbox_env = new System.Windows.Forms.TextBox();
+			this.label_env = new System.Windows.Forms.Label();
 			this.combobox_output_language = new System.Windows.Forms.ComboBox();
 			this.checkbox_translate_output = new System.Windows.Forms.CheckBox();
 			this.checkbox_translate_input = new System.Windows.Forms.CheckBox();
@@ -55,7 +57,7 @@
 			// 
 			// btnOK
 			// 
-			this.btnOK.Location = new System.Drawing.Point(412, 426);
+			this.btnOK.Location = new System.Drawing.Point(391, 424);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 30);
 			this.btnOK.TabIndex = 4;
@@ -65,7 +67,7 @@
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.Location = new System.Drawing.Point(493, 426);
+			this.btnCancel.Location = new System.Drawing.Point(472, 424);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 30);
 			this.btnCancel.TabIndex = 5;
@@ -85,7 +87,7 @@
 			this.groupbox_additional_infor.Controls.Add(this.checkbox_solution_structure);
 			this.groupbox_additional_infor.Location = new System.Drawing.Point(12, 213);
 			this.groupbox_additional_infor.Name = "groupbox_additional_infor";
-			this.groupbox_additional_infor.Size = new System.Drawing.Size(556, 198);
+			this.groupbox_additional_infor.Size = new System.Drawing.Size(535, 198);
 			this.groupbox_additional_infor.TabIndex = 6;
 			this.groupbox_additional_infor.TabStop = false;
 			this.groupbox_additional_infor.Text = "Additional title";
@@ -181,6 +183,8 @@
 			// 
 			// groupbox_model_setting
 			// 
+			this.groupbox_model_setting.Controls.Add(this.textbox_env);
+			this.groupbox_model_setting.Controls.Add(this.label_env);
 			this.groupbox_model_setting.Controls.Add(this.combobox_output_language);
 			this.groupbox_model_setting.Controls.Add(this.checkbox_translate_output);
 			this.groupbox_model_setting.Controls.Add(this.checkbox_translate_input);
@@ -190,10 +194,27 @@
 			this.groupbox_model_setting.Controls.Add(this.label_role);
 			this.groupbox_model_setting.Location = new System.Drawing.Point(12, 12);
 			this.groupbox_model_setting.Name = "groupbox_model_setting";
-			this.groupbox_model_setting.Size = new System.Drawing.Size(555, 195);
+			this.groupbox_model_setting.Size = new System.Drawing.Size(535, 195);
 			this.groupbox_model_setting.TabIndex = 8;
 			this.groupbox_model_setting.TabStop = false;
 			this.groupbox_model_setting.Text = "Model setting";
+			// 
+			// textbox_env
+			// 
+			this.textbox_env.Location = new System.Drawing.Point(294, 104);
+			this.textbox_env.Multiline = true;
+			this.textbox_env.Name = "textbox_env";
+			this.textbox_env.Size = new System.Drawing.Size(230, 85);
+			this.textbox_env.TabIndex = 15;
+			// 
+			// label_env
+			// 
+			this.label_env.AutoSize = true;
+			this.label_env.Location = new System.Drawing.Point(291, 88);
+			this.label_env.Name = "label_env";
+			this.label_env.Size = new System.Drawing.Size(104, 13);
+			this.label_env.TabIndex = 14;
+			this.label_env.Text = "Môi trường phát triển";
 			// 
 			// combobox_output_language
 			// 
@@ -254,7 +275,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(579, 470);
+			this.ClientSize = new System.Drawing.Size(561, 466);
 			this.Controls.Add(this.groupbox_model_setting);
 			this.Controls.Add(this.groupbox_additional_infor);
 			this.Controls.Add(this.btnCancel);
@@ -293,5 +314,7 @@
 		private System.Windows.Forms.CheckBox checkbox_translate_input;
 		private System.Windows.Forms.ComboBox combobox_output_language;
 		private System.Windows.Forms.CheckBox checkbox_translate_output;
+		private System.Windows.Forms.Label label_env;
+		private System.Windows.Forms.TextBox textbox_env;
 	}
 }

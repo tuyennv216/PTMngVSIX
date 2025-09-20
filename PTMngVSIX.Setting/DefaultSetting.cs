@@ -39,5 +39,6 @@
 		public static bool TranslateInput = false;
 		public static bool TranslateOutput = false;
 		public static string OutputLanguage = "English";
+		public static string Enviroment = string.Empty;
 	}
 }

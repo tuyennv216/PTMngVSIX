@@ -51,7 +51,6 @@
 
       <Group guid="PTMngCmdSet" id="ToolWindowGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_VIEW"/>
-        <!-- Parent là menu View -->
       </Group>
 
       <Group guid="PTMngCmdSet" id="F0_CommandGroup" priority="0x0100">
@@ -384,6 +383,22 @@
 
   </Commands>
 
+  <!--Đăng ký shortcut-->
+  <KeyBindings>
+    <KeyBinding guid="PTMngCmdSet" id="C6010_AddCodeSnippet"
+                mod1="Control Shift" key1="Z" key2="A"
+                editor="guidVSStd97"/>
+
+    <KeyBinding guid="PTMngCmdSet" id="C6011_ResetCodeSnippet"
+                mod1="Control Shift" key1="Z" key2="X"
+                editor="guidVSStd97"/>
+
+    <KeyBinding guid="PTMngCmdSet" id="C9001_OpenChatWindow"
+                mod1="Control Shift" key1="Z" key2="Z"
+                editor="guidVSStd97"/>
+  </KeyBindings>
+  <!--End Đăng ký shortcut-->
+
   <Symbols>
     <GuidSymbol name="PTMngVSIXPackage" value="{bd4318e4-1155-4cf7-95ca-e30cfcc156a3}" />
 
@@ -442,8 +457,8 @@
 
       <IDSymbol name="C6010_AddCodeSnippet" value="6010" />
       <IDSymbol name="C6011_ResetCodeSnippet" value="6011" />
+
     </GuidSymbol>
-    
   </Symbols>
 
 </CommandTable>

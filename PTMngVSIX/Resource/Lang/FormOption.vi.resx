@@ -126,6 +126,9 @@
   <data name="Option_FillInMiddle" xml:space="preserve">
     <value>Hàm đang mở (định dạng Fill In Middle)</value>
   </data>
+  <data name="Option_LabelEnv" xml:space="preserve">
+    <value>Môi trường phát triển</value>
+  </data>
   <data name="Option_LabelTitle" xml:space="preserve">
     <value>Thông tin thêm bao gồm</value>
   </data>

@@ -88,6 +88,15 @@ namespace PTMngVSIX.Resource.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enviroment.
+        /// </summary>
+        public static string Option_LabelEnv {
+            get {
+                return ResourceManager.GetString("Option_LabelEnv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Additional information includes.
         /// </summary>
         public static string Option_LabelTitle {

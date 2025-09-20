@@ -34,7 +34,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 
 			if (response.Type == "Unknow" || response.Type == "Error")
 			{
-				await TextDialog.ShowTextDialogAsync(response.Type, response.Answer);
+				await TextDialog.ShowTextDialogAsync(response.Type, response.Answer).ConfigureAwait(false);
 			}
 			else
 			{

@@ -138,6 +138,10 @@ namespace PTMngVSIX
 		[Browsable(false)]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 		public string OutputLanguage { get; set; }
+
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		public string Enviroment { get; set; }
 		// End Others setting
 
 		private void SetAppStateModel()
