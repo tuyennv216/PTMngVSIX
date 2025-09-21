@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.DeepseekSystemPrompt
 {
-	public class DeepseekSPF3
+	internal static class DeepseekSPF3
 	{
 		public static readonly string SP3010_ExplainError = @"You are a senior software engineer and debugging expert. Your task is to analyze user-submitted code and provide comprehensive error explanations.
 

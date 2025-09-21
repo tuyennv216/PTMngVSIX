@@ -1,5 +1,4 @@
 ﻿using PTMngVSIX.Setting;
-using PTMngVSIX.Utils.Setting;
 using System.Windows.Forms;
 
 namespace PTMngVSIX.ToolWindow.Forms
@@ -54,13 +53,14 @@ namespace PTMngVSIX.ToolWindow.Forms
 
 		private void ApplyOptionPage()
 		{
-			var pageName = Utils.Setting.Constant.OptionPageGeneral;
-			this.combobox_role.SelectedItem = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.RoleName));
-			this.textbox_output_format.Text = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.OutputFormat));
-			this.checkbox_translate_input.Checked = RegStorage.GetBool(pageName, nameof(PTMngOptionPage.TranslateInput));
-			this.checkbox_translate_output.Checked = RegStorage.GetBool(pageName, nameof(PTMngOptionPage.TranslateOutput));
-			this.combobox_output_language.SelectedItem = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.OutputLanguage));
-			this.textbox_env.Text = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.Enviroment));
+			var options = (PTMngOptionPage)PTMngVSIXPackage.Instance.GetDialogPage(typeof(PTMngOptionPage));
+
+			this.combobox_role.SelectedItem = options.RoleName;
+			this.textbox_output_format.Text = options.OutputFormat;
+			this.checkbox_translate_input.Checked = options.TranslateInput;
+			this.checkbox_translate_output.Checked = options.TranslateOutput;
+			this.combobox_output_language.SelectedItem = options.OutputLanguage;
+			this.textbox_env.Text = options.ChatEnviroment;
 		}
 
 		private void btnOK_Click(object sender, System.EventArgs e)
@@ -73,7 +73,7 @@ namespace PTMngVSIX.ToolWindow.Forms
 			Option.IncludeParentClass = checkbox_class.Checked;
 			Option.IncludeParentFunction = checkbox_function.Checked;
 			Option.IncludeSelection = checkbox_selected_text.Checked;
-			Option.IncludeFillInMiddle = checkbox_fill_in_middle.Checked;
+			Option.IncludeFIM = checkbox_fill_in_middle.Checked;
 			Option.IncludeError = checkbox_error.Checked;
 
 			checkbox_solution_structure.Checked = false;
@@ -102,15 +102,16 @@ namespace PTMngVSIX.ToolWindow.Forms
 			var TranslateInput = checkbox_translate_input.Checked;
 			var TranslateOutput = checkbox_translate_output.Checked;
 			var OutputLanguage = combobox_output_language.SelectedItem?.ToString() ?? string.Empty;
-			var Enviroment = textbox_env.Text;
+			var ChatEnviroment = textbox_env.Text;
 
-			var pageName = Utils.Setting.Constant.OptionPageGeneral;
-			RegStorage.SetValue(pageName, nameof(PTMngOptionPage.RoleName), RoleName);
-			RegStorage.SetValue(pageName, nameof(PTMngOptionPage.OutputFormat), OutputFormat);
-			RegStorage.SetBool(pageName, nameof(PTMngOptionPage.TranslateInput), TranslateInput);
-			RegStorage.SetBool(pageName, nameof(PTMngOptionPage.TranslateOutput), TranslateOutput);
-			RegStorage.SetValue(pageName, nameof(PTMngOptionPage.OutputLanguage), OutputLanguage);
-			RegStorage.SetValue(pageName, nameof(PTMngOptionPage.Enviroment), Enviroment);
+			var options = (PTMngOptionPage)PTMngVSIXPackage.Instance.GetDialogPage(typeof(PTMngOptionPage));
+			options.RoleName = RoleName;
+			options.OutputFormat = OutputFormat;
+			options.TranslateInput = TranslateInput;
+			options.TranslateOutput = TranslateOutput;
+			options.OutputLanguage = OutputLanguage;
+			options.ChatEnviroment = ChatEnviroment;
+			options.SaveSettingsToStorage();
 
 			ModelSetting.RoleName = RoleName;
 			ModelSetting.OutputFormat = OutputFormat;

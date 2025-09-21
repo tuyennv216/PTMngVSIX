@@ -9,7 +9,7 @@
 		public bool IncludeParentClass { get; set; }
 		public bool IncludeParentFunction { get; set; }
 		public bool IncludeSelection { get; set; }
-		public bool IncludeFillInMiddle { get; set; }
+		public bool IncludeFIM { get; set; }
 		public bool IncludeError { get; set; }
 
 		public Option Commit()
@@ -22,7 +22,7 @@
 				IncludeParentClass = IncludeParentClass,
 				IncludeParentFunction = IncludeParentFunction,
 				IncludeSelection = IncludeSelection,
-				IncludeFillInMiddle = IncludeFillInMiddle,
+				IncludeFIM = IncludeFIM,
 				IncludeError = IncludeError
 			};
 
@@ -32,7 +32,7 @@
 			IncludeParentClass = false;
 			IncludeParentFunction = false;
 			IncludeSelection = false;
-			IncludeFillInMiddle = false;
+			IncludeFIM = false;
 			IncludeError = false;
 
 			return commited;
@@ -44,7 +44,7 @@
 			IncludeParentClass ||
 			IncludeParentFunction ||
 			IncludeSelection ||
-			IncludeFillInMiddle ||
+			IncludeFIM ||
 			IncludeError;
 	}
 }

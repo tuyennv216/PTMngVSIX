@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using PTMngVSIX.AIServices;
 using PTMngVSIX.Setting;
 using System.ComponentModel;
 
@@ -12,7 +13,7 @@ namespace PTMngVSIX
 		private string _localTranslatorModelName = DefaultSetting.LocalTranslatorModelName;
 
 		private bool _useInternet = true;
-		private string _onlineApiKey;
+		private string _onlineApiKey = string.Empty;
 		private string _onlineEndpoint = DefaultSetting.OnlineEndpoint;
 		private string _onlineAssistantModelName = DefaultSetting.OnlineAssistantModelName;
 		private string _onlineTranslatorModelName = DefaultSetting.OnlineTranslatorModelName;
@@ -141,20 +142,20 @@ namespace PTMngVSIX
 
 		[Browsable(false)]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-		public string Enviroment { get; set; }
+		public string ChatEnviroment { get; set; }
 		// End Others setting
 
 		private void SetAppStateModel()
 		{
 			if (ModelSetting.UseInternet)
 			{
-				AppState.Assistant = OnlineOpenRouterAI.DeepseekService.Instance;
-				AppState.Translator = OnlineOpenRouterAI.GemmaService.Instance;
+				AppState.Assistant = AIServices.DeepseekV2Service.Instance;
+				AppState.Translator = AIServices.GemmaV1Service.Instance;
 			}
 			else
 			{
-				AppState.Assistant = LocalOllama.MistralService.Instance;
-				AppState.Translator = LocalOllama.GemmaService.Instance;
+				AppState.Assistant = AIServices.MistralV1Service.Instance;
+				AppState.Translator = AIServices.GemmaV1Service.Instance;
 			}
 		}
 
@@ -179,12 +180,18 @@ namespace PTMngVSIX
 					ModelSetting.AssistantModelName = _onlineAssistantModelName;
 					ModelSetting.TranslatorModelName = _onlineTranslatorModelName;
 					ModelSetting.ApiKey = _onlineApiKey;
+
+					AppState.Assistant = DeepseekV2Service.Instance;
+					AppState.Translator = GemmaV1Service.Instance;
 				}
 				else
 				{
 					ModelSetting.Endpoint = _localEndpoint;
 					ModelSetting.AssistantModelName = _localAssistantModelName;
 					ModelSetting.TranslatorModelName = _localTranslatorModelName;
+
+					AppState.Assistant = MistralV1Service.Instance;
+					AppState.Translator = GemmaV1Service.Instance;
 				}
 
 				SetAppStateModel();

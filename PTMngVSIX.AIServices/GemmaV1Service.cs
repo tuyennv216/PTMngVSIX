@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.AI;
-using PTMngVSIX.Abstraction.RequestModel;
-using PTMngVSIX.Abstraction.ResponseModel;
+﻿using PTMngVSIX.Abstraction.AI;
+using PTMngVSIX.Abstraction.AIServices.RequestModel;
+using PTMngVSIX.Abstraction.AIServices.ResponseModel;
 using PTMngVSIX.Prompt.Builder;
 using PTMngVSIX.Prompt.OutputParser;
 using PTMngVSIX.Setting;
@@ -8,17 +8,17 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PTMngVSIX.LocalOllama
+namespace PTMngVSIX.AIServices
 {
-	public class GemmaService : BaseModelService
+	public class GemmaV1Service : BaseAIService
 	{
-		public static GemmaService Instance = new GemmaService();
-		private GemmaService() { }
+		public static readonly GemmaV1Service Instance = new GemmaV1Service();
+		private GemmaV1Service() { }
 
 		private readonly ChatOptions Options = new ChatOptions
 		{
 			ModelId = ModelSetting.TranslatorModelName,
-			AdditionalProperties = new AdditionalPropertiesDictionary
+			AdditionalProperties = new Dictionary<string, object>
 			{
 				{ "temperature", 0.2 },					// Đặt thấp để dịch chính xác
 				{ "top_p", 0.9 },						// Top-p sampling
@@ -29,7 +29,7 @@ namespace PTMngVSIX.LocalOllama
 			}
 		};
 
-		public override async Task<ResponseBase> Call(RequestBase request)
+		public override async Task<ResponseBase> CallAsync(RequestBase request)
 		{
 			if (request.IsEmpty)
 			{
@@ -41,14 +41,14 @@ namespace PTMngVSIX.LocalOllama
 
 			var messages = new List<ChatMessage>
 			{
-				new ChatMessage(ChatRole.System, systemPrompt),
-				new ChatMessage(ChatRole.User, userPrompt)
+				new ChatMessage(ChatRoles.System, systemPrompt),
+				new ChatMessage(ChatRoles.User, userPrompt)
 			};
 
 			try
 			{
 				var response = await AppState.ApiClient.GetResponseAsync(messages, Options);
-				var promptReturn = OutputParser_v1.Parser(response.Text);
+				var promptReturn = OutputParser_v1.Parser(response);
 
 				return new ResponseBase
 				{

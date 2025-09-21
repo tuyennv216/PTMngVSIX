@@ -2,17 +2,17 @@
 {
 	public static class DefaultSetting
 	{
-		public static string LocalEndpoint = "http://localhost:11434";
-		public static string LocalAssistantModelName = "PTMng-mistral";
-		public static string LocalTranslatorModelName = "PTMng-gemma3";
+		public static readonly string LocalEndpoint = "http://localhost:11434";
+		public static readonly string LocalAssistantModelName = "PTMng-mistral";
+		public static readonly string LocalTranslatorModelName = "PTMng-gemma3";
 
-		public static bool UseInternet = false;
-		public static string OnlineEndpoint = "https://openrouter.ai/api/v1";
-		public static string OnlineApiKey = "";
-		public static string OnlineAssistantModelName = "deepseek/deepseek-chat-v3.1";
-		public static string OnlineTranslatorModelName = "google/gemma-3-12b-it";
+		public static readonly bool UseInternet = false;
+		public static readonly string OnlineEndpoint = "https://openrouter.ai/api/v1";
+		public static readonly string OnlineApiKey = "";
+		public static readonly string OnlineAssistantModelName = "deepseek/deepseek-chat-v3.1";
+		public static readonly string OnlineTranslatorModelName = "google/gemma-3-12b-it";
 
-		public static object[] OptionRoleList = new object[]
+		public static readonly  object[] OptionRoleList = new object[]
 		{
 			"AI Assistant",
 			"Developer",
@@ -22,7 +22,7 @@
 			"Architecture",
 		};
 
-		public static object[] OptionOutputLanguageList = new object[]
+		public static readonly object[] OptionOutputLanguageList = new object[]
 		{
 			"English",
 			"Vietnamese",
@@ -34,11 +34,11 @@
 			"German",
 		};
 
-		public static string RoleName = "AI Assistant";
-		public static string OutputFormat = string.Empty;
-		public static bool TranslateInput = false;
-		public static bool TranslateOutput = false;
-		public static string OutputLanguage = "English";
-		public static string Enviroment = string.Empty;
+		public static readonly string RoleName = "AI Assistant";
+		public static readonly string OutputFormat = string.Empty;
+		public static readonly bool TranslateInput = false;
+		public static readonly bool TranslateOutput = false;
+		public static readonly string OutputLanguage = "English";
+		public static readonly string ChatEnviroment = string.Empty;
 	}
 }

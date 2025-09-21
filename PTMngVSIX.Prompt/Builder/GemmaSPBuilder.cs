@@ -1,15 +1,17 @@
-﻿using PTMngVSIX.Prompt.OutputPrompt;
+﻿using PTMngVSIX.Abstraction.AIServices.RequestModel;
+using PTMngVSIX.Abstraction.Exceptions;
+using PTMngVSIX.Prompt.OutputPrompt;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
 namespace PTMngVSIX.Prompt.Builder
 {
-	public class GemmaSPBuilder
+	public static class GemmaSPBuilder
 	{
 		private static readonly Dictionary<string, string> saved = new Dictionary<string, string>();
 
-		public static string Build(Abstraction.RequestModel.RequestBase request)
+		public static string Build(RequestBase request)
 		{
 			var savedKey = request.Task;
 			if (saved.ContainsKey(savedKey)) return saved[savedKey];
@@ -27,7 +29,7 @@ namespace PTMngVSIX.Prompt.Builder
 
 				default:
 					Debugger.Log(0, "Error", $"[Gemma] Unknown task: '{request.Task}'\n");
-					throw new System.Exception("[Gemma] Unknown task: " + request.Task);
+					throw new UnknowTaskException("[Gemma] Unknown task: " + request.Task);
 			}
 
 			var prompt = sb.ToString();

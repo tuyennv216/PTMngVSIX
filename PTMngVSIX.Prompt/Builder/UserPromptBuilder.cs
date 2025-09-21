@@ -1,11 +1,12 @@
-﻿using PTMngVSIX.Setting;
+﻿using PTMngVSIX.Abstraction.AIServices.RequestModel;
+using PTMngVSIX.Setting;
 using System.Text;
 
 namespace PTMngVSIX.Prompt.Builder
 {
 	public class UserPromptBuilder
 	{
-		public static string Build(Abstraction.RequestModel.RequestBase request)
+		public static string Build(RequestBase request)
 		{
 			var sb = new StringBuilder();
 

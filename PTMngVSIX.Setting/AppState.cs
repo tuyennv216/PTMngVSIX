@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.AI;
-using PTMngVSIX.Abstraction;
+﻿using PTMngVSIX.Abstraction.AI;
+using PTMngVSIX.Abstraction.AIServices;
 
 namespace PTMngVSIX.Setting
 {

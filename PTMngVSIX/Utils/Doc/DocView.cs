@@ -1,9 +1,9 @@
 ﻿using EnvDTE;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
 using PTMngVSIX.Utils.Cache;
+using PTMngVSIX.Utils.Editor;
 using System;
 using System.Threading.Tasks;
 
@@ -11,7 +11,7 @@ namespace PTMngVSIX.Utils.Doc
 {
 	internal class DocView
 	{
-		internal static readonly MiniCache<bool> CachedHasSelectedText = new MiniCache<bool>(TimeSpan.FromMilliseconds(1000), HasSelectedTextAsync);
+		internal static readonly MiniCache<bool> CachedHasSelectedText = new(TimeSpan.FromMilliseconds(1000), HasSelectedTextAsync);
 
 		internal static ITextView GetActiveTextView()
 		{
@@ -25,17 +25,6 @@ namespace PTMngVSIX.Utils.Doc
 				return (textViewHost as IWpfTextViewHost)?.TextView;
 			}
 			return null;
-		}
-
-		internal static ITrackingPoint GetCurrentTrackingPoint()
-		{
-			var wpfTextView = GetActiveTextView();
-
-			var result = wpfTextView?.TextBuffer.CurrentSnapshot.CreateTrackingPoint(
-				wpfTextView.Caret.Position.BufferPosition.Position,
-				PointTrackingMode.Positive);
-
-			return result;
 		}
 
 		internal static async Task<string> GetDocumentLanguageAsync()
@@ -54,7 +43,7 @@ namespace PTMngVSIX.Utils.Doc
 			var activeDoc = dte.ActiveDocument;
 			if (activeDoc == null) return string.Empty;
 
-			var textDocument = (TextDocument)activeDoc.Object("TextDocument");
+			var textDocument = (EnvDTE.TextDocument)activeDoc.Object("TextDocument");
 			var editPoint = textDocument.CreateEditPoint();
 			editPoint.MoveToLineAndOffset(lineNumber, 1);
 			string lineText = editPoint.GetLines(lineNumber, lineNumber + 1);
@@ -80,30 +69,29 @@ namespace PTMngVSIX.Utils.Doc
 			return selection != null && !selection.IsEmpty;
 		}
 
-		internal static async Task<string> GetParentFillIdMiddleTextByKindTrackingPointAsync(vsCMElement kind, ITrackingPoint trackingPoint)
+		internal static async Task<string> GetParentFIMTextAsync(vsCMElement kind, EditorItem item)
 		{
 			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
 			try
 			{
-				var currentSnapshot = GetActiveTextView().TextSnapshot;
-				var position = trackingPoint.GetPosition(currentSnapshot);
-				var codeElement = await GetParentByKindPositionAsync(kind, position);
-				if (codeElement == null) return string.Empty;
+				item.Initial();
+				item.UpdateSnapshot();
 
-				// Lấy điểm bắt đầu và kết thúc của code element
-				var startPoint = codeElement.GetStartPoint().CreateEditPoint();
-				var endPoint = codeElement.GetEndPoint();
+				var parentNode = item.FindParent(kind, true);
 
-				// Lấy văn bản từ đầu đến vị trí trackingPoint
-				var textBefore = startPoint.GetText(position - startPoint.AbsoluteCharOffset);
+				// Lấy điểm bắt đầu và kết thúc của syntax node
+				var startPosition = parentNode.SpanStart;
+				var endPosition = parentNode.Span.End;
 
-				// Lấy văn bản từ vị trí trackingPoint đến cuối
-				var editPointAtPosition = codeElement.StartPoint.CreateEditPoint();
-				editPointAtPosition.MoveToAbsoluteOffset(position);
-				var textAfter = editPointAtPosition.GetText(endPoint.AbsoluteCharOffset - position);
+				// Lấy văn bản từ đầu syntax node đến vị trí trackingPoint
+				var textBefore = item.Snapshot.GetText(startPosition, item.Position - startPosition);
+
+				// Lấy văn bản từ vị trí trackingPoint đến cuối syntax node
+				var textAfter = item.Snapshot.GetText(item.Position, endPosition - item.Position);
 
 				// Kết hợp với chuỗi chèn ở giữa
-				var text = textBefore + " [Thêm code mới ở đây] " + textAfter;
+				var text = textBefore + " [Add new code here] " + textAfter;
 				return text;
 			}
 			catch (Exception)
@@ -112,60 +100,19 @@ namespace PTMngVSIX.Utils.Doc
 			}
 		}
 
-		internal static async Task<string> GetParentTextByKindTrackingPointAsync(vsCMElement kind, ITrackingPoint trackingPoint)
+		internal static async Task<string> GetParentTextAsync(vsCMElement kind, EditorItem item)
 		{
 			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 			try
 			{
-				var currentSnapshot = GetActiveTextView().TextSnapshot;
-				var position = trackingPoint.GetPosition(currentSnapshot);
-				var codeElement = await GetParentByKindPositionAsync(kind, position);
-				if (codeElement == null) return string.Empty;
-				var text = codeElement.GetStartPoint().CreateEditPoint().GetText(codeElement.GetEndPoint());
-				return text;
+				item.UpdateSnapshot();
+				var parentNode = item.FindParent(kind, true);
+				return parentNode.ToFullString();
 			}
 			catch (Exception)
 			{
 				return string.Empty;
 			}
-		}
-
-		internal static async Task<CodeElement> GetParentByKindTrackingPointAsync(vsCMElement kind, ITrackingPoint trackingPoint)
-		{
-			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-			try
-			{
-				var currentSnapshot = GetActiveTextView().TextSnapshot;
-				var position = trackingPoint.GetPosition(currentSnapshot);
-				return await GetParentByKindPositionAsync(kind, position);
-			}
-			catch (Exception)
-			{
-				return null;
-			}
-		}
-
-		internal static async Task<CodeElement> GetParentByKindPositionAsync(vsCMElement kind, int position)
-		{
-			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-			// Lấy DTE service
-			var dte = (DTE)Package.GetGlobalService(typeof(DTE));
-			var activeDoc = dte.ActiveDocument;
-
-			// Lấy TextDocument và tạo EditPoint từ tracking point
-			var textDocument = (TextDocument)activeDoc.Object("TextDocument");
-			var editPoint = textDocument.CreateEditPoint();
-			editPoint.MoveToAbsoluteOffset(position + 1); // VS uses 1-based indexing
-
-			// Tìm element kiểu kind chứa vị trí
-			CodeElement element = null;
-			try
-			{
-				element = editPoint.CodeElement[kind] as CodeElement;
-			}
-			catch { }
-			return element;
 		}
 
 		internal static async Task<string> GetDocumentTextAsync()
@@ -174,7 +121,7 @@ namespace PTMngVSIX.Utils.Doc
 
 			// Lấy document và text document hiện tại
 			var dte = (DTE)Package.GetGlobalService(typeof(DTE));
-			var textDocument = (TextDocument)dte.ActiveDocument.Object("TextDocument");
+			var textDocument = (EnvDTE.TextDocument)dte.ActiveDocument.Object("TextDocument");
 
 			// Lấy toàn bộ nội dung document
 			var startPoint = textDocument.StartPoint.CreateEditPoint();

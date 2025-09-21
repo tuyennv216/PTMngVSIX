@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.OutputPrompt
 {
-	internal class OutputDefined
+	internal static class OutputDefined
 	{
 		public static readonly string OChat01 = @"
 Output format:

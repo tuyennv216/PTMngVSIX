@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.MistralSystemPrompt
 {
-	public class MistralSPF4
+	internal static class MistralSPF4
 	{
 		public static readonly string SP4010_Whitebox = @"You are a software testing expert specializing in white-box analysis.
 

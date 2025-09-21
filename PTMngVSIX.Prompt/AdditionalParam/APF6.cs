@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.AI;
+﻿using System.Collections.Generic;
 
 namespace PTMngVSIX.Prompt.AdditionalParam
 {
-	public class APF6
+	public static class Apf6
 	{
-		public static readonly AdditionalPropertiesDictionary AP6000_Chat = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP6000_Chat = new Dictionary<string, object>
 		{
 			{ "temperature", 0.65 },
 			{ "top_p", 0.9 },

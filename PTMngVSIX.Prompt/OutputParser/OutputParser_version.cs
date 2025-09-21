@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace PTMngVSIX.Prompt.OutputParser
 {
-	public class OutputParser_version
+	public static class OutputParser_version
 	{
 		public static T Parser<T>(string rawContent) where T : IReturnModel
 		{

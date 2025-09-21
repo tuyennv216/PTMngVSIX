@@ -1,7 +1,7 @@
-﻿using PTMngVSIX.Abstraction.ResponseModel;
+﻿using PTMngVSIX.Abstraction.AIServices.ResponseModel;
 using System.Collections.Generic;
 
-namespace PTMngVSIX.Abstraction.RequestModel
+namespace PTMngVSIX.Abstraction.AIServices.RequestModel
 {
 	public class RequestBase
 	{

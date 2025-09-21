@@ -2,18 +2,18 @@
 {
 	public static class ModelSetting
 	{
-		public static string Endpoint = DefaultSetting.LocalEndpoint;
-		public static string ApiKey = DefaultSetting.OnlineApiKey;
-		public static string AssistantModelName = DefaultSetting.LocalAssistantModelName;
-		public static string TranslatorModelName = DefaultSetting.LocalTranslatorModelName;
+		public static string Endpoint { get; set; } = DefaultSetting.LocalEndpoint;
+		public static string ApiKey { get; set; } = DefaultSetting.OnlineApiKey;
+		public static string AssistantModelName { get; set; } = DefaultSetting.LocalAssistantModelName;
+		public static string TranslatorModelName { get; set; } = DefaultSetting.LocalTranslatorModelName;
 
-		public static bool UseInternet = false;
+		public static bool UseInternet { get; set; } = false;
 
-		public static string RoleName = DefaultSetting.RoleName;
-		public static string OutputFormat = DefaultSetting.OutputFormat;
-		public static bool TranslateInput = DefaultSetting.TranslateInput;
-		public static bool TranslateOutput = DefaultSetting.TranslateOutput;
-		public static string OutputLanguage = DefaultSetting.OutputLanguage;
-		public static string Enviroment = DefaultSetting.Enviroment;
+		public static string RoleName { get; set; }		= DefaultSetting.RoleName;
+		public static string OutputFormat { get; set; } = DefaultSetting.OutputFormat;
+		public static bool TranslateInput { get; set; } = DefaultSetting.TranslateInput;
+		public static bool TranslateOutput { get; set; }	= DefaultSetting.TranslateOutput;
+		public static string OutputLanguage { get; set; } = DefaultSetting.OutputLanguage;
+		public static string Enviroment { get; set; } = DefaultSetting.ChatEnviroment;
 	}
 }

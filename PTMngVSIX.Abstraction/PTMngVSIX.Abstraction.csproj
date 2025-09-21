@@ -10,8 +10,11 @@
     <RootNamespace>PTMngVSIX.Abstraction</RootNamespace>
     <AssemblyName>PTMngVSIX.Abstraction</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>9.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,21 +41,39 @@
     <AssemblyOriginatorKeyFile>..\PTMngVSIX.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <Compile Include="AI\BaseOpenAILikeChatClient.cs" />
+    <Compile Include="AI\ChatOptions.cs" />
+    <Compile Include="AI\ChatRoles.cs" />
+    <Compile Include="AI\IChatClient.cs" />
+    <Compile Include="AI\OpenAIModel.cs" />
+    <Compile Include="AI\OpenAIModelStream.cs" />
+    <Compile Include="Exceptions\UnknowTaskException.cs" />
+    <Compile Include="AIServices\IModelService.cs" />
+    <Compile Include="AIServices\IPromptRerturn.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AIServices\RequestModel\RequestBase.cs" />
+    <Compile Include="AIServices\ResponseModel\ResponseBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IModelService.cs" />
-    <Compile Include="IPromptRerturn.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestModel\RequestBase.cs" />
-    <Compile Include="ResponseModel\ResponseBase.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Memory">
+      <Version>4.6.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>9.0.0</Version>
+    </PackageReference>
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="9.0.0" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
+  </Target>
 </Project>

@@ -1,6 +1,6 @@
-﻿namespace PTMngVSIX.LocalOllama.Constant
+﻿namespace PTMngVSIX.Data.Constant
 {
-	public class NativeOllamaUri
+	public static class NativeOllamaUri
 	{
 		public const string Generate = "/api/generate"; // POST
 		public const string Chat = "/api/chat"; // POST

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B9A236BA-D8F3-4E5D-AAB0-DDA787ED294C}</ProjectGuid>
+    <ProjectGuid>{A6591F74-B3F5-4E8A-B005-6B5977612ED2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PTMngVSIX.LocalOllama</RootNamespace>
-    <AssemblyName>PTMngVSIX.LocalOllama</AssemblyName>
+    <RootNamespace>PTMngVSIX.AIServices</RootNamespace>
+    <AssemblyName>PTMngVSIX.AIServices</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -34,15 +34,9 @@
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>..\PTMngKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\PTMngVSIX.pfx</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,38 +45,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseModelService.cs" />
-    <Compile Include="GemmaService.cs" />
-    <Compile Include="QwenService.cs" />
-    <Compile Include="DeepseekService.cs" />
-    <Compile Include="MistralService.cs" />
+    <Compile Include="BaseAIService.cs" />
+    <Compile Include="DeepseekV2Service.cs" />
+    <Compile Include="GemmaV1Service.cs" />
+    <Compile Include="MistralV1Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QwenV1Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PTMngVSIX.Abstraction\PTMngVSIX.Abstraction.csproj">
-      <Project>{c558605f-4528-4248-bb75-68c22cc1626d}</Project>
+      <Project>{C558605F-4528-4248-BB75-68C22CC1626D}</Project>
       <Name>PTMngVSIX.Abstraction</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PTMngVSIX.Data\PTMngVSIX.Data.csproj">
-      <Project>{4ab1b35e-8629-4de3-9a51-34dfe9eab5b4}</Project>
-      <Name>PTMngVSIX.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PTMngVSIX.Prompt\PTMngVSIX.Prompt.csproj">
-      <Project>{3e57f872-23e8-45bd-aafc-f62adbbf40d3}</Project>
+      <Project>{3E57F872-23E8-45BD-AAFC-F62ADBBF40D3}</Project>
       <Name>PTMngVSIX.Prompt</Name>
     </ProjectReference>
     <ProjectReference Include="..\PTMngVSIX.Setting\PTMngVSIX.Setting.csproj">
-      <Project>{2241ab24-ade1-4248-bbf7-bee25e1938f3}</Project>
+      <Project>{2241AB24-ADE1-4248-BBF7-BEE25E1938F3}</Project>
       <Name>PTMngVSIX.Setting</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.AI">
-      <Version>9.8.0</Version>
-    </PackageReference>
-    <PackageReference Include="OllamaSharp">
-      <Version>5.3.6</Version>
-    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

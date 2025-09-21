@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.MistralSystemPrompt
 {
-	public class MistralSPF0
+	internal static class MistralSPF0
 	{
 		public static readonly string SP0001_Default = @"You are an AI assistant specialized in software development.";
 

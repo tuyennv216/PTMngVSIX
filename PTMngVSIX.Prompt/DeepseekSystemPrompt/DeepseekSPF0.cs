@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.DeepseekSystemPrompt
 {
-	public class DeepseekSPF0
+	internal static class DeepseekSPF0
 	{
 		public static readonly string SP0001_Default = @"You are an AI assistant specialized in software development.";
 

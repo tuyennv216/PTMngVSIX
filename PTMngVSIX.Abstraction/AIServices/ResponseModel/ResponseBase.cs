@@ -1,4 +1,4 @@
-﻿namespace PTMngVSIX.Abstraction.ResponseModel
+﻿namespace PTMngVSIX.Abstraction.AIServices.ResponseModel
 {
 	public class ResponseBase
 	{

@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.MistralSystemPrompt
 {
-	public class MistralSPF1
+	internal static class MistralSPF1
 	{
 		public static readonly string SP1000_GenerateCode = @"You are a professional software engineer.
 Your task is to generate clean, efficient, and well-documented procedural code based on user instructions.

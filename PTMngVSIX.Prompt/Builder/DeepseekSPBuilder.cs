@@ -1,4 +1,6 @@
-﻿using PTMngVSIX.Prompt.DeepseekSystemPrompt;
+﻿using PTMngVSIX.Abstraction.AIServices.RequestModel;
+using PTMngVSIX.Abstraction.Exceptions;
+using PTMngVSIX.Prompt.DeepseekSystemPrompt;
 using PTMngVSIX.Prompt.OutputPrompt;
 using PTMngVSIX.Setting;
 using System.Collections.Generic;
@@ -7,11 +9,11 @@ using System.Text;
 
 namespace PTMngVSIX.Prompt.Builder
 {
-	public class DeepseekSPBuilder
+	public static class DeepseekSPBuilder
 	{
 		private static readonly Dictionary<string, string> saved = new Dictionary<string, string>();
 
-		public static string Build(Abstraction.RequestModel.RequestBase request)
+		public static string Build(RequestBase request)
 		{
 			var savedKey = request.Task;
 			if (saved.ContainsKey(savedKey)) return saved[savedKey];
@@ -348,7 +350,7 @@ namespace PTMngVSIX.Prompt.Builder
 
 				default:
 					Debugger.Log(0, "Error", $"[Deepseek] Unknown task: '{request.Task}'\n");
-					throw new System.Exception("[Deepseek] Unknown task: " + request.Task);
+					throw new UnknowTaskException("[Deepseek] Unknown task: " + request.Task);
 			}
 
 			var prompt = sb.ToString();

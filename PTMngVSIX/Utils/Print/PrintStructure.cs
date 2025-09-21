@@ -33,7 +33,7 @@ namespace PTMngVSIX.Utils.Print
 				}
 				sb.AppendLine($"├─ {project.Name}");
 				// Đệ quy thêm các item của project
-				await AddProjectItemsToTreeAsync(project.ProjectItems, sb, "│  ", false);
+				await AddProjectItemsToTreeAsync(project.ProjectItems, sb, "│  ");
 			}
 
 			return sb.ToString();
@@ -52,12 +52,12 @@ namespace PTMngVSIX.Utils.Print
 
 			var sb = new StringBuilder();
 			sb.AppendLine(project.FileName);
-			await AddProjectItemsToTreeAsync(project.ProjectItems, sb, "", true);
+			await AddProjectItemsToTreeAsync(project.ProjectItems, sb, "");
 
 			return sb.ToString();
 		}
 
-		private static async Task AddProjectItemsToTreeAsync(ProjectItems items, StringBuilder sb, string prefix, bool isLastItem)
+		private static async Task AddProjectItemsToTreeAsync(ProjectItems items, StringBuilder sb, string prefix)
 		{
 			if (items == null) return;
 
@@ -85,7 +85,7 @@ namespace PTMngVSIX.Utils.Print
 				if (item.ProjectItems.Count > 0)
 				{
 					string childPrefix = prefix + (isLast ? "   " : "│  ");
-					await AddProjectItemsToTreeAsync(item.ProjectItems, sb, childPrefix, isLast);
+					await AddProjectItemsToTreeAsync(item.ProjectItems, sb, childPrefix);
 				}
 			}
 		}

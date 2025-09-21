@@ -37,6 +37,7 @@
     <AssemblyName>PTMngVSIX</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <UseCodebase>true</UseCodebase>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
@@ -68,6 +69,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Abstraction\CommandBase.cs" />
@@ -160,23 +165,22 @@
       <DependentUpon>PTMngChatControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\Cache\MiniCache.cs" />
+    <Compile Include="Utils\Editor\EditorItem.cs" />
     <Compile Include="Utils\Chat\Message.cs" />
     <Compile Include="Utils\Chat\Option.cs" />
     <Compile Include="Utils\Chat\ChatService.cs" />
-    <Compile Include="Utils\Chat\ViewPos.cs" />
     <Compile Include="Utils\Dialog\MsgboxDialog.cs" />
     <Compile Include="Utils\Dialog\TextDialog.cs" />
     <Compile Include="Utils\Doc\DocValidate.cs" />
     <Compile Include="Utils\Doc\ErrorView.cs" />
     <Compile Include="Utils\DTECommand\EditCommand.cs" />
+    <Compile Include="Utils\Editor\EditorModel.cs" />
     <Compile Include="Utils\Model\ErrorViewModel.cs" />
     <Compile Include="Utils\Print\PrintStructure.cs" />
-    <Compile Include="Utils\Selector\ElementSelector.cs" />
     <Compile Include="Utils\Dialog\InputDialog.cs" />
     <Compile Include="Utils\Setting\Constant.cs" />
-    <Compile Include="Utils\Doc\DocEdit.cs" />
+    <Compile Include="Utils\Editor\EditorAction.cs" />
     <Compile Include="Utils\Doc\DocView.cs" />
-    <Compile Include="Utils\Setting\RegStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">
@@ -198,7 +202,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
+    <PackageReference Include="envdte">
+      <Version>17.14.40260</Version>
+    </PackageReference>
+    <PackageReference Include="envdte80">
+      <Version>17.14.40260</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp">
       <Version>4.14.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Net.Http">
@@ -216,9 +226,18 @@
     <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.14.40265" ExcludeAssets="runtime" NoWarn="NU1604">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Shell.15.0">
+      <Version>17.14.40264</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Shell.Interop">
+      <Version>17.14.40260</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Threading">
+      <Version>17.14.15</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2101" NoWarn="NU1604" />
     <PackageReference Include="System.ComponentModel.Composition">
-      <Version>9.0.8</Version>
+      <Version>9.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -226,17 +245,13 @@
       <Project>{C558605F-4528-4248-BB75-68C22CC1626D}</Project>
       <Name>PTMngVSIX.Abstraction</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PTMngVSIX.AIServices\PTMngVSIX.AIServices.csproj">
+      <Project>{a6591f74-b3f5-4e8a-b005-6b5977612ed2}</Project>
+      <Name>PTMngVSIX.AIServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PTMngVSIX.Data\PTMngVSIX.Data.csproj">
       <Project>{4ab1b35e-8629-4de3-9a51-34dfe9eab5b4}</Project>
       <Name>PTMngVSIX.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PTMngVSIX.LocalOllama\PTMngVSIX.LocalOllama.csproj">
-      <Project>{b9a236ba-d8f3-4e5d-aab0-dda787ed294c}</Project>
-      <Name>PTMngVSIX.LocalOllama</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PTMngVSIX.OnlineOpenRouterAI\PTMngVSIX.OnlineOpenRouterAI.csproj">
-      <Project>{33F85323-F8D9-46ED-8294-6FB4815DCAB7}</Project>
-      <Name>PTMngVSIX.OnlineOpenRouterAI</Name>
     </ProjectReference>
     <ProjectReference Include="..\PTMngVSIX.Setting\PTMngVSIX.Setting.csproj">
       <Project>{2241ab24-ade1-4248-bbf7-bee25e1938f3}</Project>

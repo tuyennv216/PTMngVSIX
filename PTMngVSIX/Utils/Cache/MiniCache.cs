@@ -7,7 +7,7 @@ namespace PTMngVSIX.Utils.Cache
 	{
 		private TimeSpan _expiration;
 		private DateTime _expirationTime;
-		private Func<Task<T>> _factory;
+		private readonly Func<Task<T>> _factory;
 		private T _value;
 		private bool _initialized;
 

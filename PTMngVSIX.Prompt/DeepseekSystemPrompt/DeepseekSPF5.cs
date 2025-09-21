@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.DeepseekSystemPrompt
 {
-	internal class DeepseekSPF5
+	internal static class DeepseekSPF5
 	{
 		public static readonly string SP5020_ReviewCodeFunction = @"You are a senior developer with extensive experience in code quality, architecture, and performance optimization. Your task is to perform thorough code reviews based on provided code snippets.
 

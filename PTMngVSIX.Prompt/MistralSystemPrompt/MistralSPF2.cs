@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.MistralSystemPrompt
 {
-	public class MistralSPF2
+	internal static class MistralSPF2
 	{
 
 		public static readonly string SP2000_DocsSelection = @"You are a senior technical writer and software engineer.

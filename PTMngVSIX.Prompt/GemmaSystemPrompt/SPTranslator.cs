@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.GemmaSystemPrompt
 {
-	internal class SPTranslator
+	internal static class SPTranslator
 	{
 		public static readonly string SP0001_Translator = @"You are a professional translator specialized in technical content from the software industry, including but not limited to programming, system architecture, DevOps, machine learning, UI/UX, cloud computing, and IT.
 

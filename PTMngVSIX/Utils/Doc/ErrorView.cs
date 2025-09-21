@@ -1,5 +1,4 @@
-﻿using EnvDTE;
-using Microsoft.VisualStudio.Shell;
+﻿using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell.TableControl;
 using Microsoft.VisualStudio.Shell.TableManager;
@@ -13,8 +12,6 @@ namespace PTMngVSIX.Utils.Doc
 		internal static async Task<ErrorViewModel> GetErrorMessageAsync()
 		{
 			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-			var dte = (DTE)Package.GetGlobalService(typeof(DTE));
 
 			// Lấy IErrorList service
 			var errorList = Package.GetGlobalService(typeof(SVsErrorList)) as IErrorList;

@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.MistralSystemPrompt
 {
-	internal class MistralSPF5
+	internal static class MistralSPF5
 	{
 		public static readonly string SP5020_ReviewCodeFunction = @"You are an expert-level AI assistant specializing in software development. Your role is to critically review code functions written in modern programming languages such as Python, JavaScript, TypeScript, C#, Java, or Go.
 

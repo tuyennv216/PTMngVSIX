@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.AI;
-using PTMngVSIX.Abstraction.RequestModel;
-using PTMngVSIX.Abstraction.ResponseModel;
+﻿using PTMngVSIX.Abstraction.AI;
+using PTMngVSIX.Abstraction.AIServices.RequestModel;
+using PTMngVSIX.Abstraction.AIServices.ResponseModel;
 using PTMngVSIX.Prompt.Builder;
 using PTMngVSIX.Prompt.OutputParser;
 using PTMngVSIX.Setting;
@@ -8,14 +8,14 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PTMngVSIX.LocalOllama
+namespace PTMngVSIX.AIServices
 {
-	public class MistralService : BaseModelService
+	public class MistralV1Service : BaseAIService
 	{
-		public static MistralService Instance = new MistralService();
-		private MistralService() { }
+		public static readonly MistralV1Service Instance = new MistralV1Service();
+		private MistralV1Service() { }
 
-		public override async Task<ResponseBase> Call(RequestBase request)
+		public override async Task<ResponseBase> CallAsync(RequestBase request)
 		{
 			if (request.IsEmpty)
 			{
@@ -26,7 +26,7 @@ namespace PTMngVSIX.LocalOllama
 			var userPrompt = UserPromptBuilder.Build(request);
 			var prompt = Combine(systemPrompt, userPrompt);
 
-			var message = new ChatMessage(ChatRole.User, prompt);
+			var message = new ChatMessage(ChatRoles.User, prompt);
 
 			try
 			{
@@ -37,7 +37,7 @@ namespace PTMngVSIX.LocalOllama
 				};
 
 				var response = await AppState.ApiClient.GetResponseAsync(message, options);
-				var promptReturn = OutputParser_v1.Parser(response.Text);
+				var promptReturn = OutputParser_v1.Parser(response);
 
 				return new ResponseBase
 				{
@@ -51,7 +51,7 @@ namespace PTMngVSIX.LocalOllama
 			}
 		}
 
-		public string Combine(string systemPrompt, string userPrompt)
+		public static string Combine(string systemPrompt, string userPrompt)
 		{
 			var sb = new StringBuilder();
 			sb.AppendLine("[INST]");

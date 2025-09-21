@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.Text;
+﻿using PTMngVSIX.Utils.Editor;
 using PTMngVSIX.Utils.Model;
 using System.Collections.Generic;
 
@@ -14,7 +14,7 @@ namespace PTMngVSIX.Utils.Chat
 		public List<string> Snippets { get; set; } = new List<string>();
 
 		public Option Option { get; set; } = new Option();
-		public ITrackingPoint TrackingPoint { get; set; }
+		public EditorItem EditorItem { get; set; } = new();
 
 		public override string ToString()
 		{

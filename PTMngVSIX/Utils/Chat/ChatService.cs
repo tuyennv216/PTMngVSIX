@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using PTMngVSIX.Abstraction.RequestModel;
-using PTMngVSIX.Abstraction.ResponseModel;
+using PTMngVSIX.Abstraction.AIServices.RequestModel;
+using PTMngVSIX.Abstraction.AIServices.ResponseModel;
 using PTMngVSIX.Setting;
 using PTMngVSIX.ToolWindow;
 using PTMngVSIX.Utils.Doc;
@@ -16,20 +16,20 @@ namespace PTMngVSIX.Utils.Chat
 {
 	internal class ChatService
 	{
-		public static ChatService Instance = new ChatService();
+		public static ChatService Instance = new();
 		private ChatService() { }
 
-		public List<string> ActiveSnippets { get; private set; } = new List<string>();
-		private List<string> ChatHistory = new List<string>();
+		public List<string> ActiveSnippets { get; private set; } = new();
+		private List<string> ChatHistory = new();
 
 		private RequestBase LastRequest = null;
 		private ResponseBase LastResponse = null;
 
 		public async Task<ResponseBase> SendAsync(Message message)
 		{
-			message.TrackingPoint = DocView.GetCurrentTrackingPoint();
-
 			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+			message.EditorItem.Initial();
 
 			var request = new RequestBase
 			{
@@ -44,7 +44,10 @@ namespace PTMngVSIX.Utils.Chat
 
 			await ClearCodeSnippetAsync();
 
-			var response = await AppState.Assistant.Call(request);
+			var response = await AppState.Assistant.CallAsync(request);
+
+			request.LastRequest = null;
+			request.LastResponse = null;
 
 			LastRequest = request;
 			LastResponse = response;
@@ -96,6 +99,7 @@ namespace PTMngVSIX.Utils.Chat
 
 			var uiShell = PTMngVSIXPackage.GetGlobalService(typeof(SVsUIShell)) as IVsUIShell;
 			var PTMngChatGuid = typeof(PTMngChat).GUID;
+
 			IVsWindowFrame chatWindowFrame = null;
 			int result = uiShell.FindToolWindow((uint)0, ref PTMngChatGuid, out chatWindowFrame);
 			if (ErrorHandler.Succeeded(result) && chatWindowFrame != null)
@@ -132,15 +136,19 @@ namespace PTMngVSIX.Utils.Chat
 				Task.FromResult(string.Empty);
 
 			var classTask = message.Option.IncludeParentClass ?
-				DocView.GetParentTextByKindTrackingPointAsync(EnvDTE.vsCMElement.vsCMElementClass, message.TrackingPoint) :
+				DocView.GetParentTextAsync(EnvDTE.vsCMElement.vsCMElementClass, message.EditorItem) :
 				Task.FromResult(string.Empty);
 
 			var functionTask = message.Option.IncludeParentFunction ?
-				DocView.GetParentTextByKindTrackingPointAsync(EnvDTE.vsCMElement.vsCMElementFunction, message.TrackingPoint) :
+				DocView.GetParentTextAsync(EnvDTE.vsCMElement.vsCMElementFunction, message.EditorItem) :
 				Task.FromResult(string.Empty);
 
 			var selectionTask = message.Option.IncludeSelection ?
 				DocView.GetSelectedTextAsync() :
+				Task.FromResult(string.Empty);
+
+			var fimTask = message.Option.IncludeSelection ?
+				DocView.GetParentFIMTextAsync(EnvDTE.vsCMElement.vsCMElementFunction, message.EditorItem) :
 				Task.FromResult(string.Empty);
 
 			var errorLineTask = message.Option.IncludeError ? DocView.GetLineTextAtAsync(message.Error.LineNumber) : Task.FromResult(string.Empty);
@@ -151,8 +159,8 @@ namespace PTMngVSIX.Utils.Chat
 			var sb = new StringBuilder();
 
 			var lang = await languageTask;
-			if ((message.Option.IncludeDocumentLanguage || message.Option.HasInclude)
-				&& lang.Length > 0)
+			if (lang.Length > 0 &&
+				(message.Option.IncludeDocumentLanguage || message.Option.HasInclude))
 			{
 				sb.AppendLine("Document programming language is: " + lang);
 			}
@@ -194,6 +202,14 @@ namespace PTMngVSIX.Utils.Chat
 				sb.AppendLine("Here is the function code:");
 				sb.AppendLine("```");
 				sb.AppendLine(await functionTask);
+				sb.AppendLine("```");
+			}
+
+			if (message.Option.IncludeFIM)
+			{
+				sb.AppendLine("This is the missing function code:");
+				sb.AppendLine("```");
+				sb.AppendLine(await fimTask);
 				sb.AppendLine("```");
 			}
 

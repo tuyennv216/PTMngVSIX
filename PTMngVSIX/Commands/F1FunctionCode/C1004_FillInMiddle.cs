@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using PTMngVSIX.Abstraction;
 using PTMngVSIX.Utils.Dialog;
-using PTMngVSIX.Utils.Doc;
 using PTMngVSIX.Utils.DTECommand;
+using PTMngVSIX.Utils.Editor;
 using System;
 using Task = System.Threading.Tasks.Task;
 
@@ -34,7 +34,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 				Prompt = prompt,
 			};
 			message.Option.IncludeDocumentLanguage = true;
-			message.Option.IncludeFillInMiddle = true;
+			message.Option.IncludeFIM = true;
 
 			var response = await Utils.Chat.ChatService.Instance.SendAsync(message);
 
@@ -44,7 +44,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 			}
 			else
 			{
-				await DocEdit.Insert_After_Selection_Async(message, response);
+				await EditorAction.Insert_To_Selection_Async(message, response, EditorModel.InsertSelectionPosition.Current);
 				await EditCommand.FormatDocumentAsync();
 			}
 		}

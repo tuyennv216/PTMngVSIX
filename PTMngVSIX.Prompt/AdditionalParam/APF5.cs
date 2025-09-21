@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.AI;
+﻿using System.Collections.Generic;
 
 namespace PTMngVSIX.Prompt.AdditionalParam
 {
-	public class APF5
+	public static class Apf5
 	{
-		public static readonly AdditionalPropertiesDictionary AP5020_ReviewFuncion = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP5020_ReviewFuncion = new Dictionary<string, object>
 		{
 			{ "temperature", 0.25 },		// Balanced - technical accuracy + insights
 			{ "top_p", 0.92 },				// Đa dạng perspectives review
@@ -13,7 +13,7 @@ namespace PTMngVSIX.Prompt.AdditionalParam
 			{ "top_k", 50 }
 		};
 
-		public static readonly AdditionalPropertiesDictionary AP5021_ReviewClass = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP5021_ReviewClass = new Dictionary<string, object>
 		{
 			{ "temperature", 0.3 },
 			{ "top_p", 0.96 },
@@ -22,7 +22,7 @@ namespace PTMngVSIX.Prompt.AdditionalParam
 			{ "top_k", 38 }
 		};
 
-		public static readonly AdditionalPropertiesDictionary AP5030_Solution = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP5030_Solution = new Dictionary<string, object>
 		{
 			{ "temperature", 0.35 },		// Cao hơn - creative solutions
 			{ "top_p", 0.96 },				// Đa dạng architectural patterns
@@ -31,7 +31,7 @@ namespace PTMngVSIX.Prompt.AdditionalParam
 			{ "top_k", 65 }
 		};
 
-		public static readonly AdditionalPropertiesDictionary AP5040_Deploy = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP5040_Deploy = new Dictionary<string, object>
 		{
 			{ "temperature", 0.3 },			// Cân bằng giữa best practices và practicality
 			{ "top_p", 0.94 },				// Đa dạng deployment options
@@ -40,7 +40,7 @@ namespace PTMngVSIX.Prompt.AdditionalParam
 			{ "top_k", 55 }
 		};
 
-		public static readonly AdditionalPropertiesDictionary AP5050_Architecture = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP5050_Architecture = new Dictionary<string, object>
 		{
 			{ "temperature", 0.4 },			// Cần creativity cho architectural design
 			{ "top_p", 0.97 },				// Rộng - nhiều patterns và styles
@@ -49,7 +49,7 @@ namespace PTMngVSIX.Prompt.AdditionalParam
 			{ "top_k", 70 }
 		};
 
-		public static readonly AdditionalPropertiesDictionary AP5060_Technologies = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP5060_Technologies = new Dictionary<string, object>
 		{
 			{ "temperature", 0.28 },		// Balanced tech recommendations
 			{ "top_p", 0.93 },				// Đa dạng tech stack options
@@ -58,7 +58,7 @@ namespace PTMngVSIX.Prompt.AdditionalParam
 			{ "top_k", 60 }
 		};
 
-		public static readonly AdditionalPropertiesDictionary AP5070_Features = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP5070_Features = new Dictionary<string, object>
 		{
 			{ "temperature", 0.45 },		// Cao - creative feature ideas
 			{ "top_p", 0.98 },				// Rất đa dạng feature suggestions

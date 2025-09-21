@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using PTMngVSIX.Abstraction.ResponseModel;
+﻿using PTMngVSIX.Abstraction.AIServices.ResponseModel;
 using PTMngVSIX.ToolWindow.Forms;
 using PTMngVSIX.Utils.Chat;
 using System.Threading.Tasks;

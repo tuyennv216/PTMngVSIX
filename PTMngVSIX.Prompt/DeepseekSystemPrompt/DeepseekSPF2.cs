@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.DeepseekSystemPrompt
 {
-	public class DeepseekSPF2
+	internal static class DeepseekSPF2
 	{
 
 		public static readonly string SP2000_DocsSelection = @"You are a senior technical writer and software engineer. Your task is to analyze code snippets and generate comprehensive technical documentation for them.

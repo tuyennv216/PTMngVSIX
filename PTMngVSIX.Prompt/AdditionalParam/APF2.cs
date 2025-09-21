@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.AI;
+﻿using System.Collections.Generic;
 
 namespace PTMngVSIX.Prompt.AdditionalParam
 {
-	internal class APF2
+	internal static class Apf2
 	{
-		public static readonly AdditionalPropertiesDictionary AP2000_DocsSelection = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP2000_DocsSelection = new Dictionary<string, object>
 		{
 			{ "temperature", 0.35 },		// Cần diễn đạt tự nhiên nhưng chính xác
 			{ "top_p", 0.96 },				// Đa dạng ngôn ngữ mô tả
@@ -13,7 +13,7 @@ namespace PTMngVSIX.Prompt.AdditionalParam
 			{ "top_k", 55 }
 		};
 
-		public static readonly AdditionalPropertiesDictionary AP2001_DocsFunction = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP2001_DocsFunction = new Dictionary<string, object>
 		{
 			{ "temperature", 0.3 },			// Tập trung vào accuracy function docs
 			{ "top_p", 0.94 },				// Đa dạng cách mô tả parameters
@@ -22,7 +22,7 @@ namespace PTMngVSIX.Prompt.AdditionalParam
 			{ "top_k", 50 }
 		};
 
-		public static readonly AdditionalPropertiesDictionary AP2002_DocsClass = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP2002_DocsClass = new Dictionary<string, object>
 		{
 			{ "temperature", 0.4 },			// Cao hơn - cần mô tả architecture
 			{ "top_p", 0.97 },				// Đa dạng class documentation styles
@@ -31,7 +31,7 @@ namespace PTMngVSIX.Prompt.AdditionalParam
 			{ "top_k", 60 }
 		};
 
-		public static readonly AdditionalPropertiesDictionary AP2010_DocsApi = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP2010_DocsApi = new Dictionary<string, object>
 		{
 			{ "temperature", 0.1 },
 			{ "top_p", 0.95 },
@@ -40,7 +40,7 @@ namespace PTMngVSIX.Prompt.AdditionalParam
 			{ "top_k", 40 }
 		};
 
-		public static readonly AdditionalPropertiesDictionary AP2020_DocsTechnicalSpecification = new AdditionalPropertiesDictionary
+		public static readonly Dictionary<string, object> AP2020_DocsTechnicalSpecification = new Dictionary<string, object>
 		{
 			{ "temperature", 0.05 },
 			{ "top_p", 0.98 },

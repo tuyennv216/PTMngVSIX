@@ -2,7 +2,7 @@
 
 namespace PTMngVSIX.Prompt.OutputParser
 {
-	public class OutputParser_v1
+	public static class OutputParser_v1
 	{
 		public static ModelReturn_v1 Parser(string content)
 		{

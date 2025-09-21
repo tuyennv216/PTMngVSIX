@@ -3,6 +3,7 @@ using PTMngVSIX.Abstraction;
 using PTMngVSIX.Utils.Dialog;
 using PTMngVSIX.Utils.Doc;
 using PTMngVSIX.Utils.DTECommand;
+using PTMngVSIX.Utils.Editor;
 using System;
 using System.ComponentModel.Composition;
 using Task = System.Threading.Tasks.Task;
@@ -39,7 +40,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 			}
 			else
 			{
-				await DocEdit.Insert_Before_Parent_Kind_Async(message, response, EnvDTE.vsCMElement.vsCMElementFunction);
+				await EditorAction.Insert_To_Parent_Kind_Async(message, response, EnvDTE.vsCMElement.vsCMElementFunction, EditorModel.InsertNodePosition.BeforeNode);
 				await EditCommand.FormatDocumentAsync();
 			}
 		}

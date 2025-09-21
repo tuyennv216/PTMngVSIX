@@ -2,6 +2,7 @@
 using PTMngVSIX.Setting;
 using System;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace PTMngVSIX.Abstraction
@@ -31,7 +32,14 @@ namespace PTMngVSIX.Abstraction
 
 		private void OnExecute(object sender, EventArgs e)
 		{
-			_ = ExecuteAsync(sender, e);
+			try
+			{
+				_ = ExecuteAsync(sender, e);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine($"Execute failed: {ex.Message}");
+			}
 		}
 
 		private void BeforeQueryStatus(object sender, EventArgs e)

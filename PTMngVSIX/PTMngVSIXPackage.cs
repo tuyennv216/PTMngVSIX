@@ -1,9 +1,11 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Threading;
+using PTMngVSIX.AIServices;
 using PTMngVSIX.Setting;
 using PTMngVSIX.Utils.Setting;
 using System;
+using System.IO.Packaging;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Task = System.Threading.Tasks.Task;
@@ -30,6 +32,7 @@ namespace PTMngVSIX
 		/// Gets the <see cref="Microsoft.VisualStudio.Threading.JoinableTaskContext"/> instance  associated with the current application.
 		/// </summary>
 		public static JoinableTaskContext JoinableTaskContext { get; private set; }
+		public static PTMngVSIXPackage Instance { get; private set; }
 
 		#region Package Members
 
@@ -42,99 +45,91 @@ namespace PTMngVSIX
 		/// <returns>A task representing the async work of package initialization, or an already completed task if there is none. Do not return null from this method.</returns>
 		protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
 		{
+			await base.InitializeAsync(cancellationToken, progress);
+
 			JoinableTaskContext = this.JoinableTaskFactory.Context;
+			Instance = this;
 
-			LoadFromOptionPage();
-			LoadFromRegStorage();
-			_ = AppState.Assistant.TryConnectAsync();
-
-			// When initialized asynchronously, the current thread may be a background thread at this point.
-			// Do any initialization that requires the UI thread after switching to the UI thread.
 			await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
-			var commandTasks = new[]
-			{
-				PTMngVSIX.Commands.F0App.C9000_ConnectServer.InitializeAsync(this),
+			await PTMngVSIX.Commands.F0App.C9000_ConnectServer.InitializeAsync(this);
 
-				PTMngVSIX.Commands.F1FunctionCode.C1000_GenerateCode.InitializeAsync(this),
-				PTMngVSIX.Commands.F1FunctionCode.C1001_GenerateFunction.InitializeAsync(this),
-				PTMngVSIX.Commands.F1FunctionCode.C1002_GenerateClass.InitializeAsync(this),
-				PTMngVSIX.Commands.F1FunctionCode.C1003_ReflectCode.InitializeAsync(this),
-				PTMngVSIX.Commands.F1FunctionCode.C1004_FillInMiddle.InitializeAsync(this),
-				PTMngVSIX.Commands.F1FunctionCode.C1005_AddComment.InitializeAsync(this),
-				PTMngVSIX.Commands.F1FunctionCode.C1006_CompleteFunction.InitializeAsync(this),
-				PTMngVSIX.Commands.F1FunctionCode.C1040_SummaryFunction.InitializeAsync(this),
-				PTMngVSIX.Commands.F1FunctionCode.C1050_OptimizeFunction.InitializeAsync(this),
-				PTMngVSIX.Commands.F1FunctionCode.C1060_ExplainFunction.InitializeAsync(this),
+			await PTMngVSIX.Commands.F1FunctionCode.C1000_GenerateCode.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1001_GenerateFunction.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1002_GenerateClass.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1003_ReflectCode.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1004_FillInMiddle.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1005_AddComment.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1006_CompleteFunction.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1040_SummaryFunction.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1050_OptimizeFunction.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1060_ExplainFunction.InitializeAsync(this);
 
-				PTMngVSIX.Commands.F2FunctionCode.C2000_DocsSelection.InitializeAsync(this),
-				PTMngVSIX.Commands.F2FunctionCode.C2001_DocsFunction.InitializeAsync(this),
-				PTMngVSIX.Commands.F2FunctionCode.C2002_DocsClass.InitializeAsync(this),
-				PTMngVSIX.Commands.F2FunctionCode.C2010_DocsApi.InitializeAsync(this),
-				PTMngVSIX.Commands.F2FunctionCode.C2020_DocsTechnicalSpecifications.InitializeAsync(this),
+			await PTMngVSIX.Commands.F2FunctionCode.C2000_DocsSelection.InitializeAsync(this);
+			await PTMngVSIX.Commands.F2FunctionCode.C2001_DocsFunction.InitializeAsync(this);
+			await PTMngVSIX.Commands.F2FunctionCode.C2002_DocsClass.InitializeAsync(this);
+			await PTMngVSIX.Commands.F2FunctionCode.C2010_DocsApi.InitializeAsync(this);
+			await PTMngVSIX.Commands.F2FunctionCode.C2020_DocsTechnicalSpecifications.InitializeAsync(this);
 
-				PTMngVSIX.Commands.F3FixBug.C3010_ExplainError.InitializeAsync(this),
-				PTMngVSIX.Commands.F3FixBug.C3020_SuggestFixes.InitializeAsync(this),
+			await PTMngVSIX.Commands.F3FixBug.C3010_ExplainError.InitializeAsync(this);
+			await PTMngVSIX.Commands.F3FixBug.C3020_SuggestFixes.InitializeAsync(this);
 
-				PTMngVSIX.Commands.F4Test.C4010_Whitebox.InitializeAsync(this),
-				PTMngVSIX.Commands.F4Test.C4020_Blackbox_UnitTests.InitializeAsync(this),
-				PTMngVSIX.Commands.F4Test.C4021_Blackbox_IntegrationTests.InitializeAsync(this),
-				PTMngVSIX.Commands.F4Test.C4022_Blackbox_EdgeCaseTesting.InitializeAsync(this),
-				PTMngVSIX.Commands.F4Test.C4023_Blackbox_PerformanceTesting.InitializeAsync(this),
+			await PTMngVSIX.Commands.F4Test.C4010_Whitebox.InitializeAsync(this);
+			await PTMngVSIX.Commands.F4Test.C4020_Blackbox_UnitTests.InitializeAsync(this);
+			await PTMngVSIX.Commands.F4Test.C4021_Blackbox_IntegrationTests.InitializeAsync(this);
+			await PTMngVSIX.Commands.F4Test.C4022_Blackbox_EdgeCaseTesting.InitializeAsync(this);
+			await PTMngVSIX.Commands.F4Test.C4023_Blackbox_PerformanceTesting.InitializeAsync(this);
 
-				PTMngVSIX.Commands.F5Architect.C5020_ReviewCodeFunction.InitializeAsync(this),
-				PTMngVSIX.Commands.F5Architect.C5021_ReviewCodeClass.InitializeAsync(this),
-				PTMngVSIX.Commands.F5Architect.C5030_SuggestSolution.InitializeAsync(this),
-				PTMngVSIX.Commands.F5Architect.C5040_SuggestDeploy.InitializeAsync(this),
-				PTMngVSIX.Commands.F5Architect.C5050_SuggestArchitecture.InitializeAsync(this),
-				PTMngVSIX.Commands.F5Architect.C5060_SuggestTechnologies.InitializeAsync(this),
-				PTMngVSIX.Commands.F5Architect.C5070_SuggestFeatures.InitializeAsync(this),
+			await PTMngVSIX.Commands.F5Architect.C5020_ReviewCodeFunction.InitializeAsync(this);
+			await PTMngVSIX.Commands.F5Architect.C5021_ReviewCodeClass.InitializeAsync(this);
+			await PTMngVSIX.Commands.F5Architect.C5030_SuggestSolution.InitializeAsync(this);
+			await PTMngVSIX.Commands.F5Architect.C5040_SuggestDeploy.InitializeAsync(this);
+			await PTMngVSIX.Commands.F5Architect.C5050_SuggestArchitecture.InitializeAsync(this);
+			await PTMngVSIX.Commands.F5Architect.C5060_SuggestTechnologies.InitializeAsync(this);
+			await PTMngVSIX.Commands.F5Architect.C5070_SuggestFeatures.InitializeAsync(this);
 
-				PTMngVSIX.Commands.F6Chat.C6010_AddCodeSnippet.InitializeAsync(this),
-				PTMngVSIX.Commands.F6Chat.C6011_ResetCodeSnippet.InitializeAsync(this),
+			await PTMngVSIX.Commands.F6Chat.C6010_AddCodeSnippet.InitializeAsync(this);
+			await PTMngVSIX.Commands.F6Chat.C6011_ResetCodeSnippet.InitializeAsync(this);
 
-				PTMngVSIX.ToolWindow.PTMngChatCommand.InitializeAsync(this),
-			};
+			await PTMngVSIX.ToolWindow.PTMngChatCommand.InitializeAsync(this);
 
-			await Task.WhenAll(commandTasks);
+
+			LoadFromRegStorage(this);
 		}
 
 		#endregion
 
-		private void LoadFromOptionPage()
+		private static void LoadFromRegStorage(PTMngVSIXPackage package)
 		{
-			var optionPage = (PTMngOptionPage)GetDialogPage(typeof(PTMngOptionPage));
-			ModelSetting.UseInternet = optionPage.UseInternet;
+			var options = (PTMngOptionPage)package.GetDialogPage(typeof(PTMngOptionPage));
 
-			if (optionPage.UseInternet)
+			ModelSetting.UseInternet = options.UseInternet;
+
+			if (ModelSetting.UseInternet)
 			{
-				ModelSetting.Endpoint = optionPage.OnlineEndpoint;
-				ModelSetting.ApiKey = optionPage.OnlineApiKey;
-				ModelSetting.AssistantModelName = optionPage.OnlineAssistantModelName;
-				ModelSetting.TranslatorModelName = optionPage.OnlineTranslatorModelName;
+				ModelSetting.Endpoint = options.OnlineEndpoint;
+				ModelSetting.ApiKey = options.OnlineApiKey;
+				ModelSetting.AssistantModelName = options.OnlineAssistantModelName;
+				ModelSetting.TranslatorModelName = options.OnlineTranslatorModelName;
 
-				AppState.Assistant = OnlineOpenRouterAI.DeepseekService.Instance;
-				AppState.Translator = OnlineOpenRouterAI.GemmaService.Instance;
+				AppState.Assistant = DeepseekV2Service.Instance;
+				AppState.Translator = GemmaV1Service.Instance;
 			}
 			else
 			{
-				ModelSetting.Endpoint = optionPage.LocalEndpoint;
-				ModelSetting.AssistantModelName = optionPage.LocalAssistantModelName;
-				ModelSetting.TranslatorModelName = optionPage.LocalTranslatorModelName;
+				ModelSetting.Endpoint = options.LocalEndpoint;
+				ModelSetting.AssistantModelName = options.LocalAssistantModelName;
+				ModelSetting.TranslatorModelName = options.LocalTranslatorModelName;
 
-				AppState.Assistant = LocalOllama.MistralService.Instance;
-				AppState.Translator = LocalOllama.GemmaService.Instance;
+				AppState.Assistant = MistralV1Service.Instance;
+				AppState.Translator = GemmaV1Service.Instance;
 			}
-		}
 
-		private void LoadFromRegStorage()
-		{
-			var pageName = Utils.Setting.Constant.OptionPageGeneral;
-			ModelSetting.RoleName = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.RoleName));
-			ModelSetting.OutputFormat = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.OutputFormat));
-			ModelSetting.TranslateInput = RegStorage.GetBool(pageName, nameof(PTMngOptionPage.TranslateInput));
-			ModelSetting.TranslateOutput = RegStorage.GetBool(pageName, nameof(PTMngOptionPage.TranslateOutput));
-			ModelSetting.OutputLanguage = RegStorage.GetValue(pageName, nameof(PTMngOptionPage.OutputLanguage));
+			ModelSetting.RoleName = options.RoleName;
+			ModelSetting.OutputFormat = options.OutputFormat;
+			ModelSetting.TranslateInput = options.TranslateInput;
+			ModelSetting.TranslateOutput = options.TranslateOutput;
+			ModelSetting.OutputLanguage = options.OutputLanguage;
 		}
 	}
 }

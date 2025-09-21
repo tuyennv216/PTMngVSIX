@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.DeepseekSystemPrompt
 {
-	internal class DeepseekSPF6
+	internal static class DeepseekSPF6
 	{
 		public static readonly string SP6000_Chat = @"You are an AI assistant specializing in software development.
 

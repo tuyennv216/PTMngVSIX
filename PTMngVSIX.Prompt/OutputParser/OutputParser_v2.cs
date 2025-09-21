@@ -3,7 +3,7 @@ using System.IO;
 
 namespace PTMngVSIX.Prompt.OutputParser
 {
-	public class OutputParser_v2
+	public static class OutputParser_v2
 	{
 		public static ModelReturn_v2 Parser(string rawContent)
 		{

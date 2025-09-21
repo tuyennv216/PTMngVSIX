@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.DeepseekSystemPrompt
 {
-	public class DeepseekSPF4
+	internal static class DeepseekSPF4
 	{
 		public static readonly string SP4010_Whitebox = @"You are a software testing expert specializing in white-box analysis. Your task is to perform comprehensive white-box test design for provided functions, ensuring full structural coverage.
 

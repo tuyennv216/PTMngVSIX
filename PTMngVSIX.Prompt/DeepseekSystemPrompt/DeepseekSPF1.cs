@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.DeepseekSystemPrompt
 {
-	public class DeepseekSPF1
+	internal static class DeepseekSPF1
 	{
 		public static readonly string SP1000_GenerateCode = @"You are a professional software engineer specializing in procedural code generation. Your task is to produce clean, efficient, and well-documented code based on user requirements.
 

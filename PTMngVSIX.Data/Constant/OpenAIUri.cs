@@ -1,6 +1,6 @@
-﻿namespace PTMngVSIX.LocalOllama.Constant
+﻿namespace PTMngVSIX.Data.Constant
 {
-	public class OpenAIUri
+	public static class OpenAIUri
 	{
 		public const string ChatCompletions = "/v1/chat/completions"; // POST
 		public const string Completions = "/v1/completions"; // POST

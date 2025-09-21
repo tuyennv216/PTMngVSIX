@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PTMngVSIX.LocalOllama")]
+[assembly: AssemblyTitle("PTMngVSIX.AIServices")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PTMngVSIX.LocalOllama")]
+[assembly: AssemblyProduct("PTMngVSIX.AIServices")]
 [assembly: AssemblyCopyright("Copyright ©  2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b9a236ba-d8f3-4e5d-aab0-dda787ed294c")]
+[assembly: Guid("a6591f74-b3f5-4e8a-b005-6b5977612ed2")]
 
 // Version information for an assembly consists of the following four values:
 //

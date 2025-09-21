@@ -1,6 +1,6 @@
 ﻿namespace PTMngVSIX.Prompt.MistralSystemPrompt
 {
-	public class MistralSPF3
+	internal static class MistralSPF3
 	{
 		public static readonly string SP3010_ExplainError = @"You are a senior software engineer and debugging expert.
 Your task is to analyze user-submitted code and explain any errors it contains.
