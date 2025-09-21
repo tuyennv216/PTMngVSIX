@@ -124,7 +124,7 @@
     <value>Thông tin lỗi</value>
   </data>
   <data name="Option_FillInMiddle" xml:space="preserve">
-    <value>Hàm đang mở (định dạng Fill In Middle)</value>
+    <value>Hàm đang mở (định dạng FIM)</value>
   </data>
   <data name="Option_LabelEnv" xml:space="preserve">
     <value>Môi trường phát triển</value>

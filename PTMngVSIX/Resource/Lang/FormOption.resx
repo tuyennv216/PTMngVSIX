@@ -124,7 +124,7 @@
     <value>Error information</value>
   </data>
   <data name="Option_FillInMiddle" xml:space="preserve">
-    <value>Currently opened function (Fill In Middle format)</value>
+    <value>Currently opened function (FIM format)</value>
   </data>
   <data name="Option_LabelEnv" xml:space="preserve">
     <value>Enviroment</value>

@@ -23,7 +23,7 @@ namespace PTMngVSIX.Commands.F3FixBug
 		{
 			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-			var errorModel = await ErrorView.GetErrorMessageAsync();
+			var errorModel = await ErrorView.GetErrorPanelSelectedAsync();
 			
 			var validate = await DocValidate.ValidateActiveDocumentFileAsync(errorModel.FileName);
 			if (!validate) return;

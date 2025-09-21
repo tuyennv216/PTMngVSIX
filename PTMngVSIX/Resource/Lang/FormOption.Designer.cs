@@ -79,7 +79,7 @@ namespace PTMngVSIX.Resource.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Currently opened function (Fill In Middle format).
+        ///   Looks up a localized string similar to Currently opened function (FIM format).
         /// </summary>
         public static string Option_FillInMiddle {
             get {

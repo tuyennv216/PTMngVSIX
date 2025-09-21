@@ -223,6 +223,15 @@ namespace PTMngVSIX.Resource.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fix the error line.
+        /// </summary>
+        internal static string Button_C3030_FixErrorLine {
+            get {
+                return ResourceManager.GetString("Button_C3030_FixErrorLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate White-box Test Cases.
         /// </summary>
         internal static string Button_C4010_Whitebox {

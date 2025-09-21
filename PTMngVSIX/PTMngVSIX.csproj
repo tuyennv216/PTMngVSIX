@@ -77,10 +77,12 @@
   <ItemGroup>
     <Compile Include="Abstraction\CommandBase.cs" />
     <Compile Include="Commands\F0App\C9000_ConnectServer.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1012_ReflectClass.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1011_ReflectFunction.cs" />
     <Compile Include="Commands\F1FunctionCode\C1006_CompleteFunction.cs" />
     <Compile Include="Commands\F1FunctionCode\C1005_AddComment.cs" />
     <Compile Include="Commands\F1FunctionCode\C1004_FillInMiddle.cs" />
-    <Compile Include="Commands\F1FunctionCode\C1003_ReflectCode.cs" />
+    <Compile Include="Commands\F1FunctionCode\C1010_ReflectCode.cs" />
     <Compile Include="Commands\F1FunctionCode\C1002_GenerateClass.cs" />
     <Compile Include="Commands\F1FunctionCode\C1001_GenerateFunction.cs" />
     <Compile Include="Commands\F1FunctionCode\C1060_ExplainFunction.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Commands\F2Docs\C2001_DocsFunction.cs" />
     <Compile Include="Commands\F2Docs\C2000_DocsSelection.cs" />
     <Compile Include="Commands\F1FunctionCode\C1000_GenerateCode.cs" />
+    <Compile Include="Commands\F3FixBug\C3030_FixErrorLine.cs" />
     <Compile Include="Commands\F3FixBug\C3020_SuggestFixes.cs" />
     <Compile Include="Commands\F3FixBug\C3010_ExplainError.cs" />
     <Compile Include="Commands\F4Test\C4022_Blackbox_EdgeCaseTesting.cs" />

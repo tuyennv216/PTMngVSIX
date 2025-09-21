@@ -8,7 +8,7 @@
 
     <!--Level 1 Menu-->
     <Menus>
-      <Menu guid="PTMngCmdSet" id="F1_MenuItem" priority="0x0101" type="Menu">
+      <Menu guid="PTMngCmdSet" id="F11_MenuItem" priority="0x0101" type="Menu">
         <Parent guid="PTMngCmdSet" id="MenuGroup" />
         <Strings>
           <ButtonText>AI Coding</ButtonText>
@@ -16,7 +16,15 @@
         </Strings>
       </Menu>
 
-      <Menu guid="PTMngCmdSet" id="F2_MenuItem" priority="0x0102" type="Menu">
+      <Menu guid="PTMngCmdSet" id="F12_MenuItem" priority="0x0102" type="Menu">
+        <Parent guid="PTMngCmdSet" id="MenuGroup" />
+        <Strings>
+          <ButtonText>AI Reflect Code</ButtonText>
+          <CommandName>AI Reflect Code</CommandName>
+        </Strings>
+      </Menu>
+
+      <Menu guid="PTMngCmdSet" id="F2_MenuItem" priority="0x0103" type="Menu">
         <Parent guid="PTMngCmdSet" id="MenuGroup" />
         <Strings>
           <ButtonText>AI Docs</ButtonText>
@@ -63,8 +71,12 @@
       <!--End menu group-->
 
       <!--Function group-->
-      <Group guid="PTMngCmdSet" id="F1_CommandGroup" priority="0x0101">
-        <Parent guid="PTMngCmdSet" id="F1_MenuItem" />
+      <Group guid="PTMngCmdSet" id="F11_CommandGroup" priority="0x0101">
+        <Parent guid="PTMngCmdSet" id="F11_MenuItem" />
+      </Group>
+
+      <Group guid="PTMngCmdSet" id="F12_CommandGroup" priority="0x0101">
+        <Parent guid="PTMngCmdSet" id="F12_MenuItem" />
       </Group>
 
       <Group guid="PTMngCmdSet" id="F2_CommandGroup" priority="0x0102">
@@ -102,6 +114,8 @@
       <!--F3 Error buttons-->
       <Button guid="PTMngCmdSet" id="C3010_ExplainError" priority="100" type="Button">
         <Parent guid="PTMngCmdSet" id="F3_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Giải thích lỗi</ButtonText>
         </Strings>
@@ -109,6 +123,17 @@
 
       <Button guid="PTMngCmdSet" id="C3020_SuggestFixes" priority="100" type="Button">
         <Parent guid="PTMngCmdSet" id="F3_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Gợi ý sửa lỗi</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C3030_FixErrorLine" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="F12_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Gợi ý sửa lỗi</ButtonText>
         </Strings>
@@ -227,9 +252,9 @@
       </Button>
       <!--End F5 Chat buttons-->
 
-      <!--F1 Editor buttons-->
-      <Button guid="PTMngCmdSet" id="C1003_ReflectCode" priority="100" type="Button">
-        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+      <!--F12 Editor buttons-->
+      <Button guid="PTMngCmdSet" id="C1010_ReflectCode" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="F12_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
@@ -238,7 +263,7 @@
       </Button>
 
       <Button guid="PTMngCmdSet" id="C1006_CompleteFunction" priority="100" type="Button">
-        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <Parent guid="PTMngCmdSet" id="F12_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
@@ -247,7 +272,7 @@
       </Button>
 
       <Button guid="PTMngCmdSet" id="C1005_AddComment" priority="100" type="Button">
-        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <Parent guid="PTMngCmdSet" id="F12_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
@@ -255,35 +280,8 @@
         </Strings>
       </Button>
 
-      <Button guid="PTMngCmdSet" id="C1001_GenerateFunction" priority="101" type="Button">
-        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
-        <CommandFlag>DefaultInvisible</CommandFlag>
-        <CommandFlag>DynamicVisibility</CommandFlag>
-        <Strings>
-          <ButtonText>Tạo function</ButtonText>
-        </Strings>
-      </Button>
-
-      <Button guid="PTMngCmdSet" id="C1002_GenerateClass" priority="102" type="Button">
-        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
-        <CommandFlag>DefaultInvisible</CommandFlag>
-        <CommandFlag>DynamicVisibility</CommandFlag>
-        <Strings>
-          <ButtonText>Tạo class</ButtonText>
-        </Strings>
-      </Button>
-
-      <Button guid="PTMngCmdSet" id="C1040_SummaryFunction" priority="140" type="Button">
-        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
-        <CommandFlag>DefaultInvisible</CommandFlag>
-        <CommandFlag>DynamicVisibility</CommandFlag>
-        <Strings>
-          <ButtonText>Tạo Summary hàm</ButtonText>
-        </Strings>
-      </Button>
-
       <Button guid="PTMngCmdSet" id="C1050_OptimizeFunction" priority="150" type="Button">
-        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <Parent guid="PTMngCmdSet" id="F12_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
@@ -292,14 +290,43 @@
       </Button>
 
       <Button guid="PTMngCmdSet" id="C1060_ExplainFunction" priority="160" type="Button">
-        <Parent guid="PTMngCmdSet" id="F1_CommandGroup" />
+        <Parent guid="PTMngCmdSet" id="F12_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Giải thích hàm</ButtonText>
         </Strings>
       </Button>
-      <!--End F1 Editor buttons-->
+      <!--End F12 Editor buttons-->
+
+      <!--F11 Editor buttons-->
+      <Button guid="PTMngCmdSet" id="C1001_GenerateFunction" priority="101" type="Button">
+        <Parent guid="PTMngCmdSet" id="F11_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo function</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C1002_GenerateClass" priority="102" type="Button">
+        <Parent guid="PTMngCmdSet" id="F11_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo class</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C1040_SummaryFunction" priority="140" type="Button">
+        <Parent guid="PTMngCmdSet" id="F11_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Tạo Summary hàm</ButtonText>
+        </Strings>
+      </Button>
+      <!--End F11 Editor buttons-->
 
       <!--F2 Docs buttons-->
       <Button guid="PTMngCmdSet" id="C2000_DocsSelection" priority="110" type="Button">
@@ -348,6 +375,8 @@
       </Button>
 
       <!--End F2 Docs buttons-->
+      
+      <!--F6 Chat buttons-->
 
       <Button guid="PTMngCmdSet" id="C6010_AddCodeSnippet" priority="112" type="Button">
         <Parent guid="PTMngCmdSet" id="F6_CommandGroup" />
@@ -366,8 +395,6 @@
           <ButtonText>Reset code snippet</ButtonText>
         </Strings>
       </Button>
-
-      <!--F6 Chat buttons-->
 
       <!--End F6 Chat buttons-->
 
@@ -403,20 +430,22 @@
     <GuidSymbol name="PTMngVSIXPackage" value="{bd4318e4-1155-4cf7-95ca-e30cfcc156a3}" />
 
     <GuidSymbol name="PTMngCmdSet" value="{E670DC9F-CFC4-4F5C-9892-E419C56E9FBF}">
-      <IDSymbol name="MenuGroup" value="100010" />
-      <IDSymbol name="F1_MenuItem" value="100011" />
-      <IDSymbol name="F2_MenuItem" value="100012" />
-      <IDSymbol name="F4_MenuItem" value="100014" />
-      <IDSymbol name="F5_MenuItem" value="100015" />
+      <IDSymbol name="MenuGroup" value="100100" />
+      <IDSymbol name="F11_MenuItem" value="100111" />
+      <IDSymbol name="F12_MenuItem" value="100112" />
+      <IDSymbol name="F2_MenuItem" value="100120" />
+      <IDSymbol name="F4_MenuItem" value="100140" />
+      <IDSymbol name="F5_MenuItem" value="100150" />
 
-      <IDSymbol name="F0_CommandGroup" value="10010" />
-      <IDSymbol name="F1_CommandGroup" value="10011" />
-      <IDSymbol name="F2_CommandGroup" value="10012" />
-      <IDSymbol name="F3_CommandGroup" value="10013" />
-      <IDSymbol name="F4_CommandGroup" value="10014" />
-      <IDSymbol name="F5_CommandGroup" value="10015" />
-      <IDSymbol name="F6_CommandGroup" value="10016" />
-      <IDSymbol name="ToolWindowGroup" value="10020" />
+      <IDSymbol name="F0_CommandGroup" value="10100" />
+      <IDSymbol name="F11_CommandGroup" value="10111" />
+      <IDSymbol name="F12_CommandGroup" value="10112" />
+      <IDSymbol name="F2_CommandGroup" value="10120" />
+      <IDSymbol name="F3_CommandGroup" value="10130" />
+      <IDSymbol name="F4_CommandGroup" value="10140" />
+      <IDSymbol name="F5_CommandGroup" value="10150" />
+      <IDSymbol name="F6_CommandGroup" value="10160" />
+      <IDSymbol name="ToolWindowGroup" value="10200" />
 
       <IDSymbol name="C9000_ConnectServer" value="9000" />
       <IDSymbol name="C9001_OpenChatWindow" value="9001" />
@@ -424,10 +453,14 @@
       <IDSymbol name="C1000_GenerateCode" value="1000" />
       <IDSymbol name="C1001_GenerateFunction" value="1001" />
       <IDSymbol name="C1002_GenerateClass" value="1002" />
-      <IDSymbol name="C1003_ReflectCode" value="1003" />
       <IDSymbol name="C1004_FillInMiddle" value="1004" />
       <IDSymbol name="C1005_AddComment" value="1005" />
       <IDSymbol name="C1006_CompleteFunction" value="1006" />
+
+      <IDSymbol name="C1010_ReflectCode" value="10010" />
+      <IDSymbol name="C1011_ReflectFunction" value="10011" />
+      <IDSymbol name="C1012_ReflectClass" value="10012" />
+      
       <IDSymbol name="C1040_SummaryFunction" value="1040" />
       <IDSymbol name="C1050_OptimizeFunction" value="1050" />
       <IDSymbol name="C1060_ExplainFunction" value="1060" />
@@ -440,6 +473,7 @@
 
       <IDSymbol name="C3010_ExplainError" value="3010" />
       <IDSymbol name="C3020_SuggestFixes" value="3020" />
+      <IDSymbol name="C3030_FixErrorLine" value="3030" />
 
       <IDSymbol name="C4010_Whitebox" value="4010" />
       <IDSymbol name="C4020_Blackbox_UnitTests" value="4020" />

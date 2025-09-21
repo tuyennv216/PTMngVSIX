@@ -50,15 +50,6 @@ namespace PTMngVSIX.Prompt.Builder
 					sb.AppendLine(OutputDefined.OCode01);
 					break;
 
-				case Data.Constant.TaskName.TaskF1.RefelctCode:
-					sb.AppendLine(MistralSPF1.SP1003_ReflectCode);
-					sb.AppendLine();
-					sb.AppendLine(MistralSPF0.SP0002_Restrict);
-					sb.AppendLine();
-					sb.AppendLine("Task: " + request.Task);
-					sb.AppendLine(OutputDefined.OCode01);
-					break;
-
 				case Data.Constant.TaskName.TaskF1.FillInMiddle:
 					sb.AppendLine(MistralSPF1.SP1004_FillInMiddle);
 					sb.AppendLine();
@@ -79,6 +70,33 @@ namespace PTMngVSIX.Prompt.Builder
 
 				case Data.Constant.TaskName.TaskF1.CompleteFunction:
 					sb.AppendLine(MistralSPF1.SP1006_CompleteFunction);
+					sb.AppendLine();
+					sb.AppendLine(MistralSPF0.SP0002_Restrict);
+					sb.AppendLine();
+					sb.AppendLine("Task: " + request.Task);
+					sb.AppendLine(OutputDefined.OCode01);
+					break;
+
+				case Data.Constant.TaskName.TaskF1.ReflectCode:
+					sb.AppendLine(MistralSPF1.SP1010_ReflectCode);
+					sb.AppendLine();
+					sb.AppendLine(MistralSPF0.SP0002_Restrict);
+					sb.AppendLine();
+					sb.AppendLine("Task: " + request.Task);
+					sb.AppendLine(OutputDefined.OCode01);
+					break;
+
+				case Data.Constant.TaskName.TaskF1.ReflectFunction:
+					sb.AppendLine(MistralSPF1.SP1011_ReflectFunction);
+					sb.AppendLine();
+					sb.AppendLine(MistralSPF0.SP0002_Restrict);
+					sb.AppendLine();
+					sb.AppendLine("Task: " + request.Task);
+					sb.AppendLine(OutputDefined.OCode01);
+					break;
+
+				case Data.Constant.TaskName.TaskF1.ReflectClass:
+					sb.AppendLine(MistralSPF1.SP1012_ReflectClass);
 					sb.AppendLine();
 					sb.AppendLine(MistralSPF0.SP0002_Restrict);
 					sb.AppendLine();
@@ -171,6 +189,15 @@ namespace PTMngVSIX.Prompt.Builder
 					break;
 
 				case Data.Constant.TaskName.TaskF3.SuggestFixes:
+					sb.AppendLine(MistralSPF3.SP3020_SuggestFixes);
+					sb.AppendLine();
+					sb.AppendLine(MistralSPF0.SP0002_Restrict);
+					sb.AppendLine();
+					sb.AppendLine("Task: " + request.Task);
+					sb.AppendLine(OutputDefined.OText01);
+					break;
+
+				case Data.Constant.TaskName.TaskF3.FixErrorLine:
 					sb.AppendLine(MistralSPF3.SP3020_SuggestFixes);
 					sb.AppendLine();
 					sb.AppendLine(MistralSPF0.SP0002_Restrict);

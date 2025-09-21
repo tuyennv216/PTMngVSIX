@@ -5,7 +5,10 @@
 		public const string GenerateCode = "generate_code";
 		public const string GenerateFunction = "generate_function";
 		public const string GenerateClass = "generate_class";
-		public const string RefelctCode = "reflect_code";
+
+		public const string ReflectCode = "reflect_code";
+		public const string ReflectFunction = "reflect_function";
+		public const string ReflectClass = "reflect_class";
 
 		public const string FillInMiddle = "fill_in_middle";
 		public const string AddComment = "add_comments";
@@ -32,6 +35,7 @@
 	{
 		public const string ExplainError = "explain_error";
 		public const string SuggestFixes = "suggest_fixes";
+		public const string FixErrorLine = "fix_error_line";
 	}
 
 	public static class TaskF4

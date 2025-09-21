@@ -31,16 +31,28 @@ namespace PTMngVSIX.Prompt.Builder
 					result = Apf1.AP1002_GenerateClass;
 					break;
 
-				case Data.Constant.TaskName.TaskF1.RefelctCode:
-					result = Apf1.AP1003_Reflect;
-					break;
-
 				case Data.Constant.TaskName.TaskF1.FillInMiddle:
 					result = Apf1.AP1004_FillInMiddle;
 					break;
 
 				case Data.Constant.TaskName.TaskF1.AddComment:
 					result = Apf1.AP1005_AddComment;
+					break;
+
+				case Data.Constant.TaskName.TaskF1.CompleteFunction:
+					result = Apf1.AP1006_CompleteFunction;
+					break;
+
+				case Data.Constant.TaskName.TaskF1.ReflectCode:
+					result = Apf1.AP1010_Reflect;
+					break;
+
+				case Data.Constant.TaskName.TaskF1.ReflectFunction:
+					result = Apf1.AP1011_ReflectFunction;
+					break;
+
+				case Data.Constant.TaskName.TaskF1.ReflectClass:
+					result = Apf1.AP1012_ReflectClass;
 					break;
 
 				case Data.Constant.TaskName.TaskF1.OptimizeFunction:
@@ -80,6 +92,10 @@ namespace PTMngVSIX.Prompt.Builder
 					break;
 
 				case Data.Constant.TaskName.TaskF3.SuggestFixes:
+					result = Apf3.AP3020_SuggestFixes;
+					break;
+
+				case Data.Constant.TaskName.TaskF3.FixErrorLine:
 					result = Apf3.AP3020_SuggestFixes;
 					break;
 

@@ -57,10 +57,13 @@ namespace PTMngVSIX
 			await PTMngVSIX.Commands.F1FunctionCode.C1000_GenerateCode.InitializeAsync(this);
 			await PTMngVSIX.Commands.F1FunctionCode.C1001_GenerateFunction.InitializeAsync(this);
 			await PTMngVSIX.Commands.F1FunctionCode.C1002_GenerateClass.InitializeAsync(this);
-			await PTMngVSIX.Commands.F1FunctionCode.C1003_ReflectCode.InitializeAsync(this);
 			await PTMngVSIX.Commands.F1FunctionCode.C1004_FillInMiddle.InitializeAsync(this);
 			await PTMngVSIX.Commands.F1FunctionCode.C1005_AddComment.InitializeAsync(this);
 			await PTMngVSIX.Commands.F1FunctionCode.C1006_CompleteFunction.InitializeAsync(this);
+
+			await PTMngVSIX.Commands.F1FunctionCode.C1010_ReflectCode.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1011_ReflectFunction.InitializeAsync(this);
+			await PTMngVSIX.Commands.F1FunctionCode.C1012_ReflectClass.InitializeAsync(this);
 			await PTMngVSIX.Commands.F1FunctionCode.C1040_SummaryFunction.InitializeAsync(this);
 			await PTMngVSIX.Commands.F1FunctionCode.C1050_OptimizeFunction.InitializeAsync(this);
 			await PTMngVSIX.Commands.F1FunctionCode.C1060_ExplainFunction.InitializeAsync(this);
@@ -73,6 +76,7 @@ namespace PTMngVSIX
 
 			await PTMngVSIX.Commands.F3FixBug.C3010_ExplainError.InitializeAsync(this);
 			await PTMngVSIX.Commands.F3FixBug.C3020_SuggestFixes.InitializeAsync(this);
+			await PTMngVSIX.Commands.F3FixBug.C3030_FixErrorLine.InitializeAsync(this);
 
 			await PTMngVSIX.Commands.F4Test.C4010_Whitebox.InitializeAsync(this);
 			await PTMngVSIX.Commands.F4Test.C4020_Blackbox_UnitTests.InitializeAsync(this);

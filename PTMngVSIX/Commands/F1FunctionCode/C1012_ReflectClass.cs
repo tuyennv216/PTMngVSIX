@@ -9,12 +9,12 @@ using Task = System.Threading.Tasks.Task;
 
 namespace PTMngVSIX.Commands.F1FunctionCode
 {
-	internal sealed class C1003_ReflectCode : CommandBase<C1003_ReflectCode>
+	internal sealed class C1012_ReflectClass : CommandBase<C1012_ReflectClass>
 	{
-		public override int CommandId { get; protected set; } = 1003;
+		public override int CommandId { get; protected set; } = 1012;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C1003_ReflectCode;
 
-		public C1003_ReflectCode(AsyncPackage package, OleMenuCommandService commandService)
+		public C1012_ReflectClass(AsyncPackage package, OleMenuCommandService commandService)
 			: base(package, commandService)
 		{
 		}
@@ -45,11 +45,11 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 
 			var message = new Utils.Chat.Message
 			{
-				Task = Data.Constant.TaskName.TaskF1.RefelctCode,
+				Task = Data.Constant.TaskName.TaskF1.ReflectClass,
 				Prompt = prompt,
 			};
 			message.Option.IncludeDocumentLanguage = true;
-			message.Option.IncludeSelection = true;
+			message.Option.IncludeParentClass = true;
 
 			var response = await Utils.Chat.ChatService.Instance.SendAsync(message);
 

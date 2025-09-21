@@ -225,4 +225,7 @@
   <data name="Button_C1004_FillInMiddle" xml:space="preserve">
     <value>Auto-fill Middle Block</value>
   </data>
+  <data name="Button_C3030_FixErrorLine" xml:space="preserve">
+    <value>Fix the error line</value>
+  </data>
 </root>

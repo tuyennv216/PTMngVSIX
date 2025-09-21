@@ -14,6 +14,6 @@
 		public static bool TranslateInput { get; set; } = DefaultSetting.TranslateInput;
 		public static bool TranslateOutput { get; set; }	= DefaultSetting.TranslateOutput;
 		public static string OutputLanguage { get; set; } = DefaultSetting.OutputLanguage;
-		public static string Enviroment { get; set; } = DefaultSetting.ChatEnviroment;
+		public static string ChatEnviroment { get; set; } = DefaultSetting.ChatEnviroment;
 	}
 }

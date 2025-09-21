@@ -118,6 +118,7 @@ namespace PTMngVSIX.ToolWindow.Forms
 			ModelSetting.TranslateInput = TranslateInput;
 			ModelSetting.TranslateOutput = TranslateOutput;
 			ModelSetting.OutputLanguage = OutputLanguage;
+			ModelSetting.ChatEnviroment = ChatEnviroment;
 		}
 	}
 }
