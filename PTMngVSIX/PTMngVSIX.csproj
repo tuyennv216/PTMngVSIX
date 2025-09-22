@@ -109,6 +109,9 @@
     <Compile Include="Commands\F5Architect\C5040_SuggestDeploy.cs" />
     <Compile Include="Commands\F5Architect\C5030_SuggestSolution.cs" />
     <Compile Include="Commands\F5Architect\C5020_ReviewCodeFunction.cs" />
+    <Compile Include="Commands\F6Chat\C6022_AddSolutionFolderFilesPath.cs" />
+    <Compile Include="Commands\F6Chat\C6020_AddSolutionFilePath.cs" />
+    <Compile Include="Commands\F6Chat\C6021_AddActiveFilePath.cs" />
     <Compile Include="Commands\F6Chat\C6011_ResetCodeSnippet.cs" />
     <Compile Include="Commands\F6Chat\C6010_AddCodeSnippet.cs" />
     <Compile Include="OptionPage\PTMngOptionPage.cs">
@@ -156,6 +159,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FormOption.resx</DependentUpon>
     </Compile>
+    <Compile Include="ToolWindow\Converter\InverseBoolToVisibilityConverter.cs" />
+    <Compile Include="ToolWindow\Converter\CountToVisibilityConverter.cs" />
+    <Compile Include="ToolWindow\Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="ToolWindow\Converter\TextToVisibilityConverter.cs" />
     <Compile Include="ToolWindow\Forms\OptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +175,8 @@
       <DependentUpon>PTMngChatControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\Cache\MiniCache.cs" />
+    <Compile Include="Utils\SystemIO\IOModel.cs" />
+    <Compile Include="Utils\IDECommand\SolutionItemCommand.cs" />
     <Compile Include="Utils\Editor\EditorItem.cs" />
     <Compile Include="Utils\Chat\Message.cs" />
     <Compile Include="Utils\Chat\Option.cs" />
@@ -176,7 +185,7 @@
     <Compile Include="Utils\Dialog\TextDialog.cs" />
     <Compile Include="Utils\Doc\DocValidate.cs" />
     <Compile Include="Utils\Doc\ErrorView.cs" />
-    <Compile Include="Utils\DTECommand\EditCommand.cs" />
+    <Compile Include="Utils\IDECommand\EditCommand.cs" />
     <Compile Include="Utils\Editor\EditorModel.cs" />
     <Compile Include="Utils\Model\ErrorViewModel.cs" />
     <Compile Include="Utils\Print\PrintStructure.cs" />
@@ -184,6 +193,7 @@
     <Compile Include="Utils\Setting\Constant.cs" />
     <Compile Include="Utils\Editor\EditorAction.cs" />
     <Compile Include="Utils\Doc\DocView.cs" />
+    <Compile Include="Utils\SystemIO\IOCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">

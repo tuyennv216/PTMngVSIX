@@ -19,20 +19,20 @@ namespace PTMngVSIX.Commands.F0App
 
 		protected override void BeforeRenderMenu(OleMenuCommand menu)
 		{
-			menu.Visible = !AppState.IsModelAvailable;
-			menu.Enabled = !AppState.IsModelAvailable;
+			menu.Visible = !AppState.Instance.IsModelAvailable;
+			menu.Enabled = !AppState.Instance.IsModelAvailable;
 		}
 
 		protected override async Task ExecuteAsync(object sender, EventArgs e)
 		{
-			await AppState.Assistant.TryConnectAsync();
+			await AppState.Instance.Assistant.TryConnectAsync();
 
-			if (AppState.IsModelAvailable)
+			if (AppState.Instance.IsModelAvailable)
 			{
 				VsShellUtilities.ShowMessageBox(
 					this.package,
 					"Connected to endpoint service.",
-					"Connection successed",
+					"Connection succeeded",
 					OLEMSGICON.OLEMSGICON_INFO,
 					OLEMSGBUTTON.OLEMSGBUTTON_OK,
 					OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);

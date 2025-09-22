@@ -79,6 +79,15 @@ namespace PTMngVSIX.Resource.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect to Server.
+        /// </summary>
+        public static string ConnectServer {
+            get {
+                return ResourceManager.GetString("ConnectServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New session.
         /// </summary>
         public static string NewSession {

@@ -36,7 +36,7 @@ namespace PTMngVSIX.AIServices
 					AdditionalProperties = APBuilder.Build(request)
 				};
 
-				var response = await AppState.ApiClient.GetResponseAsync(message, options);
+				var response = await AppState.Instance.ApiClient.GetResponseAsync(message, options);
 				var promptReturn = OutputParser_v1.Parser(response);
 
 				return new ResponseBase

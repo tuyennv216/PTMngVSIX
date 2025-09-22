@@ -21,23 +21,23 @@ namespace PTMngVSIX.AIServices
 
 				if (response.Length > 0)
 				{
-					AppState.IsModelAvailable = true;
+					AppState.Instance.IsModelAvailable = true;
 
-					if (AppState.ApiClient == null ||
-						AppState.ApiClient.GetType() != typeof(BaseOpenAILikeChatClient))
+					if (AppState.Instance.ApiClient == null ||
+						AppState.Instance.ApiClient.GetType() != typeof(BaseOpenAILikeChatClient))
 					{
-						AppState.ApiClient = client;
+						AppState.Instance.ApiClient = client;
 					}
 
 				}
 				else
 				{
-					AppState.IsModelAvailable = false;
+					AppState.Instance.IsModelAvailable = false;
 				}
 			}
 			catch
 			{
-				AppState.IsModelAvailable = false;
+				AppState.Instance.IsModelAvailable = false;
 			}
 		}
 	}

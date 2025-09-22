@@ -6,20 +6,48 @@ using PTMngVSIX.Abstraction.AIServices.ResponseModel;
 using PTMngVSIX.Setting;
 using PTMngVSIX.ToolWindow;
 using PTMngVSIX.Utils.Doc;
+using PTMngVSIX.Utils.SystemIO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PTMngVSIX.Utils.Chat
 {
-	internal class ChatService
+	internal class ChatService : INotifyPropertyChanged
 	{
 		public static ChatService Instance = new();
 		private ChatService() { }
 
-		public List<string> ActiveSnippets { get; private set; } = new();
+		//public List<string> ActiveSnippets { get; private set; } = new();
+		//public List<string> ActiveFiles { get; private set; } = new();
+
+		private ObservableCollection<string> _activeSnippets;
+		public ObservableCollection<string> ActiveSnippets
+		{
+			get => _activeSnippets ??= new ObservableCollection<string>();
+			set
+			{
+				_activeSnippets = value;
+				OnPropertyChanged(nameof(ActiveSnippets));
+			}
+		}
+
+		private ObservableCollection<string> _activeFiles;
+		public ObservableCollection<string> ActiveFiles
+		{
+			get => _activeFiles ??= new ObservableCollection<string>();
+			set
+			{
+				_activeFiles = value;
+				OnPropertyChanged(nameof(ActiveFiles));
+			}
+		}
+
 		private List<string> ChatHistory = new();
 
 		private RequestBase LastRequest = null;
@@ -43,8 +71,9 @@ namespace PTMngVSIX.Utils.Chat
 			};
 
 			await ClearCodeSnippetAsync();
+			await ClearActiveFileAsync();
 
-			var response = await AppState.Assistant.CallAsync(request);
+			var response = await AppState.Instance.Assistant.CallAsync(request);
 
 			request.LastRequest = null;
 			request.LastResponse = null;
@@ -58,6 +87,7 @@ namespace PTMngVSIX.Utils.Chat
 			return response;
 		}
 
+		// Code Snippet
 		public async Task AddCodeSnippetAsync(string rawCode)
 		{
 			var code = rawCode.Trim().Trim('\r', '\n', ' ');
@@ -69,6 +99,33 @@ namespace PTMngVSIX.Utils.Chat
 			chatControl?.AddCodeSnippet(code);
 		}
 
+		public async Task ClearCodeSnippetAsync()
+		{
+			ActiveSnippets.Clear();
+			var chatControl = await GetChatControlAsync();
+			chatControl?.ResetCodeSnippet();
+		}
+		// End Code Snippet
+
+		// Active File
+		public async Task AddActiveFileAsync(string filePath)
+		{
+			if (string.IsNullOrEmpty(filePath) || ActiveFiles.Contains(filePath)) return;
+
+			ActiveFiles.Add(filePath);
+
+			var chatControl = await GetChatControlAsync();
+			chatControl?.AddActiveFile(filePath);
+		}
+
+		public async Task ClearActiveFileAsync()
+		{
+			ActiveFiles.Clear();
+			var chatControl = await GetChatControlAsync();
+			chatControl?.ResetActiveFile();
+		}
+		// End Active File
+
 		public async Task ClearChatTextAsync()
 		{
 			ActiveSnippets.Clear();
@@ -76,17 +133,11 @@ namespace PTMngVSIX.Utils.Chat
 			chatControl?.ResetChatText();
 		}
 
-		public async Task ClearCodeSnippetAsync()
-		{
-			ActiveSnippets.Clear();
-			var chatControl = await GetChatControlAsync();
-			chatControl?.ResetCodeSnippet();
-		}
-
 		public async Task ResetChatAsync()
 		{
 			await ClearChatTextAsync();
 			await ClearCodeSnippetAsync();
+			await ClearActiveFileAsync();
 
 			ChatHistory.Clear();
 			LastRequest = null;
@@ -153,8 +204,12 @@ namespace PTMngVSIX.Utils.Chat
 
 			var errorLineTask = message.Option.IncludeError ? DocView.GetLineTextAtAsync(message.Error.LineNumber) : Task.FromResult(string.Empty);
 
+			var activeFilesTask = IOCommand.GetFileContentsAsync(ActiveFiles, true);
+
 			// Đợi tất cả hoàn thành đồng thời
-			await Task.WhenAll(languageTask, solutionStructureTask, projectStructureTask, documentTask, classTask, functionTask, errorLineTask);
+			await Task.WhenAll(
+				languageTask, solutionStructureTask, projectStructureTask,
+				documentTask, classTask, functionTask, errorLineTask, activeFilesTask);
 
 			var sb = new StringBuilder();
 
@@ -181,9 +236,21 @@ namespace PTMngVSIX.Utils.Chat
 				sb.AppendLine("```");
 			}
 
+			if (ActiveFiles.Count > 0)
+			{
+				var activeFilesResult = await activeFilesTask;
+				foreach (var activeFile in activeFilesResult)
+				{
+					sb.AppendLine($"Here is the content of the file: {activeFile.Name}");
+					sb.AppendLine("```");
+					sb.AppendLine(activeFile.Content);
+					sb.AppendLine("```");
+				}
+			}
+
 			if (message.Option.IncludeActiveDocument)
 			{
-				sb.AppendLine("Here is some relevant document:");
+				sb.AppendLine("Here is the active document:");
 				sb.AppendLine("```");
 				sb.AppendLine(await documentTask);
 				sb.AppendLine("```");
@@ -241,6 +308,12 @@ namespace PTMngVSIX.Utils.Chat
 
 			var result = sb.ToString();
 			return result;
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

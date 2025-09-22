@@ -132,4 +132,7 @@
   <data name="Setting" xml:space="preserve">
     <value>Cài đặt</value>
   </data>
+  <data name="ConnectServer" xml:space="preserve">
+    <value>Kết nối đến Server</value>
+  </data>
 </root>

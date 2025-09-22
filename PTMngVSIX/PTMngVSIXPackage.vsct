@@ -64,9 +64,17 @@
       <Group guid="PTMngCmdSet" id="F0_CommandGroup" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
       </Group>
-
+      
       <Group guid="PTMngCmdSet" id="F6_CommandGroup" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+      </Group>
+
+      <Group guid="PTMngCmdSet" id="SolutionItemGroup" priority="0x0100">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE" />
+      </Group>
+
+      <Group guid="PTMngCmdSet" id="SolutionFolderGroup" priority="0x0100">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE" />
       </Group>
       <!--End menu group-->
 
@@ -396,6 +404,42 @@
         </Strings>
       </Button>
 
+      <Button guid="PTMngCmdSet" id="C6021_AddActiveFilePath" priority="112" type="Button">
+        <Parent guid="PTMngCmdSet" id="F6_CommandGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Thêm file vào PTMng Chat</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C6020_AddSolutionFilePath" priority="112" type="Button">
+        <Parent guid="PTMngCmdSet" id="SolutionItemGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Thêm file vào PTMng Chat</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C6022_AddSolutionFolderFilesPath" priority="112" type="Button">
+        <Parent guid="PTMngCmdSet" id="SolutionItemGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Thêm files trong folder vào PTMng Chat</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="PTMngCmdSet" id="C6022_AddSolutionFolderFilesPath" priority="112" type="Button">
+        <Parent guid="PTMngCmdSet" id="SolutionFolderGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Thêm files trong folder vào PTMng Chat</ButtonText>
+        </Strings>
+      </Button>
+
       <!--End F6 Chat buttons-->
 
       <!--AI Chat-->
@@ -412,16 +456,21 @@
 
   <!--Đăng ký shortcut-->
   <KeyBindings>
+
+    <KeyBinding guid="PTMngCmdSet" id="C9001_OpenChatWindow"
+                mod1="Control Shift" key1="M" key2="M"
+                editor="guidVSStd97"/>
+
     <KeyBinding guid="PTMngCmdSet" id="C6010_AddCodeSnippet"
-                mod1="Control Shift" key1="Z" key2="A"
+                mod1="Control Shift" key1="M" key2="A"
                 editor="guidVSStd97"/>
 
     <KeyBinding guid="PTMngCmdSet" id="C6011_ResetCodeSnippet"
-                mod1="Control Shift" key1="Z" key2="X"
+                mod1="Control Shift" key1="M" key2="X"
                 editor="guidVSStd97"/>
 
-    <KeyBinding guid="PTMngCmdSet" id="C9001_OpenChatWindow"
-                mod1="Control Shift" key1="Z" key2="Z"
+    <KeyBinding guid="PTMngCmdSet" id="C6021_AddActiveFilePath"
+                mod1="Control Shift" key1="M" key2="F"
                 editor="guidVSStd97"/>
   </KeyBindings>
   <!--End Đăng ký shortcut-->
@@ -445,6 +494,8 @@
       <IDSymbol name="F4_CommandGroup" value="10140" />
       <IDSymbol name="F5_CommandGroup" value="10150" />
       <IDSymbol name="F6_CommandGroup" value="10160" />
+      <IDSymbol name="SolutionItemGroup" value="10170" />
+      <IDSymbol name="SolutionFolderGroup" value="10171" />
       <IDSymbol name="ToolWindowGroup" value="10200" />
 
       <IDSymbol name="C9000_ConnectServer" value="9000" />
@@ -491,6 +542,9 @@
 
       <IDSymbol name="C6010_AddCodeSnippet" value="6010" />
       <IDSymbol name="C6011_ResetCodeSnippet" value="6011" />
+      <IDSymbol name="C6020_AddSolutionFilePath" value="6020" />
+      <IDSymbol name="C6021_AddActiveFilePath" value="6021" />
+      <IDSymbol name="C6022_AddSolutionFolderFilesPath" value="6022" />
 
     </GuidSymbol>
   </Symbols>

@@ -1,14 +1,35 @@
 ﻿using PTMngVSIX.Abstraction.AI;
 using PTMngVSIX.Abstraction.AIServices;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace PTMngVSIX.Setting
 {
-	public static class AppState
+	public class AppState : INotifyPropertyChanged
 	{
-		public static bool IsModelAvailable { get; set; } = false;
+		public static readonly AppState Instance = new();
+		private AppState() { }
 
-		public static IChatClient ApiClient { get; set; }
-		public static IModelService Assistant { get; set; }
-		public static IModelService Translator { get; set; }
+		private bool _isModelAvailable = false;
+		public bool IsModelAvailable
+		{
+			get => _isModelAvailable;
+			set
+			{
+				_isModelAvailable = value;
+				OnPropertyChanged(nameof(IsModelAvailable));
+			}
+		}
+
+		public IChatClient ApiClient { get; set; }
+		public IModelService Assistant { get; set; }
+		public IModelService Translator { get; set; }
+
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 }

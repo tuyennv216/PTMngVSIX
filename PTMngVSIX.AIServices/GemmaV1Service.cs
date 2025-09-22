@@ -47,7 +47,7 @@ namespace PTMngVSIX.AIServices
 
 			try
 			{
-				var response = await AppState.ApiClient.GetResponseAsync(messages, Options);
+				var response = await AppState.Instance.ApiClient.GetResponseAsync(messages, Options);
 				var promptReturn = OutputParser_v1.Parser(response);
 
 				return new ResponseBase

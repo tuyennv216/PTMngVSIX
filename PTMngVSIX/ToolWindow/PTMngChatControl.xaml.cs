@@ -1,6 +1,8 @@
 ﻿using PTMngVSIX.Abstraction.AIServices.ResponseModel;
+using PTMngVSIX.Setting;
 using PTMngVSIX.ToolWindow.Forms;
 using PTMngVSIX.Utils.Chat;
+using PTMngVSIX.Utils.Dialog;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
@@ -37,11 +39,13 @@ namespace PTMngVSIX.ToolWindow
 			// Đăng ký sự kiện cho button
 			ResetButton.Click += ResetButton_Click;
 			SettingButton.Click += SettingButton_Click;
+			ConnectServerButton.Click += ConnectServerButton_Click;
 
 			// Đăng ký sự kiện cho TextBox (ví dụ: Enter key)
 			InputChat.KeyDown += InputChat_KeyDown;
 
 			ChatDisplay.Document.Blocks.Clear();
+			ActiveFileDisplay.Document.Blocks.Clear();
 			CodeSnippetDisplay.Document.Blocks.Clear();
 
 			// Tải danh sách code snippet đang có
@@ -66,6 +70,25 @@ namespace PTMngVSIX.ToolWindow
 
 				this.Option = setting;
 			}
+		}
+
+		private void ConnectServerButton_Click(object sender, RoutedEventArgs e)
+		{
+			ConnectServerButton.IsEnabled = false;
+
+			_ = AppState.Instance.Assistant.TryConnectAsync().ContinueWith(t =>
+			{
+				if (AppState.Instance.IsModelAvailable)
+				{
+					_ = MsgboxDialog.ShowMessageAsync("Connection succeeded", "Connected to endpoint service.");
+				}
+				else
+				{
+					_ = MsgboxDialog.ShowMessageAsync("Connection Failed", "Cannot connect to endpoint service.\nPlease check the configuration at:\nTools → Options → PTMng AI.");
+				}
+				
+				ConnectServerButton.IsEnabled = true;
+			}, TaskScheduler.FromCurrentSynchronizationContext());
 		}
 
 		private void Chat_Copy_Click(object sender, RoutedEventArgs e)
@@ -142,6 +165,7 @@ namespace PTMngVSIX.ToolWindow
 			ChatDisplay.ScrollToEnd();
 		}
 
+		// Code Snippet
 		public void AddCodeSnippet(string code)
 		{
 			var paragraph = new Paragraph()
@@ -160,15 +184,9 @@ namespace PTMngVSIX.ToolWindow
 			var codeBlock = new Run(code);
 
 			paragraph.Inlines.Add(codeBlock);
-			paragraph.MouseLeftButtonDown += Paragraph_MouseLeftButtonDown;
+			paragraph.MouseLeftButtonDown += CodeSnippetParagraph_MouseLeftButtonDown;
 
 			CodeSnippetDisplay.Document.Blocks.Add(paragraph);
-			CodeSnippetDisplay.ScrollToEnd();
-		}
-
-		public void ResetChatText()
-		{
-			ChatDisplay.Document.Blocks.Clear();
 		}
 
 		public void ResetCodeSnippet()
@@ -176,12 +194,57 @@ namespace PTMngVSIX.ToolWindow
 			CodeSnippetDisplay.Document.Blocks.Clear();
 		}
 
-		private void Paragraph_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		private void CodeSnippetParagraph_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (sender is Paragraph paragraph)
 			{
 				CodeSnippetDisplay.Document.Blocks.Remove(paragraph);
+				var code = paragraph.Tag as string;
+				ChatService.Instance.ActiveSnippets.Remove(code);
 			}
 		}
+		// End Code Snippet
+
+		// Active File
+		public void AddActiveFile(string filePath)
+		{
+			var paragraph = new Paragraph()
+			{
+				FontFamily = DefaultFontFamily,
+				Cursor = System.Windows.Input.Cursors.Hand,
+				FontSize = 12,
+				Margin = new Thickness(0),
+				Tag = filePath,
+			};
+
+			var filePathBlock = new Run(filePath);
+
+			paragraph.Inlines.Add(filePathBlock);
+			paragraph.MouseLeftButtonDown += ActiveFileParagraph_MouseLeftButtonDown;
+
+			ActiveFileDisplay.Document.Blocks.Add(paragraph);
+		}
+
+		public void ResetActiveFile()
+		{
+			ActiveFileDisplay.Document.Blocks.Clear();
+		}
+
+		private void ActiveFileParagraph_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (sender is Paragraph paragraph)
+			{
+				ActiveFileDisplay.Document.Blocks.Remove(paragraph);
+				var filePath = paragraph.Tag as string;
+				ChatService.Instance.ActiveFiles.Remove(filePath);
+			}
+		}
+		// End Active File
+
+		public void ResetChatText()
+		{
+			ChatDisplay.Document.Blocks.Clear();
+		}
+
 	}
 }

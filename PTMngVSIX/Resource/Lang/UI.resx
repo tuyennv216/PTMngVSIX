@@ -132,4 +132,7 @@
   <data name="Setting" xml:space="preserve">
     <value>Setting</value>
   </data>
+  <data name="ConnectServer" xml:space="preserve">
+    <value>Connect to Server</value>
+  </data>
 </root>

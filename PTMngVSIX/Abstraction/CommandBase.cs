@@ -45,7 +45,7 @@ namespace PTMngVSIX.Abstraction
 		private void BeforeQueryStatus(object sender, EventArgs e)
 		{
 			var menu = sender as OleMenuCommand;
-			menu.Visible = AppState.IsModelAvailable;
+			menu.Visible = AppState.Instance.IsModelAvailable;
 			menu.Enabled = true;
 
 			BeforeRenderMenu(menu);

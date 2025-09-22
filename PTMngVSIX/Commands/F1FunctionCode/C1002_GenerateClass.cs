@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.Shell;
 using PTMngVSIX.Abstraction;
 using PTMngVSIX.Utils.Dialog;
 using PTMngVSIX.Utils.Doc;
-using PTMngVSIX.Utils.DTECommand;
+using PTMngVSIX.Utils.IDECommand;
 using PTMngVSIX.Utils.Editor;
 using System;
 using Task = System.Threading.Tasks.Task;

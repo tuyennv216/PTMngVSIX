@@ -94,6 +94,9 @@ namespace PTMngVSIX
 
 			await PTMngVSIX.Commands.F6Chat.C6010_AddCodeSnippet.InitializeAsync(this);
 			await PTMngVSIX.Commands.F6Chat.C6011_ResetCodeSnippet.InitializeAsync(this);
+			await PTMngVSIX.Commands.F6Chat.C6020_AddSolutionFilePath.InitializeAsync(this);
+			await PTMngVSIX.Commands.F6Chat.C6021_AddActiveFilePath.InitializeAsync(this);
+			await PTMngVSIX.Commands.F6Chat.C6022_AddSolutionFolderFilesPath.InitializeAsync(this);
 
 			await PTMngVSIX.ToolWindow.PTMngChatCommand.InitializeAsync(this);
 
@@ -116,8 +119,8 @@ namespace PTMngVSIX
 				ModelSetting.AssistantModelName = options.OnlineAssistantModelName;
 				ModelSetting.TranslatorModelName = options.OnlineTranslatorModelName;
 
-				AppState.Assistant = DeepseekV2Service.Instance;
-				AppState.Translator = GemmaV1Service.Instance;
+				AppState.Instance.Assistant = DeepseekV2Service.Instance;
+				AppState.Instance.Translator = GemmaV1Service.Instance;
 			}
 			else
 			{
@@ -125,8 +128,8 @@ namespace PTMngVSIX
 				ModelSetting.AssistantModelName = options.LocalAssistantModelName;
 				ModelSetting.TranslatorModelName = options.LocalTranslatorModelName;
 
-				AppState.Assistant = MistralV1Service.Instance;
-				AppState.Translator = GemmaV1Service.Instance;
+				AppState.Instance.Assistant = MistralV1Service.Instance;
+				AppState.Instance.Translator = GemmaV1Service.Instance;
 			}
 
 			ModelSetting.RoleName = options.RoleName;

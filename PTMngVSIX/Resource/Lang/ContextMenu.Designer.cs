@@ -358,6 +358,24 @@ namespace PTMngVSIX.Resource.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a file to PTMng Chat.
+        /// </summary>
+        internal static string Button_C6020_AddFilePath {
+            get {
+                return ResourceManager.GetString("Button_C6020_AddFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add files in this folder to PTMng Chat.
+        /// </summary>
+        internal static string C6022_AddSolutionFolderFilesPath {
+            get {
+                return ResourceManager.GetString("C6022_AddSolutionFolderFilesPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AI Architect.
         /// </summary>
         internal static string MenuGroup_AI_Architect {

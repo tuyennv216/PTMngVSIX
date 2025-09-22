@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using System.Threading.Tasks;
 
-namespace PTMngVSIX.Utils.DTECommand
+namespace PTMngVSIX.Utils.IDECommand
 {
 	internal class EditCommand
 	{

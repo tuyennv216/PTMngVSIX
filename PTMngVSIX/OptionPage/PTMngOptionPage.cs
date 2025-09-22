@@ -149,13 +149,13 @@ namespace PTMngVSIX
 		{
 			if (ModelSetting.UseInternet)
 			{
-				AppState.Assistant = AIServices.DeepseekV2Service.Instance;
-				AppState.Translator = AIServices.GemmaV1Service.Instance;
+				AppState.Instance.Assistant = AIServices.DeepseekV2Service.Instance;
+				AppState.Instance.Translator = AIServices.GemmaV1Service.Instance;
 			}
 			else
 			{
-				AppState.Assistant = AIServices.MistralV1Service.Instance;
-				AppState.Translator = AIServices.GemmaV1Service.Instance;
+				AppState.Instance.Assistant = AIServices.MistralV1Service.Instance;
+				AppState.Instance.Translator = AIServices.GemmaV1Service.Instance;
 			}
 		}
 
@@ -181,8 +181,8 @@ namespace PTMngVSIX
 					ModelSetting.TranslatorModelName = _onlineTranslatorModelName;
 					ModelSetting.ApiKey = _onlineApiKey;
 
-					AppState.Assistant = DeepseekV2Service.Instance;
-					AppState.Translator = GemmaV1Service.Instance;
+					AppState.Instance.Assistant = DeepseekV2Service.Instance;
+					AppState.Instance.Translator = GemmaV1Service.Instance;
 				}
 				else
 				{
@@ -190,8 +190,8 @@ namespace PTMngVSIX
 					ModelSetting.AssistantModelName = _localAssistantModelName;
 					ModelSetting.TranslatorModelName = _localTranslatorModelName;
 
-					AppState.Assistant = MistralV1Service.Instance;
-					AppState.Translator = GemmaV1Service.Instance;
+					AppState.Instance.Assistant = MistralV1Service.Instance;
+					AppState.Instance.Translator = GemmaV1Service.Instance;
 				}
 
 				SetAppStateModel();
@@ -199,8 +199,8 @@ namespace PTMngVSIX
 				var jtf = PTMngVSIXPackage.JoinableTaskContext.Factory;
 				_ = jtf.RunAsync(async () =>
 				{
-					await AppState.Assistant.TryConnectAsync();
-					if (!AppState.IsModelAvailable)
+					await AppState.Instance.Assistant.TryConnectAsync();
+					if (!AppState.Instance.IsModelAvailable)
 					{
 						await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 

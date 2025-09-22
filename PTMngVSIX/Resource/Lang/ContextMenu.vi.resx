@@ -228,4 +228,10 @@
   <data name="Button_C3030_FixErrorLine" xml:space="preserve">
     <value>Sửa dòng lỗi</value>
   </data>
+  <data name="Button_C6020_AddFilePath" xml:space="preserve">
+    <value>Thêm file vào PTMng Chat</value>
+  </data>
+  <data name="C6022_AddSolutionFolderFilesPath" xml:space="preserve">
+    <value>Thêm files trong folder vào PTMng Chat</value>
+  </data>
 </root>

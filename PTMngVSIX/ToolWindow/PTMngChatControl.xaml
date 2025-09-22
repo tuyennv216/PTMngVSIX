@@ -5,14 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
              xmlns:lang="clr-namespace:PTMngVSIX.Resource.Lang"
+             xmlns:converters="clr-namespace:PTMngVSIX.ToolWindow.Converter"
+             xmlns:chat="clr-namespace:PTMngVSIX.Utils.Chat"
+             xmlns:setting="clr-namespace:PTMngVSIX.Setting;assembly=PTMngVSIX.Setting"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="400"
              Name="PTMngChatToolWindow">
+
+    <UserControl.Resources>
+        <converters:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
+        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <!-- RichTextBox chat chiếm không gian còn lại -->
+            <RowDefinition Height="Auto"/>
+            <!-- RichTextBox active file -->
             <RowDefinition Height="Auto"/>
             <!-- RichTextBox code snippet -->
             <RowDefinition Height="Auto"/>
@@ -41,12 +53,42 @@
             </RichTextBox.ContextMenu>
         </RichTextBox>
 
-        <!-- Vùng hiển thị code snippet -->
+        <!-- Vùng hiển thị active file -->
         <Border Grid.Row="1" 
                 BorderThickness="1" 
                 BorderBrush="{DynamicResource {x:Static vsshell:VsBrushes.ActiveBorderKey}}"
                 Margin="5,2,5,2"
-                Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}">
+                Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+                Visibility="{Binding Source={x:Static chat:ChatService.Instance}, 
+                            Path=ActiveFiles.Count, 
+                            Converter={StaticResource CountToVisibilityConverter}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- RichTextBox cho active file -->
+                <RichTextBox x:Name="ActiveFileDisplay"
+                             Grid.Row="1"
+                             IsReadOnly="True"
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalScrollBarVisibility="Auto"
+                             BorderThickness="0"
+                             Margin="5,0,5,5"
+                             Background="LightGray" />
+            </Grid>
+        </Border>
+
+        <!-- Vùng hiển thị code snippet -->
+        <Border Grid.Row="2" 
+                BorderThickness="1" 
+                BorderBrush="{DynamicResource {x:Static vsshell:VsBrushes.ActiveBorderKey}}"
+                Margin="5,2,5,2"
+                Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+                Visibility="{Binding Source={x:Static chat:ChatService.Instance}, 
+                            Path=ActiveSnippets.Count, 
+                            Converter={StaticResource CountToVisibilityConverter}}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -66,10 +108,11 @@
         </Border>
 
         <!-- Vùng hiển thị option control -->
-        <Grid Grid.Row="2" Margin="5">
+        <Grid Grid.Row="3" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
@@ -77,25 +120,44 @@
             <CheckBox x:Name="ActiveDocumentCheckbox" 
                       VerticalAlignment="Center"
                       Content="{x:Static lang:UI.ActiveDocument}"
-                      Grid.Column="0">
+                      Grid.Column="0"
+                      Visibility="{Binding Source={x:Static setting:AppState.Instance}, 
+                        Path=IsModelAvailable,
+                        Converter={StaticResource BoolToVisibilityConverter}}">
             </CheckBox>
+
+            <Button x:Name="ConnectServerButton"
+                    Content="{x:Static lang:UI.ConnectServer}"
+                    Width="100"
+                    Margin="0,0,0,0"
+                    VerticalAlignment="Center"
+                    Grid.Column="2"
+                    Visibility="{Binding Source={x:Static setting:AppState.Instance}, 
+                        Path=IsModelAvailable,
+                        Converter={StaticResource InverseBoolToVisibilityConverter}}"/>
 
             <Button x:Name="ResetButton" 
                     Content="{x:Static lang:UI.NewSession}"
                     Width="100"
-                    Margin="0,0,10,0"
+                    Margin="0,0,5,0"
                     VerticalAlignment="Center"
-                    Grid.Column="2"/>
+                    Grid.Column="3"
+                    Visibility="{Binding Source={x:Static setting:AppState.Instance}, 
+                        Path=IsModelAvailable,
+                        Converter={StaticResource BoolToVisibilityConverter}}"/>
 
             <Button x:Name="SettingButton" 
                     Content="{x:Static lang:UI.Setting}"
                     Width="70"
                     VerticalAlignment="Center"
-                    Grid.Column="3"/>
+                    Grid.Column="4"
+                    Visibility="{Binding Source={x:Static setting:AppState.Instance}, 
+                        Path=IsModelAvailable,
+                        Converter={StaticResource BoolToVisibilityConverter}}"/>
 
         </Grid>
 
-        <Grid Grid.Row="3" Margin="5">
+        <Grid Grid.Row="4" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
