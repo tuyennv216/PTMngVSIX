@@ -96,6 +96,9 @@ namespace PTMngVSIX.ToolWindow
 
 			IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
 			Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
+
+			var PTMngChatTool = window.Content as PTMngChatControl;
+			PTMngChatTool.FocusChatInbox();
 		}
 	}
 }

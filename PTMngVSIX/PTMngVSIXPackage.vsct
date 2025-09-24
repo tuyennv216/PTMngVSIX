@@ -47,6 +47,14 @@
           <CommandName>AI Architect</CommandName>
         </Strings>
       </Menu>
+      
+      <Menu guid="PTMngCmdSet" id="Edit_MenuItem" priority="0x0105" type="Menu">
+        <Parent guid="PTMngCmdSet" id="MenuEditGroup" />
+        <Strings>
+          <ButtonText>PTMng AI</ButtonText>
+          <CommandName>PTMng AI</CommandName>
+        </Strings>
+      </Menu>
     </Menus>
     <!--End Level 1 Menu-->
 
@@ -59,6 +67,10 @@
 
       <Group guid="PTMngCmdSet" id="ToolWindowGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_VIEW"/>
+      </Group>
+
+      <Group guid="PTMngCmdSet" id="MenuEditGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_EDIT"/>
       </Group>
 
       <Group guid="PTMngCmdSet" id="F0_CommandGroup" priority="0x0100">
@@ -102,6 +114,10 @@
       <Group guid="PTMngCmdSet" id="F5_CommandGroup" priority="0x0105">
         <Parent guid="PTMngCmdSet" id="F5_MenuItem" />
       </Group>
+
+      <Group guid="PTMngCmdSet" id="EditorGroup" priority="0x0105">
+        <Parent guid="PTMngCmdSet" id="Edit_MenuItem" />
+      </Group>
       <!--End function group-->
 
     </Groups>
@@ -118,6 +134,35 @@
       </Button>
 
       <!--End App buttons-->
+      
+      <!--Editor buttons-->
+      <Button guid="PTMngCmdSet" id="C6030_AddActiveFile" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="EditorGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Thêm file đang mở</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C6031_AddActiveFunction" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="EditorGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Thêm function đang chọn</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="PTMngCmdSet" id="C6032_AddCurrentLine" priority="100" type="Button">
+        <Parent guid="PTMngCmdSet" id="EditorGroup" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Thêm line đang chọn</ButtonText>
+        </Strings>
+      </Button>
+      <!--End Editor buttons-->
 
       <!--F3 Error buttons-->
       <Button guid="PTMngCmdSet" id="C3010_ExplainError" priority="100" type="Button">
@@ -466,11 +511,15 @@
                 editor="guidVSStd97"/>
 
     <KeyBinding guid="PTMngCmdSet" id="C6030_AddActiveFile"
-                mod1="Control Shift" key1="M" key2="Q"
+                mod1="Control Shift" key1="M" key2="J"
                 editor="guidVSStd97"/>
 
     <KeyBinding guid="PTMngCmdSet" id="C6031_AddActiveFunction"
-                mod1="Control Shift" key1="M" key2="W"
+                mod1="Control Shift" key1="M" key2="K"
+                editor="guidVSStd97"/>
+
+    <KeyBinding guid="PTMngCmdSet" id="C6032_AddCurrentLine"
+                mod1="Control Shift" key1="M" key2="L"
                 editor="guidVSStd97"/>
 
     <KeyBinding guid="PTMngCmdSet" id="C1001_GenerateFunction"
@@ -483,10 +532,6 @@
 
     <KeyBinding guid="PTMngCmdSet" id="C6011_ResetChat"
                 mod1="Control Shift" key1="M" key2="X"
-                editor="guidVSStd97"/>
-
-    <KeyBinding guid="PTMngCmdSet" id="C6021_AddActiveFilePath"
-                mod1="Control Shift" key1="M" key2="F"
                 editor="guidVSStd97"/>
 
     <KeyBinding guid="PTMngCmdSet" id="C9000_ConnectServer"
@@ -506,6 +551,7 @@
       <IDSymbol name="F2_MenuItem" value="100120" />
       <IDSymbol name="F4_MenuItem" value="100140" />
       <IDSymbol name="F5_MenuItem" value="100150" />
+      <IDSymbol name="Edit_MenuItem" value="100160" />
 
       <IDSymbol name="F0_CommandGroup" value="10100" />
       <IDSymbol name="F11_CommandGroup" value="10111" />
@@ -518,6 +564,8 @@
       <IDSymbol name="SolutionItemGroup" value="10170" />
       <IDSymbol name="SolutionFolderGroup" value="10171" />
       <IDSymbol name="ToolWindowGroup" value="10200" />
+      <IDSymbol name="MenuEditGroup" value="10300" />
+      <IDSymbol name="EditorGroup" value="10310" />
 
       <IDSymbol name="C9000_ConnectServer" value="9000" />
       <IDSymbol name="C9001_OpenChatWindow" value="9001" />

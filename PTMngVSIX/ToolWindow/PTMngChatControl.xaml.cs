@@ -3,6 +3,7 @@ using PTMngVSIX.Setting;
 using PTMngVSIX.ToolWindow.Forms;
 using PTMngVSIX.Utils.Chat;
 using PTMngVSIX.Utils.Dialog;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
@@ -53,6 +54,19 @@ namespace PTMngVSIX.ToolWindow
 			{
 				AddCodeSnippet(snippet);
 			}
+
+			this.Loaded += OnLoaded;
+		}
+
+		private void OnLoaded(object sender, RoutedEventArgs e)
+		{
+			FocusChatInbox();
+		}
+
+		public void FocusChatInbox()
+		{
+			InputChat.Focus();
+			Keyboard.Focus(InputChat);
 		}
 
 		private void ResetButton_Click(object sender, RoutedEventArgs e)
