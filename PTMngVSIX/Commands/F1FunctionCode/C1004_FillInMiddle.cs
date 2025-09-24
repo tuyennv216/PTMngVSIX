@@ -10,7 +10,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 {
 	internal sealed class C1004_FillInMiddle : CommandBase<C1004_FillInMiddle>
 	{
-		public override int CommandId { get; protected set; } = 1004;
+		public override int CommandId { get; protected set; } = CommandIds.C1004;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C1004_FillInMiddle;
 
 		public C1004_FillInMiddle(AsyncPackage package, OleMenuCommandService commandService)

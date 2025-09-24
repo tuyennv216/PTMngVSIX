@@ -8,7 +8,7 @@ namespace PTMngVSIX.Commands.F4Test
 {
 	internal sealed class C4022_Blackbox_EdgeCaseTesting : CommandBase<C4022_Blackbox_EdgeCaseTesting>
 	{
-		public override int CommandId { get; protected set; } = 4022;
+		public override int CommandId { get; protected set; } = CommandIds.C4022;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C4022_Blackbox_EdgeCaseTesting;
 
 		public C4022_Blackbox_EdgeCaseTesting(AsyncPackage package, OleMenuCommandService commandService)

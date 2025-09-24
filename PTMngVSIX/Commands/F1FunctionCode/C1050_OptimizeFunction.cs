@@ -13,7 +13,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 	[Export(typeof(C1050_OptimizeFunction))]
 	internal sealed class C1050_OptimizeFunction : CommandBase<C1050_OptimizeFunction>
 	{
-		public override int CommandId { get; protected set; } = 1050;
+		public override int CommandId { get; protected set; } = CommandIds.C1050;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C1050_OptimizeFunction;
 
 		public C1050_OptimizeFunction(AsyncPackage package, OleMenuCommandService commandService)

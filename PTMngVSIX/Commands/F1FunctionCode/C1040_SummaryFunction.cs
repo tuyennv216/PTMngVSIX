@@ -13,7 +13,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 	[Export(typeof(C1040_SummaryFunction))]
 	internal sealed class C1040_SummaryFunction : CommandBase<C1040_SummaryFunction>
 	{
-		public override int CommandId { get; protected set; } = 1040;
+		public override int CommandId { get; protected set; } = CommandIds.C1040;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C1040_SummaryFunction;
 
 		public C1040_SummaryFunction(AsyncPackage package, OleMenuCommandService commandService)

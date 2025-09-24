@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Threading;
+using PTMngVSIX.Abstraction;
 using PTMngVSIX.AIServices;
 using PTMngVSIX.Setting;
-using PTMngVSIX.Utils.Setting;
+using PTMngVSIX.Shortcut.KeyboardService;
 using System;
-using System.IO.Packaging;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Task = System.Threading.Tasks.Task;
@@ -20,7 +20,9 @@ namespace PTMngVSIX
 	[Guid(PTMngVSIXPackage.PackageGuidString)]
 	[ProvideMenuResource("Menus.PTMngMenu", 1)]
 	[ProvideToolWindow(typeof(PTMngVSIX.ToolWindow.PTMngChat))]
+	//[ProvideService(typeof(IKeyboardSequenceService))]
 	[ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
+	[ProvideAutoLoad(UIContextGuids80.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
 	public sealed class PTMngVSIXPackage : AsyncPackage
 	{
 		/// <summary>
@@ -33,6 +35,7 @@ namespace PTMngVSIX
 		/// </summary>
 		public static JoinableTaskContext JoinableTaskContext { get; private set; }
 		public static PTMngVSIXPackage Instance { get; private set; }
+		private KeyboardSequenceService _keyboardService;
 
 		#region Package Members
 
@@ -46,12 +49,26 @@ namespace PTMngVSIX
 		protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
 		{
 			await base.InitializeAsync(cancellationToken, progress);
-
 			JoinableTaskContext = this.JoinableTaskFactory.Context;
 			Instance = this;
 
+			//_keyboardService = new KeyboardSequenceService();
+			//AddService(typeof(IKeyboardSequenceService), (container, type, services) => Task.FromResult<object?>(_keyboardService), true);
+
 			await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
+			//_keyboardService.Initialize();
+
+			await RegistCommandsAsync();
+			LoadFromRegStorage(this);
+			//RegistShortkey();
+		}
+
+		#endregion
+
+		#region Regist Commands
+		private async Task RegistCommandsAsync()
+		{
 			await PTMngVSIX.Commands.F0App.C9000_ConnectServer.InitializeAsync(this);
 
 			await PTMngVSIX.Commands.F1FunctionCode.C1000_GenerateCode.InitializeAsync(this);
@@ -68,11 +85,11 @@ namespace PTMngVSIX
 			await PTMngVSIX.Commands.F1FunctionCode.C1050_OptimizeFunction.InitializeAsync(this);
 			await PTMngVSIX.Commands.F1FunctionCode.C1060_ExplainFunction.InitializeAsync(this);
 
-			await PTMngVSIX.Commands.F2FunctionCode.C2000_DocsSelection.InitializeAsync(this);
-			await PTMngVSIX.Commands.F2FunctionCode.C2001_DocsFunction.InitializeAsync(this);
-			await PTMngVSIX.Commands.F2FunctionCode.C2002_DocsClass.InitializeAsync(this);
-			await PTMngVSIX.Commands.F2FunctionCode.C2010_DocsApi.InitializeAsync(this);
-			await PTMngVSIX.Commands.F2FunctionCode.C2020_DocsTechnicalSpecifications.InitializeAsync(this);
+			await PTMngVSIX.Commands.F2Docs.C2000_DocsSelection.InitializeAsync(this);
+			await PTMngVSIX.Commands.F2Docs.C2001_DocsFunction.InitializeAsync(this);
+			await PTMngVSIX.Commands.F2Docs.C2002_DocsClass.InitializeAsync(this);
+			await PTMngVSIX.Commands.F2Docs.C2010_DocsApi.InitializeAsync(this);
+			await PTMngVSIX.Commands.F2Docs.C2020_DocsTechnicalSpecifications.InitializeAsync(this);
 
 			await PTMngVSIX.Commands.F3FixBug.C3010_ExplainError.InitializeAsync(this);
 			await PTMngVSIX.Commands.F3FixBug.C3020_SuggestFixes.InitializeAsync(this);
@@ -93,19 +110,44 @@ namespace PTMngVSIX
 			await PTMngVSIX.Commands.F5Architect.C5070_SuggestFeatures.InitializeAsync(this);
 
 			await PTMngVSIX.Commands.F6Chat.C6010_AddCodeSnippet.InitializeAsync(this);
-			await PTMngVSIX.Commands.F6Chat.C6011_ResetCodeSnippet.InitializeAsync(this);
+			await PTMngVSIX.Commands.F6Chat.C6011_ResetChat.InitializeAsync(this);
 			await PTMngVSIX.Commands.F6Chat.C6020_AddSolutionFilePath.InitializeAsync(this);
 			await PTMngVSIX.Commands.F6Chat.C6021_AddActiveFilePath.InitializeAsync(this);
 			await PTMngVSIX.Commands.F6Chat.C6022_AddSolutionFolderFilesPath.InitializeAsync(this);
+			await PTMngVSIX.Commands.F6Chat.C6030_AddActiveFile.InitializeAsync(this);
+			await PTMngVSIX.Commands.F6Chat.C6031_AddActiveFunction.InitializeAsync(this);
+			await PTMngVSIX.Commands.F6Chat.C6032_AddCurrentLine.InitializeAsync(this);
 
 			await PTMngVSIX.ToolWindow.PTMngChatCommand.InitializeAsync(this);
-
-
-			LoadFromRegStorage(this);
 		}
-
 		#endregion
 
+		#region Regist Shortkey
+		private void RegistShortkey()
+		{
+			_keyboardService.RegisterSequence("DD", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C2002).FileAndForget("Hotkey", CommandIds.C2002.ToString()));
+			_keyboardService.RegisterSequence("DF", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C2001).FileAndForget("Hotkey", CommandIds.C2001.ToString()));
+			_keyboardService.RegisterSequence("DA", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C2010).FileAndForget("Hotkey", CommandIds.C2010.ToString()));
+			_keyboardService.RegisterSequence("DT", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C2020).FileAndForget("Hotkey", CommandIds.C2020.ToString()));
+
+			_keyboardService.RegisterSequence("TW", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C4010).FileAndForget("Hotkey", CommandIds.C4010.ToString()));
+			_keyboardService.RegisterSequence("TU", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C4020).FileAndForget("Hotkey", CommandIds.C4020.ToString()));
+			_keyboardService.RegisterSequence("TI", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C4021).FileAndForget("Hotkey", CommandIds.C4021.ToString()));
+			_keyboardService.RegisterSequence("TE", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C4022).FileAndForget("Hotkey", CommandIds.C4022.ToString()));
+			_keyboardService.RegisterSequence("TP", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C4023).FileAndForget("Hotkey", CommandIds.C4023.ToString()));
+
+			_keyboardService.RegisterSequence("RR", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C5021).FileAndForget("Hotkey", CommandIds.C5021.ToString()));
+			_keyboardService.RegisterSequence("RF", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C5020).FileAndForget("Hotkey", CommandIds.C5020.ToString()));
+
+			_keyboardService.RegisterSequence("SS", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C5030).FileAndForget("Hotkey", CommandIds.C5030.ToString()));
+			_keyboardService.RegisterSequence("SD", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C5040).FileAndForget("Hotkey", CommandIds.C5040.ToString()));
+			_keyboardService.RegisterSequence("SA", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C5050).FileAndForget("Hotkey", CommandIds.C5050.ToString()));
+			_keyboardService.RegisterSequence("ST", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C5060).FileAndForget("Hotkey", CommandIds.C5060.ToString()));
+			_keyboardService.RegisterSequence("SF", () => Utils.vsShell.RunCommand.ExecutePTMngCommandAsync(CommandIds.C5070).FileAndForget("Hotkey", CommandIds.C5070.ToString()));
+		}
+		#endregion
+
+		#region Load Storage
 		private static void LoadFromRegStorage(PTMngVSIXPackage package)
 		{
 			var options = (PTMngOptionPage)package.GetDialogPage(typeof(PTMngOptionPage));
@@ -137,6 +179,11 @@ namespace PTMngVSIX
 			ModelSetting.TranslateInput = options.TranslateInput;
 			ModelSetting.TranslateOutput = options.TranslateOutput;
 			ModelSetting.OutputLanguage = options.OutputLanguage;
+
+			//IDESetting.UseAdvancedShortcut = options.UseAdvancedShortcut;
+			//IDESetting.AdvancedHotkey = ((int)options.AdvancedHotkey);
 		}
+		#endregion
+
 	}
 }

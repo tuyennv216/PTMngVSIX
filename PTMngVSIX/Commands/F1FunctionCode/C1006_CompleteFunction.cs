@@ -11,7 +11,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 {
 	internal sealed class C1006_CompleteFunction : CommandBase<C1006_CompleteFunction>
 	{
-		public override int CommandId { get; protected set; } = 1006;
+		public override int CommandId { get; protected set; } = CommandIds.C1006;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C1006_CompleteFunction;
 
 		public C1006_CompleteFunction(AsyncPackage package, OleMenuCommandService commandService)

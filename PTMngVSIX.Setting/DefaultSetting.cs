@@ -40,5 +40,8 @@
 		public static readonly bool TranslateOutput = false;
 		public static readonly string OutputLanguage = "English";
 		public static readonly string ChatEnviroment = string.Empty;
+
+		public static bool UseAdvancedShortcut = false;
+		public static int AdvancedHotkey = 56; // M
 	}
 }

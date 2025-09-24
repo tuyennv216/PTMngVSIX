@@ -12,7 +12,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 {
 	internal sealed class C1002_GenerateClass : CommandBase<C1002_GenerateClass>
 	{
-		public override int CommandId { get; protected set; } = 1002;
+		public override int CommandId { get; protected set; } = CommandIds.C1002;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C1002_GenerateClass;
 
 		public C1002_GenerateClass(AsyncPackage package, OleMenuCommandService commandService)

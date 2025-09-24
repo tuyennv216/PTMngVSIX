@@ -8,7 +8,7 @@ namespace PTMngVSIX.Commands.F5Architect
 {
 	internal sealed class C5070_SuggestFeatures : CommandBase<C5070_SuggestFeatures>
 	{
-		public override int CommandId { get; protected set; } = 5070;
+		public override int CommandId { get; protected set; } = CommandIds.C5070;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C5070_SuggestFeatures;
 
 		public C5070_SuggestFeatures(AsyncPackage package, OleMenuCommandService commandService)

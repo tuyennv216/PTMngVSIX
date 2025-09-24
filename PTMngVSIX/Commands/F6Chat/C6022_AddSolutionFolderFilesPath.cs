@@ -14,8 +14,8 @@ namespace PTMngVSIX.Commands.F6Chat
 {
 	internal sealed class C6022_AddSolutionFolderFilesPath : CommandBase<C6022_AddSolutionFolderFilesPath>
 	{
-		public override int CommandId { get; protected set; } = 6022;
-		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.C6022_AddSolutionFolderFilesPath;
+		public override int CommandId { get; protected set; } = CommandIds.C6022;
+		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C6022_AddSolutionFolderFilesPath;
 
 		public C6022_AddSolutionFolderFilesPath(AsyncPackage package, OleMenuCommandService commandService)
 			: base(package, commandService)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using PTMngVSIX.Setting;
+using PTMngVSIX.Utils.Chat;
 using System;
 using System.ComponentModel.Design;
 using System.Diagnostics;
@@ -34,6 +35,8 @@ namespace PTMngVSIX.Abstraction
 		{
 			try
 			{
+				var log = $"[{DateTime.Now.ToString("HH:mm:ss")}] {CommandText}";
+				_ = ChatService.Instance.AddExecLogAsync(log);
 				_ = ExecuteAsync(sender, e);
 			}
 			catch (Exception ex)

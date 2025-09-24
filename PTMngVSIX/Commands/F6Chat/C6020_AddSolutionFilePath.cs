@@ -13,7 +13,7 @@ namespace PTMngVSIX.Commands.F6Chat
 {
 	internal sealed class C6020_AddSolutionFilePath : CommandBase<C6020_AddSolutionFilePath>
 	{
-		public override int CommandId { get; protected set; } = 6020;
+		public override int CommandId { get; protected set; } = CommandIds.C6020;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C6020_AddFilePath;
 
 		public C6020_AddSolutionFilePath(AsyncPackage package, OleMenuCommandService commandService)

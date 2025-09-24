@@ -8,7 +8,7 @@ namespace PTMngVSIX.Commands.F5Architect
 {
 	internal sealed class C5020_ReviewCodeFunction : CommandBase<C5020_ReviewCodeFunction>
 	{
-		public override int CommandId { get; protected set; } = 5020;
+		public override int CommandId { get; protected set; } = CommandIds.C5020;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C5020_ReviewCodeFunction;
 
 		public C5020_ReviewCodeFunction(AsyncPackage package, OleMenuCommandService commandService)

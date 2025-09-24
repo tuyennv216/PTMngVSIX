@@ -8,7 +8,7 @@ namespace PTMngVSIX.Commands.F6Chat
 {
 	internal sealed class C6021_AddActiveFilePath : CommandBase<C6021_AddActiveFilePath>
 	{
-		public override int CommandId { get; protected set; } = 6021;
+		public override int CommandId { get; protected set; } = CommandIds.C6021;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C6020_AddFilePath;
 
 		public C6021_AddActiveFilePath(AsyncPackage package, OleMenuCommandService commandService)

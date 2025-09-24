@@ -11,7 +11,7 @@ namespace PTMngVSIX.Commands.F3FixBug
 	[Export(typeof(C3020_SuggestFixes))]
 	internal sealed class C3020_SuggestFixes : CommandBase<C3020_SuggestFixes>
 	{
-		public override int CommandId { get; protected set; } = 3020;
+		public override int CommandId { get; protected set; } = CommandIds.C3020;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C3020_SuggestFixes;
 
 		public C3020_SuggestFixes(AsyncPackage package, OleMenuCommandService commandService)

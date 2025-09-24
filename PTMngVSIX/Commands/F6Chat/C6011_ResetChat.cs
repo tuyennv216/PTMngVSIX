@@ -7,12 +7,12 @@ using Task = System.Threading.Tasks.Task;
 
 namespace PTMngVSIX.Commands.F6Chat
 {
-	internal sealed class C6011_ResetCodeSnippet : CommandBase<C6011_ResetCodeSnippet>
+	internal sealed class C6011_ResetChat : CommandBase<C6011_ResetChat>
 	{
-		public override int CommandId { get; protected set; } = 6011;
-		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C6011_ResetCodeSnippet;
+		public override int CommandId { get; protected set; } = CommandIds.C6011;
+		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C6011_ResetChat;
 
-		public C6011_ResetCodeSnippet(AsyncPackage package, OleMenuCommandService commandService)
+		public C6011_ResetChat(AsyncPackage package, OleMenuCommandService commandService)
 			: base(package, commandService)
 		{
 		}

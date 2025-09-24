@@ -9,7 +9,7 @@ namespace PTMngVSIX.Commands.F0App
 {
 	internal sealed class C9000_ConnectServer : CommandBase<C9000_ConnectServer>
 	{
-		public override int CommandId { get; protected set; } = 9000;
+		public override int CommandId { get; protected set; } = CommandIds.C9000;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C0000_Connect_Server;
 
 		public C9000_ConnectServer(AsyncPackage package, OleMenuCommandService commandService)

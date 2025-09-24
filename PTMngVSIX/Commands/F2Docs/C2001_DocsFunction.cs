@@ -4,11 +4,11 @@ using PTMngVSIX.Utils.Dialog;
 using System;
 using Task = System.Threading.Tasks.Task;
 
-namespace PTMngVSIX.Commands.F2FunctionCode
+namespace PTMngVSIX.Commands.F2Docs
 {
 	internal sealed class C2001_DocsFunction : CommandBase<C2001_DocsFunction>
 	{
-		public override int CommandId { get; protected set; } = 2001;
+		public override int CommandId { get; protected set; } = CommandIds.C2001;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C2001_DocsFunction;
 
 		public C2001_DocsFunction(AsyncPackage package, OleMenuCommandService commandService)

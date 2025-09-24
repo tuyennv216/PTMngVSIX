@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -26,6 +27,10 @@ namespace PTMngVSIX.Abstraction.AI
 			_apiKey = apiKey;
 			_defaultModelId = defaultModelId;
 
+			ServicePointManager.FindServicePoint(new Uri(_endpoint))
+				.ConnectionLeaseTimeout = 60000; // 60 seconds
+			ServicePointManager.DefaultConnectionLimit = 100;
+
 			WithHttpClient(new HttpClient());
 		}
 
@@ -38,9 +43,10 @@ namespace PTMngVSIX.Abstraction.AI
 			_httpClient.BaseAddress = new Uri(_endpoint);
 			_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
 			//_httpClient.DefaultRequestHeaders.Add("HTTP-Referer", _websiteUrl);
-			_httpClient.DefaultRequestHeaders.Add("X-Title", "PTMng");
-			//_httpClient.DefaultRequestHeaders.Add("X-API-Version", "1.0");
+			_httpClient.DefaultRequestHeaders.Add("X-Title", "PTMngVSIX");
+			_httpClient.DefaultRequestHeaders.Add("X-API-Version", "1.0");
 			_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			_httpClient.DefaultRequestHeaders.ConnectionClose = false;
 		}
 
 		public Task<string> GetResponseAsync(string prompt)
@@ -76,6 +82,7 @@ namespace PTMngVSIX.Abstraction.AI
 
 			var responseContent = await response.Content.ReadAsStringAsync();
 			var fixedContent = responseContent.Trim(' ', '\n', '\r');
+			
 			var responseObject = JsonSerializer.Deserialize<OpenAIResponse>(fixedContent, _jsonOptions);
 
 			return responseObject?.Choices?[0]?.Message?.Content ?? string.Empty;

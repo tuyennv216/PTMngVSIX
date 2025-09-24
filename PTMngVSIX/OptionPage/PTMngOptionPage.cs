@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.Shell.Interop;
 using PTMngVSIX.AIServices;
 using PTMngVSIX.Setting;
+using System;
 using System.ComponentModel;
 
 namespace PTMngVSIX
@@ -19,7 +20,7 @@ namespace PTMngVSIX
 		private string _onlineTranslatorModelName = DefaultSetting.OnlineTranslatorModelName;
 
 		//Localhost
-		[Category("Localhost")]
+		[Category("I. Localhost")]
 		[DisplayName("1. Endpoint.")]
 		[Description("The Api endpoint for the model service. http://localhost:11434")]
 		public string LocalEndpoint
@@ -31,7 +32,7 @@ namespace PTMngVSIX
 			}
 		}
 
-		[Category("Localhost")]
+		[Category("I. Localhost")]
 		[DisplayName("2. Assistant model.")]
 		[Description("Name of the Assistant model. PTMng-mistral")]
 		public string LocalAssistantModelName
@@ -43,7 +44,7 @@ namespace PTMngVSIX
 			}
 		}
 
-		[Category("Localhost")]
+		[Category("I. Localhost")]
 		[DisplayName("3. Translator model.")]
 		[Description("Name of the Translator model. PTMng-gemma3")]
 		public string LocalTranslatorModelName
@@ -57,7 +58,7 @@ namespace PTMngVSIX
 		// End Localhost
 
 		// Internet - OpenRouterAI
-		[Category("UseInternet")]
+		[Category("II. Internet")]
 		[DisplayName("1. Use OpenRouter")]
 		[Description("Connect to OpenRouterAI.")]
 		public bool UseInternet
@@ -69,7 +70,7 @@ namespace PTMngVSIX
 			}
 		}
 
-		[Category("UseInternet")]
+		[Category("II. Internet")]
 		[DisplayName("2. Endpoint.")]
 		[Description("The Api endpoint for the model service. https://openrouter.ai/api/v1")]
 		public string OnlineEndpoint
@@ -82,7 +83,7 @@ namespace PTMngVSIX
 		}
 
 
-		[Category("UseInternet")]
+		[Category("II. Internet")]
 		[DisplayName("3. Api key.")]
 		[Description("The Api key.")]
 		public string OnlineApiKey
@@ -94,7 +95,7 @@ namespace PTMngVSIX
 			}
 		}
 
-		[Category("UseInternet")]
+		[Category("II. Internet")]
 		[DisplayName("4. Assistant model.")]
 		[Description("Name of the Assistant model. deepseek/deepseek-chat-v3.1")]
 		public string OnlineAssistantModelName
@@ -106,7 +107,7 @@ namespace PTMngVSIX
 			}
 		}
 
-		[Category("UseInternet")]
+		[Category("II. Internet")]
 		[DisplayName("3. Translator model.")]
 		[Description("Name of the Translator model. google/gemma-3-12b-it")]
 		public string OnlineTranslatorModelName
@@ -118,6 +119,34 @@ namespace PTMngVSIX
 			}
 		}
 		// End Internet - OpenRouterAI
+
+		//IDE setting
+		[Browsable(false)]
+		[Category("III. IDE")]
+		[DisplayName("1. Use Advanced Shortcut.")]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		[Description("Examples of advanced shortcuts include DD, DF, and more.")]
+		public bool UseAdvancedShortcut { get; set; }
+
+		[Browsable(false)]
+		[Category("III. IDE")]
+		[DisplayName("2. Advanced hotkey.")]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		[Description("Hotkey to use the Ctrl + Shift + [Key] combo. A -> Z. Default key is M")]
+		public System.Windows.Input.Key AdvancedHotkey
+		{
+			get
+			{
+				return _advancedHotkey;
+			}
+			set
+			{
+				if (value <= System.Windows.Input.Key.A || value >= System.Windows.Input.Key.Z) return;
+				_advancedHotkey = value;
+			}
+		}
+		private System.Windows.Input.Key _advancedHotkey = System.Windows.Input.Key.M;
+		//End IDE setting
 
 		// Others setting
 		[Browsable(false)]
@@ -145,25 +174,39 @@ namespace PTMngVSIX
 		public string ChatEnviroment { get; set; }
 		// End Others setting
 
-		private void SetAppStateModel()
+		private void SetAppSettingModel()
 		{
+			ModelSetting.UseInternet = _useInternet;
+
 			if (ModelSetting.UseInternet)
 			{
+				ModelSetting.Endpoint = _onlineEndpoint;
+				ModelSetting.AssistantModelName = _onlineAssistantModelName;
+				ModelSetting.TranslatorModelName = _onlineTranslatorModelName;
+				ModelSetting.ApiKey = _onlineApiKey;
+
 				AppState.Instance.Assistant = AIServices.DeepseekV2Service.Instance;
 				AppState.Instance.Translator = AIServices.GemmaV1Service.Instance;
 			}
 			else
 			{
-				AppState.Instance.Assistant = AIServices.MistralV1Service.Instance;
-				AppState.Instance.Translator = AIServices.GemmaV1Service.Instance;
+				ModelSetting.Endpoint = _localEndpoint;
+				ModelSetting.AssistantModelName = _localAssistantModelName;
+				ModelSetting.TranslatorModelName = _localTranslatorModelName;
+
+				AppState.Instance.Assistant = MistralV1Service.Instance;
+				AppState.Instance.Translator = GemmaV1Service.Instance;
 			}
+
+			IDESetting.UseAdvancedShortcut = UseAdvancedShortcut;
+			IDESetting.AdvancedHotkey = ((int)AdvancedHotkey);
 		}
 
 		public override void LoadSettingsFromStorage()
 		{
 			base.LoadSettingsFromStorage(); // Gọi base để đảm bảo xử lý mặc định
 
-			SetAppStateModel();
+			SetAppSettingModel();
 		}
 
 		protected override void OnApply(PageApplyEventArgs e)
@@ -172,29 +215,7 @@ namespace PTMngVSIX
 
 			if (e.ApplyBehavior == ApplyKind.Apply)
 			{
-				ModelSetting.UseInternet = _useInternet;
-
-				if (ModelSetting.UseInternet)
-				{
-					ModelSetting.Endpoint = _onlineEndpoint;
-					ModelSetting.AssistantModelName = _onlineAssistantModelName;
-					ModelSetting.TranslatorModelName = _onlineTranslatorModelName;
-					ModelSetting.ApiKey = _onlineApiKey;
-
-					AppState.Instance.Assistant = DeepseekV2Service.Instance;
-					AppState.Instance.Translator = GemmaV1Service.Instance;
-				}
-				else
-				{
-					ModelSetting.Endpoint = _localEndpoint;
-					ModelSetting.AssistantModelName = _localAssistantModelName;
-					ModelSetting.TranslatorModelName = _localTranslatorModelName;
-
-					AppState.Instance.Assistant = MistralV1Service.Instance;
-					AppState.Instance.Translator = GemmaV1Service.Instance;
-				}
-
-				SetAppStateModel();
+				SetAppSettingModel();
 
 				var jtf = PTMngVSIXPackage.JoinableTaskContext.Factory;
 				_ = jtf.RunAsync(async () =>

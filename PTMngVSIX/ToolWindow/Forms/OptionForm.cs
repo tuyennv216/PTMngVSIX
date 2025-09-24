@@ -1,4 +1,5 @@
 ﻿using PTMngVSIX.Setting;
+using PTMngVSIX.Utils.Chat;
 using System.Windows.Forms;
 
 namespace PTMngVSIX.ToolWindow.Forms

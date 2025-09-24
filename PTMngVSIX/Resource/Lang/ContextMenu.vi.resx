@@ -202,10 +202,10 @@
     <value>Gợi ý tính năng</value>
   </data>
   <data name="Button_C6010_AddCodeSnippet" xml:space="preserve">
-    <value>Thêm code snippet</value>
+    <value>Thêm Code Snippet</value>
   </data>
-  <data name="Button_C6011_ResetCodeSnippet" xml:space="preserve">
-    <value>Reset code snippet</value>
+  <data name="Button_C6011_ResetChat" xml:space="preserve">
+    <value>Reset Code Snippet</value>
   </data>
   <data name="Button_C1002_GenerateClass" xml:space="preserve">
     <value>Tạo class</value>
@@ -231,7 +231,16 @@
   <data name="Button_C6020_AddFilePath" xml:space="preserve">
     <value>Thêm file vào PTMng Chat</value>
   </data>
-  <data name="C6022_AddSolutionFolderFilesPath" xml:space="preserve">
+  <data name="Button_C6022_AddSolutionFolderFilesPath" xml:space="preserve">
     <value>Thêm files trong folder vào PTMng Chat</value>
+  </data>
+  <data name="Button_C6030_AddActiveFile" xml:space="preserve">
+    <value>Thêm file đang mở</value>
+  </data>
+  <data name="Button_C6031_AddActiveFunction" xml:space="preserve">
+    <value>Thêm function đang mở</value>
+  </data>
+  <data name="Button_C6032_AddCurrentLine" xml:space="preserve">
+    <value>Thêm dòng hiện tại</value>
   </data>
 </root>

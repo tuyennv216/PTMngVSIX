@@ -11,7 +11,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 {
 	internal sealed class C1000_GenerateCode : CommandBase<C1000_GenerateCode>
 	{
-		public override int CommandId { get; protected set; } = 1000;
+		public override int CommandId { get; protected set; } = CommandIds.C1000;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C1000_GenerateCode;
 
 		public C1000_GenerateCode(AsyncPackage package, OleMenuCommandService commandService)

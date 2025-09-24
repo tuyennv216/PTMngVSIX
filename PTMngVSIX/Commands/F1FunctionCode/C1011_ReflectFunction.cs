@@ -11,7 +11,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 {
 	internal sealed class C1011_ReflectFunction : CommandBase<C1011_ReflectFunction>
 	{
-		public override int CommandId { get; protected set; } = 1011;
+		public override int CommandId { get; protected set; } = CommandIds.C1011;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C1003_ReflectCode;
 
 		public C1011_ReflectFunction(AsyncPackage package, OleMenuCommandService commandService)

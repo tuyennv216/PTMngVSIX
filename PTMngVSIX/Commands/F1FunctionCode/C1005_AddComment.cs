@@ -11,7 +11,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 {
 	internal sealed class C1005_AddComment : CommandBase<C1005_AddComment>
 	{
-		public override int CommandId { get; protected set; } = 1005;
+		public override int CommandId { get; protected set; } = CommandIds.C1005;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C1005_AddComment;
 
 		public C1005_AddComment(AsyncPackage package, OleMenuCommandService commandService)

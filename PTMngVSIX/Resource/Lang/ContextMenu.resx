@@ -204,7 +204,7 @@
   <data name="Button_C6010_AddCodeSnippet" xml:space="preserve">
     <value>Add Code Snippet</value>
   </data>
-  <data name="Button_C6011_ResetCodeSnippet" xml:space="preserve">
+  <data name="Button_C6011_ResetChat" xml:space="preserve">
     <value>Reset Code Snippet</value>
   </data>
   <data name="Button_C1002_GenerateClass" xml:space="preserve">
@@ -231,7 +231,16 @@
   <data name="Button_C6020_AddFilePath" xml:space="preserve">
     <value>Add a file to PTMng Chat</value>
   </data>
-  <data name="C6022_AddSolutionFolderFilesPath" xml:space="preserve">
+  <data name="Button_C6022_AddSolutionFolderFilesPath" xml:space="preserve">
     <value>Add files in this folder to PTMng Chat</value>
+  </data>
+  <data name="Button_C6030_AddActiveFile" xml:space="preserve">
+    <value>Add active file</value>
+  </data>
+  <data name="Button_C6031_AddActiveFunction" xml:space="preserve">
+    <value>Add active function</value>
+  </data>
+  <data name="Button_C6032_AddCurrentLine" xml:space="preserve">
+    <value>Add current line</value>
   </data>
 </root>

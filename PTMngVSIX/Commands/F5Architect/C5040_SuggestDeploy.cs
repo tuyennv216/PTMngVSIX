@@ -8,7 +8,7 @@ namespace PTMngVSIX.Commands.F5Architect
 {
 	internal sealed class C5040_SuggestDeploy : CommandBase<C5040_SuggestDeploy>
 	{
-		public override int CommandId { get; protected set; } = 5040;
+		public override int CommandId { get; protected set; } = CommandIds.C5040;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C5040_SuggestDeploy;
 
 		public C5040_SuggestDeploy(AsyncPackage package, OleMenuCommandService commandService)

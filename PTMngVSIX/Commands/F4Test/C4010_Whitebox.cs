@@ -8,7 +8,7 @@ namespace PTMngVSIX.Commands.F4Test
 {
 	internal sealed class C4010_Whitebox : CommandBase<C4010_Whitebox>
 	{
-		public override int CommandId { get; protected set; } = 4010;
+		public override int CommandId { get; protected set; } = CommandIds.C4010;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C4010_Whitebox;
 
 		public C4010_Whitebox(AsyncPackage package, OleMenuCommandService commandService)

@@ -55,6 +55,8 @@ namespace PTMngVSIX.Utils.Editor
 					TextDocument = textDocument;
 					FilePath = textDocument.FilePath;
 				}
+
+				Snapshot = TextView.TextSnapshot;
 			}
 		}
 

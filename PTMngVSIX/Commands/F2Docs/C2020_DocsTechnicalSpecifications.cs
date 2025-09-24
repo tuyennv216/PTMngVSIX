@@ -4,11 +4,11 @@ using PTMngVSIX.Utils.Dialog;
 using System;
 using Task = System.Threading.Tasks.Task;
 
-namespace PTMngVSIX.Commands.F2FunctionCode
+namespace PTMngVSIX.Commands.F2Docs
 {
 	internal sealed class C2020_DocsTechnicalSpecifications : CommandBase<C2020_DocsTechnicalSpecifications>
 	{
-		public override int CommandId { get; protected set; } = 2020;
+		public override int CommandId { get; protected set; } = CommandIds.C2020;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C2020_DocsTechnicalSpecifications;
 
 		public C2020_DocsTechnicalSpecifications(AsyncPackage package, OleMenuCommandService commandService)

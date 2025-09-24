@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AppState.cs" />
     <Compile Include="DefaultSetting.cs" />
+    <Compile Include="IDESetting.cs" />
     <Compile Include="ModelSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

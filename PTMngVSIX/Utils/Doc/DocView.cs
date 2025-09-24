@@ -1,5 +1,6 @@
 ﻿using EnvDTE;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
 using PTMngVSIX.Utils.Cache;
@@ -76,7 +77,6 @@ namespace PTMngVSIX.Utils.Doc
 			try
 			{
 				item.Initial();
-				item.UpdateSnapshot();
 
 				var parentNode = item.FindParent(kind, true);
 

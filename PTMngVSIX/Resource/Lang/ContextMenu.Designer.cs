@@ -351,9 +351,9 @@ namespace PTMngVSIX.Resource.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Reset Code Snippet.
         /// </summary>
-        internal static string Button_C6011_ResetCodeSnippet {
+        internal static string Button_C6011_ResetChat {
             get {
-                return ResourceManager.GetString("Button_C6011_ResetCodeSnippet", resourceCulture);
+                return ResourceManager.GetString("Button_C6011_ResetChat", resourceCulture);
             }
         }
         
@@ -369,9 +369,36 @@ namespace PTMngVSIX.Resource.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Add files in this folder to PTMng Chat.
         /// </summary>
-        internal static string C6022_AddSolutionFolderFilesPath {
+        internal static string Button_C6022_AddSolutionFolderFilesPath {
             get {
-                return ResourceManager.GetString("C6022_AddSolutionFolderFilesPath", resourceCulture);
+                return ResourceManager.GetString("Button_C6022_AddSolutionFolderFilesPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add active file.
+        /// </summary>
+        internal static string Button_C6030_AddActiveFile {
+            get {
+                return ResourceManager.GetString("Button_C6030_AddActiveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add active function.
+        /// </summary>
+        internal static string Button_C6031_AddActiveFunction {
+            get {
+                return ResourceManager.GetString("Button_C6031_AddActiveFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add current line.
+        /// </summary>
+        internal static string Button_C6032_AddCurrentLine {
+            get {
+                return ResourceManager.GetString("Button_C6032_AddCurrentLine", resourceCulture);
             }
         }
         

@@ -87,6 +87,18 @@ namespace PTMngVSIX.Utils.Chat
 			return response;
 		}
 
+		public async Task AddExecLogAsync(string log)
+		{
+			var chatControl = await GetChatControlAsync();
+			chatControl?.AddExecLog(log);
+		}
+
+		public async Task AddCommentAsync(string comment)
+		{
+			var chatControl = await GetChatControlAsync();
+			chatControl?.AddComment(comment);
+		}
+
 		// Code Snippet
 		public async Task AddCodeSnippetAsync(string rawCode)
 		{

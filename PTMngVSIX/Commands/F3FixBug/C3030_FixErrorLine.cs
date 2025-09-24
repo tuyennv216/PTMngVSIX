@@ -11,7 +11,7 @@ namespace PTMngVSIX.Commands.F3FixBug
 	[Export(typeof(C3030_FixErrorLine))]
 	internal sealed class C3030_FixErrorLine : CommandBase<C3030_FixErrorLine>
 	{
-		public override int CommandId { get; protected set; } = 3030;
+		public override int CommandId { get; protected set; } = CommandIds.C3030;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C3030_FixErrorLine;
 
 		public C3030_FixErrorLine(AsyncPackage package, OleMenuCommandService commandService)

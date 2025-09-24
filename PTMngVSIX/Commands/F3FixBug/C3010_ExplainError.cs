@@ -11,7 +11,7 @@ namespace PTMngVSIX.Commands.F3FixBug
 	[Export(typeof(C3010_ExplainError))]
 	internal sealed class C3010_ExplainError : CommandBase<C3010_ExplainError>
 	{
-		public override int CommandId { get; protected set; } = 3010;
+		public override int CommandId { get; protected set; } = CommandIds.C3010;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C3010_ExplainError;
 
 		public C3010_ExplainError(AsyncPackage package, OleMenuCommandService commandService)

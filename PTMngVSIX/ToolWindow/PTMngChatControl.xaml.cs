@@ -152,7 +152,7 @@ namespace PTMngVSIX.ToolWindow
 			var aiParagraph = new Paragraph
 			{
 				FontFamily = DefaultFontFamily,
-				Foreground = Brushes.Black,
+				Foreground = Brushes.Navy,
 				Padding = new Thickness(0, 0, 0, 5)
 			};
 			aiParagraph.Inlines.Add(new Run(response.Answer));
@@ -164,6 +164,36 @@ namespace PTMngVSIX.ToolWindow
 			}
 			ChatDisplay.ScrollToEnd();
 		}
+
+		// Other texts
+		public void AddExecLog(string log)
+		{
+			var paragraph = new Paragraph()
+			{
+				FontFamily = DefaultFontFamily,
+				FontSize = 12,
+				Foreground = Brushes.Gray,
+				FontStyle = FontStyles.Italic,
+				Margin = new Thickness(0),
+			};
+			paragraph.Inlines.Add(new Run(log));
+			ChatDisplay.Document.Blocks.Add(paragraph);
+		}
+
+		public void AddComment(string comment)
+		{
+			var paragraph = new Paragraph()
+			{
+				FontFamily = DefaultFontFamily,
+				FontSize = 12,
+				Foreground = Brushes.Gray,
+				FontStyle = FontStyles.Italic,
+				Margin = new Thickness(0),
+			};
+			paragraph.Inlines.Add(new Run(comment));
+			ChatDisplay.Document.Blocks.Add(paragraph);
+		}
+		// End Other texts
 
 		// Code Snippet
 		public void AddCodeSnippet(string code)

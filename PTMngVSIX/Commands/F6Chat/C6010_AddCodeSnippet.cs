@@ -9,7 +9,7 @@ namespace PTMngVSIX.Commands.F6Chat
 {
 	internal sealed class C6010_AddCodeSnippet : CommandBase<C6010_AddCodeSnippet>
 	{
-		public override int CommandId { get; protected set; } = 6010;
+		public override int CommandId { get; protected set; } = CommandIds.C6010;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C6010_AddCodeSnippet;
 
 		public C6010_AddCodeSnippet(AsyncPackage package, OleMenuCommandService commandService)

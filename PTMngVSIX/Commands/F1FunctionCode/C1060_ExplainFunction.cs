@@ -8,7 +8,7 @@ namespace PTMngVSIX.Commands.F1FunctionCode
 {
 	internal sealed class C1060_ExplainFunction : CommandBase<C1060_ExplainFunction>
 	{
-		public override int CommandId { get; protected set; } = 1060;
+		public override int CommandId { get; protected set; } = CommandIds.C1060;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C1060_ExplainFunction;
 
 		public C1060_ExplainFunction(AsyncPackage package, OleMenuCommandService commandService)

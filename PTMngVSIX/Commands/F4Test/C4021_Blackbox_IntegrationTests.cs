@@ -8,7 +8,7 @@ namespace PTMngVSIX.Commands.F4Test
 {
 	internal sealed class C4021_Blackbox_IntegrationTests : CommandBase<C4021_Blackbox_IntegrationTests>
 	{
-		public override int CommandId { get; protected set; } = 4021;
+		public override int CommandId { get; protected set; } = CommandIds.C4021;
 		public override string CommandText { get; protected set; } = Resource.Lang.ContextMenu.Button_C4021_Backbox_IntegrationTests;
 
 		public C4021_Blackbox_IntegrationTests(AsyncPackage package, OleMenuCommandService commandService)

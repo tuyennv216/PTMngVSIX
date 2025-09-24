@@ -76,6 +76,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Abstraction\CommandBase.cs" />
+    <Compile Include="Abstraction\CommandMap.cs" />
     <Compile Include="Commands\F0App\C9000_ConnectServer.cs" />
     <Compile Include="Commands\F1FunctionCode\C1012_ReflectClass.cs" />
     <Compile Include="Commands\F1FunctionCode\C1011_ReflectFunction.cs" />
@@ -109,10 +110,13 @@
     <Compile Include="Commands\F5Architect\C5040_SuggestDeploy.cs" />
     <Compile Include="Commands\F5Architect\C5030_SuggestSolution.cs" />
     <Compile Include="Commands\F5Architect\C5020_ReviewCodeFunction.cs" />
+    <Compile Include="Commands\F6Chat\C6032_AddCurrentLine.cs" />
+    <Compile Include="Commands\F6Chat\C6031_AddActiveFunction.cs" />
+    <Compile Include="Commands\F6Chat\C6030_AddActiveFile.cs" />
     <Compile Include="Commands\F6Chat\C6022_AddSolutionFolderFilesPath.cs" />
     <Compile Include="Commands\F6Chat\C6020_AddSolutionFilePath.cs" />
     <Compile Include="Commands\F6Chat\C6021_AddActiveFilePath.cs" />
-    <Compile Include="Commands\F6Chat\C6011_ResetCodeSnippet.cs" />
+    <Compile Include="Commands\F6Chat\C6011_ResetChat.cs" />
     <Compile Include="Commands\F6Chat\C6010_AddCodeSnippet.cs" />
     <Compile Include="OptionPage\PTMngOptionPage.cs">
       <SubType>Component</SubType>
@@ -159,6 +163,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FormOption.resx</DependentUpon>
     </Compile>
+    <Compile Include="Shortcut\KeyboardService\IKeyboardSequenceService.cs" />
+    <Compile Include="Shortcut\KeyboardService\KeyboardSequenceService.cs" />
     <Compile Include="ToolWindow\Converter\InverseBoolToVisibilityConverter.cs" />
     <Compile Include="ToolWindow\Converter\CountToVisibilityConverter.cs" />
     <Compile Include="ToolWindow\Converter\BoolToVisibilityConverter.cs" />
@@ -194,6 +200,7 @@
     <Compile Include="Utils\Editor\EditorAction.cs" />
     <Compile Include="Utils\Doc\DocView.cs" />
     <Compile Include="Utils\SystemIO\IOCommand.cs" />
+    <Compile Include="Utils\vsShell\RunCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">
@@ -293,10 +300,12 @@
     <EmbeddedResource Include="Resource\Lang\ContextMenu.vi.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ContextMenu.vi.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource\Lang\ContextMenu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ContextMenu.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource\Lang\UI.vi.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

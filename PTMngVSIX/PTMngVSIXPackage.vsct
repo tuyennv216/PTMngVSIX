@@ -395,7 +395,7 @@
         </Strings>
       </Button>
 
-      <Button guid="PTMngCmdSet" id="C6011_ResetCodeSnippet" priority="112" type="Button">
+      <Button guid="PTMngCmdSet" id="C6011_ResetChat" priority="112" type="Button">
         <Parent guid="PTMngCmdSet" id="F6_CommandGroup" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
@@ -465,13 +465,34 @@
                 mod1="Control Shift" key1="M" key2="A"
                 editor="guidVSStd97"/>
 
-    <KeyBinding guid="PTMngCmdSet" id="C6011_ResetCodeSnippet"
+    <KeyBinding guid="PTMngCmdSet" id="C6030_AddActiveFile"
+                mod1="Control Shift" key1="M" key2="Q"
+                editor="guidVSStd97"/>
+
+    <KeyBinding guid="PTMngCmdSet" id="C6031_AddActiveFunction"
+                mod1="Control Shift" key1="M" key2="W"
+                editor="guidVSStd97"/>
+
+    <KeyBinding guid="PTMngCmdSet" id="C1001_GenerateFunction"
+                mod1="Control Shift" key1="M" key2="C"
+                editor="guidVSStd97"/>
+
+    <KeyBinding guid="PTMngCmdSet" id="C3030_FixErrorLine"
+                mod1="Control Shift" key1="M" key2="F"
+                editor="guidVSStd97"/>
+
+    <KeyBinding guid="PTMngCmdSet" id="C6011_ResetChat"
                 mod1="Control Shift" key1="M" key2="X"
                 editor="guidVSStd97"/>
 
     <KeyBinding guid="PTMngCmdSet" id="C6021_AddActiveFilePath"
                 mod1="Control Shift" key1="M" key2="F"
                 editor="guidVSStd97"/>
+
+    <KeyBinding guid="PTMngCmdSet" id="C9000_ConnectServer"
+                mod1="Control Shift" key1="M" key2="Z"
+                editor="guidVSStd97"/>
+    
   </KeyBindings>
   <!--End Đăng ký shortcut-->
 
@@ -541,10 +562,13 @@
       <IDSymbol name="C5070_SuggestFeatures" value="5070" />
 
       <IDSymbol name="C6010_AddCodeSnippet" value="6010" />
-      <IDSymbol name="C6011_ResetCodeSnippet" value="6011" />
+      <IDSymbol name="C6011_ResetChat" value="6011" />
       <IDSymbol name="C6020_AddSolutionFilePath" value="6020" />
       <IDSymbol name="C6021_AddActiveFilePath" value="6021" />
       <IDSymbol name="C6022_AddSolutionFolderFilesPath" value="6022" />
+      <IDSymbol name="C6030_AddActiveFile" value="6030" />
+      <IDSymbol name="C6031_AddActiveFunction" value="6031" />
+      <IDSymbol name="C6032_AddCurrentLine" value="6032" />
 
     </GuidSymbol>
   </Symbols>
