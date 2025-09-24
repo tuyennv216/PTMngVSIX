@@ -8,7 +8,7 @@ PTMngVSIX is a powerful Visual Studio extension that integrates multiple AI serv
 
 - **Multi-AI Service Support**: Integrated support for local Ollama (Mistral, Llama, etc.) and cloud AI services via OpenRouter
 - **Code Generation**: Generate code snippets and complete functions
-- **Code Refactoring**: Optimization, bug fixing
+- **Code Refactoring**: Optimization and bug fixing
 - **Documentation**: Generate comprehensive code documentation
 - **Test Case Generation**: Create unit tests and test cases
 - **Code Review**: Get code review and improvement suggestions
@@ -23,7 +23,7 @@ PTMngVSIX is a powerful Visual Studio extension that integrates multiple AI serv
 
 ## Configuration
 
-1. Open Visual Studio and go to Tools → Options → PTMng AI
+1. Open Visual Studio and go to **Tools → Options → PTMng AI**
 2. For OpenRouter access: Enter your API key in the designated field
 3. For local Ollama: Specify the Ollama server URL
 4. Choose the assistant model you want to use
@@ -31,20 +31,20 @@ PTMngVSIX is a powerful Visual Studio extension that integrates multiple AI serv
 
 ## Usage
 
-### Common use
-1. Right-click in the code editor and select menu → sub action
-2. Open View / PTMng AI Chat → Setting to config chat options
-3. Right-click in the solution file to attachment file(s) into chat window
+### Common Use
+1. Right-click in the code editor and select **menu → sub action**
+2. Open **View / PTMng AI Chat → Setting** to configure chat options
+3. Right-click in the solution file to attach file(s) to the chat window
 
-### Shortcut
-1. Ctrl + Shift + M → M : Open PTMng AI Chat window
-2. Ctrl + Shift + M → A : Add code snippet
-3. Ctrl + Shift + M → Q : Add current editor document to code snippet
-4. Ctrl + Shift + M → W : Add current editor function to code snippet
-5. Ctrl + Shift + M → C : Generate function
-6. Ctrl + Shift + M → F : Suggest to fix current line error
-7. Ctrl + Shift + M → X : Clear code snippets and active documents
-8. Ctrl + Shift + M → Z : Connect to AI server
+### Shortcuts
+1. **Ctrl + Shift + M → M**: Open PTMng AI Chat window
+2. **Ctrl + Shift + M → A**: Add code snippet
+3. **Ctrl + Shift + M → Q**: Add current editor document to code snippet
+4. **Ctrl + Shift + M → W**: Add current editor function to code snippet
+5. **Ctrl + Shift + M → C**: Generate function
+6. **Ctrl + Shift + M → F**: Suggest a fix for the current line error
+7. **Ctrl + Shift + M → X**: Clear code snippets and active documents
+8. **Ctrl + Shift + M → Z**: Connect to AI server
 
 ## Important Notice
 
