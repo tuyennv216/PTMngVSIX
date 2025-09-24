@@ -39,8 +39,9 @@ PTMngVSIX is a powerful Visual Studio extension that integrates multiple AI serv
 ### Shortcuts
 1. **Ctrl + Shift + M → M**: Open PTMng AI Chat window
 2. **Ctrl + Shift + M → A**: Add code snippet
-3. **Ctrl + Shift + M → Q**: Add current editor document to code snippet
-4. **Ctrl + Shift + M → W**: Add current editor function to code snippet
+3. **Ctrl + Shift + M → J**: Add current editor document to code snippet
+4. **Ctrl + Shift + M → K**: Add current editor function to code snippet
+4. **Ctrl + Shift + M → L**: Add current editor line to code snippet
 5. **Ctrl + Shift + M → C**: Generate function
 6. **Ctrl + Shift + M → F**: Suggest a fix for the current line error
 7. **Ctrl + Shift + M → X**: Clear code snippets and active documents
