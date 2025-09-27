@@ -168,6 +168,7 @@
     <Compile Include="ToolWindow\Converter\InverseBoolToVisibilityConverter.cs" />
     <Compile Include="ToolWindow\Converter\CountToVisibilityConverter.cs" />
     <Compile Include="ToolWindow\Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="ToolWindow\Converter\MathMultiplyConverter.cs" />
     <Compile Include="ToolWindow\Converter\TextToVisibilityConverter.cs" />
     <Compile Include="ToolWindow\Forms\OptionForm.cs">
       <SubType>Form</SubType>

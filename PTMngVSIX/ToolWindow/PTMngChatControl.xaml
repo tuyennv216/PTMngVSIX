@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:lang="clr-namespace:PTMngVSIX.Resource.Lang"
              xmlns:converters="clr-namespace:PTMngVSIX.ToolWindow.Converter"
              xmlns:chat="clr-namespace:PTMngVSIX.Utils.Chat"
@@ -17,6 +18,8 @@
         <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converters:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
+        <converters:MathMultiplyConverter x:Key="MathMultiplyConverter"/>
+        <sys:Double x:Key="HalfValue">0.5</sys:Double>
     </UserControl.Resources>
 
     <Grid>
@@ -103,7 +106,14 @@
                              HorizontalScrollBarVisibility="Auto"
                              BorderThickness="0"
                              Margin="5,0,5,5"
-                             Background="LightGray" />
+                             Background="LightGray">
+                    <RichTextBox.MaxHeight>
+                        <MultiBinding Converter="{StaticResource MathMultiplyConverter}">
+                            <Binding Path="ActualHeight" ElementName="PTMngChatToolWindow"/>
+                            <Binding Source="{StaticResource HalfValue}"/>
+                        </MultiBinding>
+                    </RichTextBox.MaxHeight>
+                </RichTextBox>
             </Grid>
         </Border>
 
