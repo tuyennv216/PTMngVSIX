@@ -121,5 +121,11 @@ namespace PTMngVSIX.ToolWindow.Forms
 			ModelSetting.OutputLanguage = OutputLanguage;
 			ModelSetting.ChatEnviroment = ChatEnviroment;
 		}
+
+		private void button_debug_info_Click(object sender, System.EventArgs e)
+		{
+			var debugInfoDialog = new DebugInfo();
+			debugInfoDialog.ShowDialog(this);
+		}
 	}
 }

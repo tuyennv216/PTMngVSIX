@@ -133,6 +133,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ContextMenu.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resource\Lang\DebugInfo.vi.Designer.cs">
+      <DependentUpon>DebugInfo.vi.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\Lang\DebugInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DebugInfo.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resource\Lang\UI.vi.Designer.cs">
       <DependentUpon>UI.vi.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -170,6 +180,12 @@
     <Compile Include="ToolWindow\Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="ToolWindow\Converter\MathMultiplyConverter.cs" />
     <Compile Include="ToolWindow\Converter\TextToVisibilityConverter.cs" />
+    <Compile Include="ToolWindow\Forms\DebugInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindow\Forms\DebugInfo.Designer.cs">
+      <DependentUpon>DebugInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolWindow\Forms\OptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,6 +324,14 @@
       <LastGenOutput>ContextMenu.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\DebugInfo.vi.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DebugInfo.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Lang\DebugInfo.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DebugInfo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resource\Lang\UI.vi.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UI.vi.Designer.cs</LastGenOutput>
@@ -336,6 +360,9 @@
       <LastGenOutput>FormOption.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource\Lang\FormOption.vi.resx" />
+    <EmbeddedResource Include="ToolWindow\Forms\DebugInfo.resx">
+      <DependentUpon>DebugInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolWindow\Forms\OptionForm.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -72,6 +72,7 @@ namespace PTMngVSIX.ToolWindow
 		private void ResetButton_Click(object sender, RoutedEventArgs e)
 		{
 			_ = ChatService.Instance.ResetChatAsync();
+			_ = AIServiceUsage.Instance.NewSession();
 		}
 
 		private void SettingButton_Click(object sender, RoutedEventArgs e)

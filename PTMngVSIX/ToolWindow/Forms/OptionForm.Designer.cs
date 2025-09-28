@@ -51,6 +51,7 @@
 			this.textbox_output_format = new System.Windows.Forms.TextBox();
 			this.label_output_format = new System.Windows.Forms.Label();
 			this.combobox_role = new System.Windows.Forms.ComboBox();
+			this.button_debug_info = new System.Windows.Forms.Button();
 			this.groupbox_additional_infor.SuspendLayout();
 			this.groupbox_model_setting.SuspendLayout();
 			this.SuspendLayout();
@@ -271,11 +272,22 @@
 			this.combobox_role.Size = new System.Drawing.Size(192, 21);
 			this.combobox_role.TabIndex = 8;
 			// 
+			// button_debug_info
+			// 
+			this.button_debug_info.Location = new System.Drawing.Point(12, 424);
+			this.button_debug_info.Name = "button_debug_info";
+			this.button_debug_info.Size = new System.Drawing.Size(134, 30);
+			this.button_debug_info.TabIndex = 9;
+			this.button_debug_info.Text = "Thông tin gỡ lỗi";
+			this.button_debug_info.UseVisualStyleBackColor = true;
+			this.button_debug_info.Click += new System.EventHandler(this.button_debug_info_Click);
+			// 
 			// OptionForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(561, 466);
+			this.Controls.Add(this.button_debug_info);
 			this.Controls.Add(this.groupbox_model_setting);
 			this.Controls.Add(this.groupbox_additional_infor);
 			this.Controls.Add(this.btnCancel);
@@ -316,5 +328,6 @@
 		private System.Windows.Forms.CheckBox checkbox_translate_output;
 		private System.Windows.Forms.Label label_env;
 		private System.Windows.Forms.TextBox textbox_env;
+		private System.Windows.Forms.Button button_debug_info;
 	}
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PTMngVSIX.Setting;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -28,8 +30,8 @@ namespace PTMngVSIX.Abstraction.AI
 			_defaultModelId = defaultModelId;
 
 			ServicePointManager.FindServicePoint(new Uri(_endpoint))
-				.ConnectionLeaseTimeout = 60000; // 60 seconds
-			ServicePointManager.DefaultConnectionLimit = 100;
+				.ConnectionLeaseTimeout = 5 * 60000; // 5 * 60 seconds
+			ServicePointManager.DefaultConnectionLimit = 20;
 
 			WithHttpClient(new HttpClient());
 		}
@@ -42,7 +44,7 @@ namespace PTMngVSIX.Abstraction.AI
 			// Thiết lập base URL và headers
 			_httpClient.BaseAddress = new Uri(_endpoint);
 			_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
-			//_httpClient.DefaultRequestHeaders.Add("HTTP-Referer", _websiteUrl);
+			_httpClient.DefaultRequestHeaders.Add("HTTP-Referer", "https://github.com/tuyennv216/PTMngVSIX");
 			_httpClient.DefaultRequestHeaders.Add("X-Title", "PTMngVSIX");
 			_httpClient.DefaultRequestHeaders.Add("X-API-Version", "1.0");
 			_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -85,7 +87,11 @@ namespace PTMngVSIX.Abstraction.AI
 			
 			var responseObject = JsonSerializer.Deserialize<OpenAIResponse>(fixedContent, _jsonOptions);
 
-			return responseObject?.Choices?[0]?.Message?.Content ?? string.Empty;
+			var choice = responseObject?.Choices?[0]?.Message?.Content ?? string.Empty;
+
+			_ = AIServiceUsage.Instance.Update(messages, responseObject);
+
+			return choice;
 		}
 
 		public async IAsyncEnumerable<string> GetStreamResponseAsync(IEnumerable<ChatMessage> messages, ChatOptions options)

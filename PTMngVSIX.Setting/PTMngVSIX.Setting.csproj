@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AIServiceUsage.cs" />
     <Compile Include="AppState.cs" />
     <Compile Include="DefaultSetting.cs" />
     <Compile Include="IDESetting.cs" />

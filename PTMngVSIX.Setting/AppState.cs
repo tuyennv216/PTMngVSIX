@@ -25,7 +25,6 @@ namespace PTMngVSIX.Setting
 		public IModelService Assistant { get; set; }
 		public IModelService Translator { get; set; }
 
-
 		public event PropertyChangedEventHandler PropertyChanged;
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{

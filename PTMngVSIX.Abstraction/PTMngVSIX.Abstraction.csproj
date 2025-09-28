@@ -41,7 +41,6 @@
     <AssemblyOriginatorKeyFile>..\PTMngVSIX.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AI\BaseOpenAILikeChatClient.cs" />
     <Compile Include="AI\ChatOptions.cs" />
     <Compile Include="AI\ChatRoles.cs" />
     <Compile Include="AI\IChatClient.cs" />
